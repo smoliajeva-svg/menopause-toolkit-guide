@@ -1185,17 +1185,54 @@
 
             /* Progress Tracker Mobile Styles */
             #symptomCheckboxes {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+                grid-template-columns: 1fr !important;
                 max-height: 400px !important;
+                font-size: 0.9rem !important;
             }
 
             .mood-btn {
-                padding: 1.2rem 0.8rem !important;
+                padding: 1rem 0.5rem !important;
+                font-size: 0.8rem !important;
+            }
+
+            .mood-btn div:first-child {
+                font-size: 2rem !important;
             }
 
             #weekOverview {
-                grid-template-columns: repeat(7, 1fr) !important;
-                gap: 0.5rem !important;
+                grid-template-columns: repeat(7, minmax(60px, 1fr)) !important;
+                gap: 0.3rem !important;
+                overflow-x: auto !important;
+            }
+            
+            #weekOverview > div {
+                min-width: 60px !important;
+                padding: 0.5rem 0.3rem !important;
+            }
+            
+            #weekOverview > div > div:first-child {
+                font-size: 0.65rem !important;
+            }
+            
+            #weekOverview > div > div:nth-child(2) {
+                font-size: 0.9rem !important;
+            }
+            
+            #weekOverview > div > div:nth-child(3) {
+                font-size: 1.5rem !important;
+            }
+            
+            /* Moon circle on mobile */
+            #weekOverview > div > div:nth-child(4) {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 1rem !important;
+            }
+            
+            /* Quick action buttons on mobile */
+            #viewFavoritesBtn, #randomBtn, #selfCareFilterBtn {
+                padding: 0.6rem 1rem !important;
+                font-size: 0.85rem !important;
             }
         }
 
@@ -1217,6 +1254,156 @@
         #symptomCheckboxes::-webkit-scrollbar-thumb:hover {
             background: var(--primary-green);
         }
+        
+        /* ===== FEMININE COLOUR SCHEME FOR BUTTONS AND BOXES ===== */
+        
+        /* Symptom Selection Buttons - Different Pastel Colours */
+        .protocol-nav-btn:nth-child(1) { 
+            border-color: #FFB5C5 !important; 
+            background: linear-gradient(135deg, #FFF0F3, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(1):hover { 
+            background: linear-gradient(135deg, #FFE5EA, #FFF0F3) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(255, 181, 197, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(2) { 
+            border-color: #FF9F7F !important; 
+            background: linear-gradient(135deg, #FFF4ED, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(2):hover { 
+            background: linear-gradient(135deg, #FFE9DB, #FFF4ED) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(255, 159, 127, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(3) { 
+            border-color: #E8D5F2 !important; 
+            background: linear-gradient(135deg, #FAF5FD, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(3):hover { 
+            background: linear-gradient(135deg, #F3EAFA, #FAF5FD) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(232, 213, 242, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(4) { 
+            border-color: #8EBFB5 !important; 
+            background: linear-gradient(135deg, #EDF7F5, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(4):hover { 
+            background: linear-gradient(135deg, #E0F2EE, #EDF7F5) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(142, 191, 181, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(5) { 
+            border-color: #FFD4A3 !important; 
+            background: linear-gradient(135deg, #FFF8EF, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(5):hover { 
+            background: linear-gradient(135deg, #FFF1DD, #FFF8EF) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(255, 212, 163, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(6) { 
+            border-color: #C4A5E1 !important; 
+            background: linear-gradient(135deg, #F7F3FB, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(6):hover { 
+            background: linear-gradient(135deg, #EEE7F7, #F7F3FB) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(196, 165, 225, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(7) { 
+            border-color: #FFB5E8 !important; 
+            background: linear-gradient(135deg, #FFF5FC, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(7):hover { 
+            background: linear-gradient(135deg, #FFEAF9, #FFF5FC) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(255, 181, 232, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(8) { 
+            border-color: #B5D4FF !important; 
+            background: linear-gradient(135deg, #F0F7FF, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(8):hover { 
+            background: linear-gradient(135deg, #E0EFFF, #F0F7FF) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(181, 212, 255, 0.3); 
+        }
+        
+        .protocol-nav-btn:nth-child(9) { 
+            border-color: #FFB6D9 !important; 
+            background: linear-gradient(135deg, #FFF0F8, white) !important; 
+        }
+        .protocol-nav-btn:nth-child(9):hover { 
+            background: linear-gradient(135deg, #FFE5F2, #FFF0F8) !important; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 15px rgba(255, 182, 217, 0.3); 
+        }
+        
+        /* Mood/Feeling Buttons - Gradient Feminine Colours */
+        .mood-btn[data-mood="5"] { 
+            border-color: #A8E6CF !important; 
+            background: linear-gradient(135deg, #EDFDF4, white) !important; 
+        }
+        .mood-btn[data-mood="5"]:hover, .mood-btn[data-mood="5"].selected { 
+            background: linear-gradient(135deg, #DFFBEB, #EDFDF4) !important; 
+            border-color: #76D7A8 !important;
+            box-shadow: 0 4px 15px rgba(168, 230, 207, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .mood-btn[data-mood="4"] { 
+            border-color: #B5E7FF !important; 
+            background: linear-gradient(135deg, #F0FAFF, white) !important; 
+        }
+        .mood-btn[data-mood="4"]:hover, .mood-btn[data-mood="4"].selected { 
+            background: linear-gradient(135deg, #DFF3FF, #F0FAFF) !important; 
+            border-color: #8DDBFF !important;
+            box-shadow: 0 4px 15px rgba(181, 231, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .mood-btn[data-mood="3"] { 
+            border-color: #FFE4B5 !important; 
+            background: linear-gradient(135deg, #FFFAF0, white) !important; 
+        }
+        .mood-btn[data-mood="3"]:hover, .mood-btn[data-mood="3"].selected { 
+            background: linear-gradient(135deg, #FFF5E0, #FFFAF0) !important; 
+            border-color: #FFD68A !important;
+            box-shadow: 0 4px 15px rgba(255, 228, 181, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .mood-btn[data-mood="2"] { 
+            border-color: #FFD4A3 !important; 
+            background: linear-gradient(135deg, #FFF8EF, white) !important; 
+        }
+        .mood-btn[data-mood="2"]:hover, .mood-btn[data-mood="2"].selected { 
+            background: linear-gradient(135deg, #FFF1DD, #FFF8EF) !important; 
+            border-color: #FFBD6B !important;
+            box-shadow: 0 4px 15px rgba(255, 212, 163, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .mood-btn[data-mood="1"] { 
+            border-color: #FFB5C5 !important; 
+            background: linear-gradient(135deg, #FFF0F3, white) !important; 
+        }
+        .mood-btn[data-mood="1"]:hover, .mood-btn[data-mood="1"].selected { 
+            background: linear-gradient(135deg, #FFE5EA, #FFF0F3) !important; 
+            border-color: #FF8DA1 !important;
+            box-shadow: 0 4px 15px rgba(255, 181, 197, 0.4);
+            transform: scale(1.05);
+        }
+        
     </style>
 </head>
 <body>
@@ -1336,6 +1523,22 @@
             <button id="nextBtn">Next →</button>
         </div>
 
+        <!-- Quick Actions Row -->
+        <div style="display: flex; gap: 0.8rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap;">
+            <button id="viewFavoritesBtn" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid #FFB5C5; color: #FF8DA1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem;">
+                <span>💝</span>
+                <span id="favCount">Saved Favorites (0)</span>
+            </button>
+            <button id="randomBtn" style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)); color: white; border: none; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(116, 139, 117, 0.3); display: flex; align-items: center; gap: 0.5rem;">
+                <span>🔀</span>
+                <span>Random Card</span>
+            </button>
+            <button id="selfCareFilterBtn" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid #C4A5E1; color: #A67FCF; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem;">
+                <span>💚</span>
+                <span>Self-Care Cards</span>
+            </button>
+        </div>
+
         <div class="flashcard-container">
             <div class="flashcard" id="flashcard">
                 <div class="flashcard-face flashcard-front" id="cardFront"></div>
@@ -1344,6 +1547,33 @@
         </div>
 
         <div class="flip-hint">👆 Tap card to flip and discover actions</div>
+        
+        <div style="text-align: center; margin: 1rem 0; padding: 0.8rem; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05)); border-radius: 12px; border: 2px solid rgba(255, 215, 0, 0.3);">
+            <span style="font-size: 0.95rem; color: var(--text-dark);">
+                Click the 
+                <span style="background: rgba(255, 215, 0, 0.15); border: 2px solid #FFD700; color: #FFD700; padding: 0.2rem 0.4rem; border-radius: 6px; font-size: 1rem; font-weight: bold; margin: 0 0.3rem;">★</span>
+                star to save your favourite cards
+            </span>
+        </div>
+
+        <!-- FAVORITES MODAL -->
+        <div id="favoritesModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: 1rem;">
+            <div style="background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                <button id="closeFavoritesModal" style="position: absolute; top: 1rem; left: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-medium); line-height: 1; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='none'" title="Close">×</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; padding: 0 3rem;">
+                    <h2 style="color: var(--primary-green); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>💝</span>
+                        <span>Your Saved Favorites</span>
+                    </h2>
+                    <button id="clearAllFavoritesBtn" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #FF6B6B; color: #FF6B6B; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='#FF6B6B'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#FF6B6B';">
+                        Clear All
+                    </button>
+                </div>
+                <div id="favoritesGrid" style="display: grid; gap: 0.8rem;">
+                    <!-- Favorites will be populated here -->
+                </div>
+            </div>
+        </div>
 
         <!-- BOTTOM NAVIGATION -->
         <div class="bottom-navigation">
@@ -1387,6 +1617,18 @@
             <button id="suppNextBtn">Next →</button>
         </div>
 
+        <!-- Supplement Quick Actions Row -->
+        <div style="display: flex; gap: 0.8rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap;">
+            <button id="viewSupplementFavoritesBtn" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid #FFB5C5; color: #FF8DA1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem;">
+                <span>💝</span>
+                <span id="suppFavCount">Saved Favorites (0)</span>
+            </button>
+            <button id="randomSupplementBtn" style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)); color: white; border: none; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(116, 139, 117, 0.3); display: flex; align-items: center; gap: 0.5rem;">
+                <span>🔀</span>
+                <span>Random Supplement</span>
+            </button>
+        </div>
+
         <div class="flashcard-container">
             <div class="flashcard" id="supplementFlashcard">
                 <div class="flashcard-face flashcard-front" id="suppCardFront"></div>
@@ -1395,6 +1637,33 @@
         </div>
 
         <div class="flip-hint">👆 Tap card to flip and discover details</div>
+        
+        <div style="text-align: center; margin: 1rem 0; padding: 0.8rem; background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05)); border-radius: 12px; border: 2px solid rgba(255, 215, 0, 0.3);">
+            <span style="font-size: 0.95rem; color: var(--text-dark);">
+                Click the 
+                <span style="background: rgba(255, 215, 0, 0.15); border: 2px solid #FFD700; color: #FFD700; padding: 0.2rem 0.4rem; border-radius: 6px; font-size: 1rem; font-weight: bold; margin: 0 0.3rem;">★</span>
+                star to save your favourite supplements
+            </span>
+        </div>
+
+        <!-- SUPPLEMENT FAVORITES MODAL -->
+        <div id="supplementFavoritesModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: 1rem;">
+            <div style="background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                <button id="closeSupplementFavoritesModal" style="position: absolute; top: 1rem; left: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-medium); line-height: 1; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.2s;" onmouseover="this.style.background='#f0f0f0'" onmouseout="this.style.background='none'" title="Close">×</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; padding: 0 3rem;">
+                    <h2 style="color: var(--primary-green); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>💝</span>
+                        <span>Your Saved Supplements</span>
+                    </h2>
+                    <button id="clearAllSupplementFavoritesBtn" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #FF6B6B; color: #FF6B6B; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='#FF6B6B'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#FF6B6B';">
+                        Clear All
+                    </button>
+                </div>
+                <div id="supplementFavoritesGrid" style="display: grid; gap: 0.8rem;">
+                    <!-- Supplement favorites will be populated here -->
+                </div>
+            </div>
+        </div>
 
         <!-- SUPPLEMENTS BOTTOM NAVIGATION -->
         <div class="bottom-navigation">
@@ -1654,7 +1923,7 @@
             <!-- Quick Mood Selector -->
             <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.15); margin-bottom: 2rem;">
                 <h3 style="color: var(--primary-green); margin-bottom: 1rem;">How are you feeling today?</h3>
-                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 0.8rem; max-width: 600px; margin: 0 auto;">
                     <button class="mood-btn" data-mood="5" style="padding: 1.5rem 1rem; border: 3px solid var(--light-green); background: white; border-radius: 12px; cursor: pointer; transition: all 0.3s; text-align: center;">
                         <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">😊</div>
                         <div style="font-size: 0.85rem; color: var(--text-dark); font-weight: 600;">Great</div>
@@ -1748,8 +2017,14 @@
         <div style="max-width: 900px; margin: 2rem auto;">
             
             <!-- Week Navigation (MAIN PAGE) - MOVED TO TOP -->
-            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.15); margin-bottom: 3rem;">
-                <h3 style="color: var(--primary-green); margin-bottom: 1.5rem; text-align: center;">Choose Your Week</h3>
+            <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.15); margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <h3 style="color: var(--primary-green); margin: 0;">Choose Your Week</h3>
+                    <button id="viewRecipeFavoritesBtn" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid #FFB5C5; color: #FF8DA1; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>💝</span>
+                        <span id="recipeFavCount">Saved Recipes (0)</span>
+                    </button>
+                </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
                     <button class="week-nav-btn active" data-week="1" style="padding: 1.5rem; border: 3px solid #9B7EBD; background: linear-gradient(135deg, #9B7EBD, #B89FD1); color: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
                         <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Week 1</div>
@@ -3551,8 +3826,13 @@
                             Find symptoms by name or body system
                         </div>
                         <div class="legend-item">
-                            <strong>⭐ Save favourites</strong><br>
-                            Keep the most helpful cards handy
+                            <strong style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <span style="background: rgba(209, 213, 219, 0.1); border: 2px solid #D1D5DB; color: #D1D5DB; padding: 0.2rem 0.4rem; border-radius: 6px; font-size: 1.2rem; font-weight: bold;">☆</span>
+                                <span>→</span>
+                                <span style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; color: #FFD700; padding: 0.2rem 0.4rem; border-radius: 6px; font-size: 1.2rem; font-weight: bold;">★</span>
+                                Save Cards
+                            </strong>
+                            Click the star on any card to save it. Grey = not saved, Gold = saved!
                         </div>
                         <div class="legend-item">
                             <strong>🔄 Random card</strong><br>
@@ -3563,13 +3843,19 @@
             } else if (card.type === 'selfcare') {
                 // Self-care card FRONT
                 const cardSystem = card.system || card.front.system;
+                const isFavorite = favorites.includes(card.id);
+                const starColor = isFavorite ? '#FFD700' : '#D1D5DB';
+                const starFill = isFavorite ? '★' : '☆';
                 
                 frontEl.innerHTML = `
                     <div class="system-badge system-selfcare">
                         <span style="font-size: 1.3rem;">💚</span>
                         <span>${cardSystem}</span>
                     </div>
-                    <div class="card-title">${card.front.title}</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1.5rem;">
+                        <div class="card-title" style="margin: 0;">${card.front.title}</div>
+                        <button class="card-star-btn" onclick="toggleCardFavorite(event, ${card.id})" style="background: ${isFavorite ? 'rgba(255, 215, 0, 0.1)' : 'rgba(209, 213, 219, 0.1)'}; border: 2px solid ${starColor}; color: ${starColor}; font-size: 1.8rem; cursor: pointer; padding: 0.3rem 0.5rem; transition: all 0.2s; line-height: 1; border-radius: 8px; font-weight: bold;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'" title="${isFavorite ? 'Remove from favorites' : 'Add to favorites'}">${starFill}</button>
+                    </div>
                     <div class="card-section">
                         <div class="card-label">🔸 WHY THIS MATTERS</div>
                         <p class="card-text">${card.front.why}</p>
@@ -3633,13 +3919,19 @@
                 const cardSystem = card.system || card.front.system;
                 const systemClass = systemColors[cardSystem] || 'system-nervous';
                 const systemIcon = systemIcons[cardSystem] || '🧠';
+                const isFavorite = favorites.includes(card.id);
+                const starColor = isFavorite ? '#FFD700' : '#D1D5DB';
+                const starFill = isFavorite ? '★' : '☆';
                 
                 frontEl.innerHTML = `
                     <div class="system-badge ${systemClass}">
                         <span style="font-size: 1.3rem;">${systemIcon}</span>
                         <span>${cardSystem} System</span>
                     </div>
-                    <div class="card-title">${card.front.title}</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1.5rem;">
+                        <div class="card-title" style="margin: 0;">${card.front.title}</div>
+                        <button class="card-star-btn" onclick="toggleCardFavorite(event, ${card.id})" style="background: ${isFavorite ? 'rgba(255, 215, 0, 0.1)' : 'rgba(209, 213, 219, 0.1)'}; border: 2px solid ${starColor}; color: ${starColor}; font-size: 1.8rem; cursor: pointer; padding: 0.3rem 0.5rem; transition: all 0.2s; line-height: 1; border-radius: 8px; font-weight: bold;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'" title="${isFavorite ? 'Remove from favorites' : 'Add to favorites'}">${starFill}</button>
+                    </div>
                     <div class="card-section">
                         <div class="card-label">🔸 WHY THIS HAPPENS</div>
                         <p class="card-text">${card.front.why}</p>
@@ -3798,12 +4090,261 @@
             }
         });
 
+        // ===== FAVORITES FUNCTIONALITY =====
+        let favorites = JSON.parse(localStorage.getItem('symptomFavorites') || '[]');
+        
+        // Global function to toggle favorite from card star button
+        window.toggleCardFavorite = function(event, cardId) {
+            event.stopPropagation(); // Prevent card flip
+            
+            const isFavorite = favorites.includes(cardId);
+            
+            if (isFavorite) {
+                favorites = favorites.filter(id => id !== cardId);
+            } else {
+                favorites.push(cardId);
+            }
+            
+            localStorage.setItem('symptomFavorites', JSON.stringify(favorites));
+            updateFavoriteCount();
+            displayCard(currentIndex); // Refresh to update star
+        };
+        
+        function updateFavoriteCount() {
+            document.getElementById('favCount').textContent = `Saved Favorites (${favorites.length})`;
+        }
+        
+        // View favorites in modal
+        function refreshFavoritesModal() {
+            const modal = document.getElementById('favoritesModal');
+            const grid = document.getElementById('favoritesGrid');
+            
+            if (favorites.length === 0) {
+                grid.innerHTML = `
+                    <div style="text-align: center; padding: 3rem 2rem; color: var(--text-medium);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">💝</div>
+                        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">No favorites saved yet</div>
+                        <div style="font-size: 0.9rem;">Click the star (★) on any card to save it here</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Populate favorites
+            const favoriteCards = symptomCards.filter(card => favorites.includes(card.id));
+            
+            grid.innerHTML = favoriteCards.map(card => {
+                const cardSystem = card.system || card.front.system || 'General';
+                const cardType = card.type === 'selfcare' ? '💚 Self-Care' : `${card.front.system || cardSystem} System`;
+                
+                return `
+                    <div style="position: relative; background: linear-gradient(135deg, #FAF8F3, white); border: 2px solid var(--light-green); border-radius: 12px; padding: 1rem; cursor: pointer; transition: all 0.3s;" onclick="goToFavoriteCard(${card.id})">
+                        <button onclick="event.stopPropagation(); removeFavorite(${card.id});" style="position: absolute; top: 0.5rem; right: 0.5rem; background: white; border: 2px solid #D1D5DB; color: #6B7280; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; font-weight: bold; line-height: 1; display: flex; align-items: center; justify-content: center; transition: all 0.2s; padding: 0;" onmouseover="this.style.background='#FF6B6B'; this.style.borderColor='#FF6B6B'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.borderColor='#D1D5DB'; this.style.color='#6B7280';" title="Remove from favorites">×</button>
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem; padding-right: 2rem;">
+                            <div style="font-size: 0.8rem; color: var(--text-medium); font-weight: 600;">${cardType}</div>
+                            <div style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; color: #FFD700; font-size: 1.3rem; padding: 0.2rem 0.4rem; border-radius: 6px; font-weight: bold; line-height: 1;">★</div>
+                        </div>
+                        <div style="font-weight: 700; color: var(--primary-green); margin-bottom: 0.5rem;">${card.front.title}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-dark); line-height: 1.5;">${card.front.why.substring(0, 120)}${card.front.why.length > 120 ? '...' : ''}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Remove individual favorite
+        window.removeFavorite = function(cardId) {
+            favorites = favorites.filter(id => id !== cardId);
+            localStorage.setItem('symptomFavorites', JSON.stringify(favorites));
+            updateFavoriteCount();
+            refreshFavoritesModal();
+            
+            // If this is the current card being displayed, update its star
+            if (displayedCards[currentIndex] && displayedCards[currentIndex].id === cardId) {
+                displayCard(currentIndex);
+            }
+        };
+        
+        document.getElementById('viewFavoritesBtn').addEventListener('click', () => {
+            if (favorites.length === 0) {
+                alert('You haven\'t saved any favorites yet! 💝\n\nClick the star (★) on any card to save it to your favorites.');
+                return;
+            }
+            
+            // Show modal
+            const modal = document.getElementById('favoritesModal');
+            refreshFavoritesModal();
+            modal.style.display = 'flex';
+        });
+        
+        // Close modal
+        document.getElementById('closeFavoritesModal').addEventListener('click', () => {
+            document.getElementById('favoritesModal').style.display = 'none';
+        });
+        
+        // Clear All Favorites
+        document.getElementById('clearAllFavoritesBtn').addEventListener('click', () => {
+            if (confirm(`Are you sure you want to remove all ${favorites.length} saved favorites?\n\nThis cannot be undone.`)) {
+                favorites = [];
+                localStorage.setItem('symptomFavorites', JSON.stringify(favorites));
+                updateFavoriteCount();
+                document.getElementById('favoritesModal').style.display = 'none';
+                displayCard(currentIndex); // Refresh current card to update star
+                
+                // Show confirmation
+                const grid = document.getElementById('favoritesGrid');
+                grid.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-medium);">All favorites cleared! ✨</div>';
+                
+                setTimeout(() => {
+                    document.getElementById('favoritesModal').style.display = 'none';
+                }, 1500);
+            }
+        });
+        
+        // Close modal on background click
+        document.getElementById('favoritesModal').addEventListener('click', (e) => {
+            if (e.target.id === 'favoritesModal') {
+                document.getElementById('favoritesModal').style.display = 'none';
+            }
+        });
+        
+        // Go to favorite card
+        window.goToFavoriteCard = function(cardId) {
+            document.getElementById('favoritesModal').style.display = 'none';
+            
+            // Find card index in current displayed cards
+            const cardIndex = displayedCards.findIndex(card => card.id === cardId);
+            if (cardIndex !== -1) {
+                currentIndex = cardIndex;
+                displayCard(currentIndex);
+            } else {
+                // Card not in current filter, show all cards first
+                displayedCards = [...symptomCards];
+                const newIndex = displayedCards.findIndex(card => card.id === cardId);
+                currentIndex = newIndex !== -1 ? newIndex : 0;
+                displayCard(currentIndex);
+            }
+            window.scrollTo(0, 0);
+        };
+        
+        // Random card
+        document.getElementById('randomBtn').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * displayedCards.length);
+            currentIndex = randomIndex;
+            displayCard(currentIndex);
+            isFlipped = false;
+            document.getElementById('flashcard').classList.remove('flipped');
+        });
+        
+        // Self-care filter
+        let showingSelfCare = false;
+        document.getElementById('selfCareFilterBtn').addEventListener('click', () => {
+            const selfCareBtn = document.getElementById('selfCareFilterBtn');
+            
+            if (showingSelfCare) {
+                // Show all cards
+                displayedCards = [...symptomCards];
+                currentIndex = 0;
+                displayCard(currentIndex);
+                selfCareBtn.style.background = 'white';
+                selfCareBtn.style.color = '#A67FCF';
+                selfCareBtn.querySelector('span:last-child').textContent = 'Self-Care Cards';
+                showingSelfCare = false;
+            } else {
+                // Show only self-care cards
+                displayedCards = symptomCards.filter(card => card.type === 'selfcare');
+                
+                if (displayedCards.length === 0) {
+                    alert('No self-care cards found in this section.');
+                    return;
+                }
+                
+                currentIndex = 0;
+                displayCard(currentIndex);
+                selfCareBtn.style.background = 'linear-gradient(135deg, #C4A5E1, #E8D5F2)';
+                selfCareBtn.style.color = 'white';
+                selfCareBtn.querySelector('span:last-child').textContent = `Showing ${displayedCards.length} Self-Care Cards`;
+                showingSelfCare = true;
+            }
+            
+            // Clear search
+            searchInput.value = '';
+            searchDropdown.classList.remove('show');
+        });
+
         // Initialize
         displayCard(0);
+        updateFavoriteCount();
 
         // ===== SUPPLEMENTS SECTION FUNCTIONALITY =====
         let suppCurrentIndex = 0;
         let suppIsFlipped = false;
+        let supplementFavorites = JSON.parse(localStorage.getItem('supplementFavorites') || '[]');
+        
+        // Supplement favorites functions
+        window.toggleSupplementFavorite = function(event, cardId) {
+            event.stopPropagation();
+            const isFavorite = supplementFavorites.includes(cardId);
+            if (isFavorite) {
+                supplementFavorites = supplementFavorites.filter(id => id !== cardId);
+            } else {
+                supplementFavorites.push(cardId);
+            }
+            localStorage.setItem('supplementFavorites', JSON.stringify(supplementFavorites));
+            updateSupplementFavoriteCount();
+            displaySupplementCard(suppCurrentIndex);
+        };
+        
+        function updateSupplementFavoriteCount() {
+            document.getElementById('suppFavCount').textContent = `Saved Favorites (${supplementFavorites.length})`;
+        }
+        
+        function refreshSupplementFavoritesModal() {
+            const grid = document.getElementById('supplementFavoritesGrid');
+            if (supplementFavorites.length === 0) {
+                grid.innerHTML = `
+                    <div style="text-align: center; padding: 3rem 2rem; color: var(--text-medium);">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">💝</div>
+                        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">No favorites saved yet</div>
+                        <div style="font-size: 0.9rem;">Click the star (★) on any supplement to save it here</div>
+                    </div>
+                `;
+                return;
+            }
+            const favoriteCards = supplementCards.filter(card => supplementFavorites.includes(card.id));
+            grid.innerHTML = favoriteCards.map(card => {
+                return `
+                    <div style="position: relative; background: linear-gradient(135deg, #FAF8F3, white); border: 2px solid var(--light-green); border-radius: 12px; padding: 1rem; cursor: pointer; transition: all 0.3s;" onclick="goToSupplementFavoriteCard(${card.id})">
+                        <button onclick="event.stopPropagation(); removeSupplementFavorite(${card.id});" style="position: absolute; top: 0.5rem; right: 0.5rem; background: white; border: 2px solid #D1D5DB; color: #6B7280; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; font-weight: bold; line-height: 1; display: flex; align-items: center; justify-content: center; transition: all 0.2s; padding: 0;" onmouseover="this.style.background='#FF6B6B'; this.style.borderColor='#FF6B6B'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.borderColor='#D1D5DB'; this.style.color='#6B7280';">×</button>
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem; padding-right: 2rem;">
+                            <div style="font-size: 0.8rem; color: var(--text-medium); font-weight: 600;">${card.systemName || 'Supplement'}</div>
+                            <div style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; color: #FFD700; font-size: 1.3rem; padding: 0.2rem 0.4rem; border-radius: 6px; font-weight: bold; line-height: 1;">★</div>
+                        </div>
+                        <div style="font-weight: 700; color: var(--primary-green); margin-bottom: 0.5rem;">💊 ${card.front.title}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-dark); line-height: 1.5;">${(card.front.helps || card.front.subtitle).substring(0, 100)}...</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        window.removeSupplementFavorite = function(cardId) {
+            supplementFavorites = supplementFavorites.filter(id => id !== cardId);
+            localStorage.setItem('supplementFavorites', JSON.stringify(supplementFavorites));
+            updateSupplementFavoriteCount();
+            refreshSupplementFavoritesModal();
+            if (supplementCards[suppCurrentIndex] && supplementCards[suppCurrentIndex].id === cardId) {
+                displaySupplementCard(suppCurrentIndex);
+            }
+        };
+        
+        window.goToSupplementFavoriteCard = function(cardId) {
+            document.getElementById('supplementFavoritesModal').style.display = 'none';
+            const cardIndex = supplementCards.findIndex(card => card.id === cardId);
+            if (cardIndex !== -1) {
+                suppCurrentIndex = cardIndex;
+                displaySupplementCard(suppCurrentIndex);
+            }
+            window.scrollTo(0, 0);
+        };
 
         function displaySupplementCard(index) {
             const card = supplementCards[index];
@@ -3832,13 +4373,19 @@
                     'Digestive': 'system-digestive'
                 };
                 const systemClass = systemColors[card.system] || 'system-nervous';
+                const isFavorite = supplementFavorites.includes(card.id);
+                const starColor = isFavorite ? '#FFD700' : '#D1D5DB';
+                const starFill = isFavorite ? '★' : '☆';
                 
                 frontEl.innerHTML = `
                     <div class="system-badge ${systemClass}">
                         <span style="font-size: 1.3rem;">${card.systemIcon}</span>
                         <span>${card.systemName}</span>
                     </div>
-                    <div class="card-title" style="margin-bottom: 1.5rem;">💊 ${card.front.title}</div>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin-bottom: 1.5rem;">
+                        <div class="card-title" style="margin: 0;">💊 ${card.front.title}</div>
+                        <button class="card-star-btn" onclick="toggleSupplementFavorite(event, ${card.id})" style="background: ${isFavorite ? 'rgba(255, 215, 0, 0.1)' : 'rgba(209, 213, 219, 0.1)'}; border: 2px solid ${starColor}; color: ${starColor}; font-size: 1.8rem; cursor: pointer; padding: 0.3rem 0.5rem; transition: all 0.2s; line-height: 1; border-radius: 8px; font-weight: bold;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'" title="${isFavorite ? 'Remove from favorites' : 'Add to favorites'}">${starFill}</button>
+                    </div>
                     
                     ${card.front.helps ? `
                     <div style="background: linear-gradient(135deg, rgba(116, 139, 117, 0.2), rgba(156, 175, 136, 0.12)); padding: 1.2rem 1.4rem; border-radius: 14px; margin-bottom: 1.5rem; border-left: 5px solid var(--primary-green); box-shadow: 0 4px 15px rgba(116, 139, 117, 0.1);">
@@ -3936,6 +4483,46 @@
                 displaySupplementCard(suppCurrentIndex);
             }
         });
+
+        // Supplement favorites buttons
+        document.getElementById('viewSupplementFavoritesBtn').addEventListener('click', () => {
+            if (supplementFavorites.length === 0) {
+                alert('You haven\'t saved any supplement favorites yet! 💝\n\nClick the star (★) on any supplement card to save it.');
+                return;
+            }
+            refreshSupplementFavoritesModal();
+            document.getElementById('supplementFavoritesModal').style.display = 'flex';
+        });
+        
+        document.getElementById('closeSupplementFavoritesModal').addEventListener('click', () => {
+            document.getElementById('supplementFavoritesModal').style.display = 'none';
+        });
+        
+        document.getElementById('clearAllSupplementFavoritesBtn').addEventListener('click', () => {
+            if (confirm(`Are you sure you want to remove all ${supplementFavorites.length} saved supplements?\n\nThis cannot be undone.`)) {
+                supplementFavorites = [];
+                localStorage.setItem('supplementFavorites', JSON.stringify(supplementFavorites));
+                updateSupplementFavoriteCount();
+                document.getElementById('supplementFavoritesModal').style.display = 'none';
+                displaySupplementCard(suppCurrentIndex);
+            }
+        });
+        
+        document.getElementById('supplementFavoritesModal').addEventListener('click', (e) => {
+            if (e.target.id === 'supplementFavoritesModal') {
+                document.getElementById('supplementFavoritesModal').style.display = 'none';
+            }
+        });
+        
+        document.getElementById('randomSupplementBtn').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * supplementCards.length);
+            suppCurrentIndex = randomIndex;
+            displaySupplementCard(suppCurrentIndex);
+            suppIsFlipped = false;
+            document.getElementById('supplementFlashcard').classList.remove('flipped');
+        });
+        
+        updateSupplementFavoriteCount();
 
         // Supplement search by symptom
         const supplementSearchInput = document.getElementById('supplementSearch');
@@ -4418,7 +5005,18 @@
         });
 
         document.getElementById('nextFromProteinBtn').addEventListener('click', function() {
-            alert('Recipes section coming soon! 🚀\n\nWe\'re building:\n✓ Symptoms & Supplements (ready now!)\n✓ Protein Target Calculator (ready now!)\n⏳ 30-Day Mediterranean Recipes\n⏳ Food Log\n⏳ Daily Plan\n⏳ Tracking\n⏳ Progress');
+            // Navigate to recipes section
+            const proteinContainer = document.getElementById('proteinContainer');
+            const recipesMainPage = document.getElementById('recipesMainPage');
+            
+            proteinContainer.style.animation = 'fadeOut 0.5s ease-out forwards';
+            
+            setTimeout(() => {
+                proteinContainer.style.display = 'none';
+                recipesMainPage.style.display = 'block';
+                recipesMainPage.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                window.scrollTo(0, 0);
+            }, 500);
         });
 
         // ===== FOOD CONVERTER FUNCTIONALITY =====
@@ -5049,13 +5647,19 @@
                 const dayNum = date.getDate();
                 
                 let moodEmoji = '⚪';
-                let bgColor = '#f5f5f5';
+                let bgColor = '#FAF8F3';
                 
                 if (dayData && dayData.mood) {
                     const moods = { '5': '😊', '4': '🙂', '3': '😐', '2': '😟', '1': '😢' };
                     moodEmoji = moods[dayData.mood] || '⚪';
-                    const colors = { '5': '#C8D5B9', '4': '#D5E5C8', '3': '#F0F7F0', '2': '#FFE5CC', '1': '#FFD5D5' };
-                    bgColor = colors[dayData.mood] || '#f5f5f5';
+                    const colors = { 
+                        '5': 'linear-gradient(135deg, #EDFDF4, #F0FFF4)', // Soft mint green
+                        '4': 'linear-gradient(135deg, #F0FAFF, #E6F7FF)', // Soft sky blue
+                        '3': 'linear-gradient(135deg, #FFFAF0, #FFF8E7)', // Soft cream
+                        '2': 'linear-gradient(135deg, #FFF8EF, #FFEEDD)', // Soft peach
+                        '1': 'linear-gradient(135deg, #FFF0F3, #FFE5EA)'  // Soft rose
+                    };
+                    bgColor = colors[dayData.mood] || '#FAF8F3';
                 }
 
                 const isToday = formatDateKey(date) === formatDateKey(new Date());
@@ -5063,13 +5667,14 @@
                 // Calculate moon phase
                 const moonPhase = getMoonPhase(date);
                 const moonEmoji = getMoonEmoji(moonPhase);
+                const moonColor = getMoonColor(moonPhase);
                 
                 return `
                     <div style="background: ${bgColor}; border-radius: 12px; padding: 1rem; text-align: center; border: ${isToday ? '3px solid var(--primary-green)' : '2px solid #e0e0e0'}; transition: all 0.3s;">
                         <div style="font-size: 0.75rem; color: var(--text-medium); margin-bottom: 0.3rem; font-weight: 600;">${dayName}</div>
                         <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem;">${dayNum}</div>
                         <div style="font-size: 2rem; margin-bottom: 0.3rem;">${moodEmoji}</div>
-                        <div style="font-size: 1.3rem; margin-bottom: 0.2rem;" title="${moonPhase}">${moonEmoji}</div>
+                        <div style="width: 42px; height: 42px; margin: 0 auto 0.2rem; background: ${moonColor}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" title="Moon phase: ${(moonPhase * 100).toFixed(0)}%">${moonEmoji}</div>
                         ${dayData && dayData.symptoms ? `<div style="font-size: 0.7rem; color: var(--text-medium); margin-top: 0.3rem;">${dayData.symptoms.length} symptoms</div>` : ''}
                     </div>
                 `;
@@ -5105,6 +5710,19 @@
             if (phase < 0.78) return '🌗'; // Last Quarter
             if (phase < 0.97) return '🌘'; // Waning Crescent
             return '🌑'; // New Moon
+        }
+
+        // Get moon phase color - different feminine color for each phase
+        function getMoonColor(phase) {
+            if (phase < 0.03 || phase > 0.97) return 'linear-gradient(135deg, #E8D5F2, #F3EAFA)'; // New Moon - Lavender
+            if (phase < 0.22) return 'linear-gradient(135deg, #FFE5EA, #FFF0F3)'; // Waxing Crescent - Rose
+            if (phase < 0.28) return 'linear-gradient(135deg, #FFE9DB, #FFF4ED)'; // First Quarter - Peach
+            if (phase < 0.47) return 'linear-gradient(135deg, #FFF5E0, #FFFAF0)'; // Waxing Gibbous - Cream
+            if (phase < 0.53) return 'linear-gradient(135deg, #FFF8EF, #FFFCF7)'; // Full Moon - Soft Yellow
+            if (phase < 0.72) return 'linear-gradient(135deg, #E0F2EE, #EDF7F5)'; // Waning Gibbous - Mint
+            if (phase < 0.78) return 'linear-gradient(135deg, #DFF3FF, #F0FAFF)'; // Last Quarter - Sky Blue
+            if (phase < 0.97) return 'linear-gradient(135deg, #FFEAF9, #FFF5FC)'; // Waning Crescent - Pink
+            return 'linear-gradient(135deg, #E8D5F2, #F3EAFA)'; // New Moon - Lavender
         }
 
         // Initialize progress tracker
