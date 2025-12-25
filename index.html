@@ -2149,6 +2149,24 @@
                 <span>🏠</span>
             </button>
         </div>
+        
+        <!-- RECIPE FAVORITES MODAL -->
+        <div id="recipeFavoritesModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: 1rem;">
+            <div style="background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; padding: 0 3rem;">
+                    <h2 style="color: var(--primary-green); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>💝</span>
+                        <span>Your Saved Recipes</span>
+                    </h2>
+                    <button id="clearAllRecipeFavoritesBtn" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #FF6B6B; color: #FF6B6B; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='#FF6B6B'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#FF6B6B';">
+                        Clear All
+                    </button>
+                </div>
+                <div id="recipeFavoritesGrid" style="display: grid; gap: 0.8rem;">
+                    <!-- Recipe favorites will be populated here -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- WEEK VIEW CONTAINER (hidden initially) -->
@@ -8011,11 +8029,11 @@ function displayDay(weekNum, dayIdx) {
             <div style="display: grid; gap: 2rem;">`;
     
     // Breakfast
-    html += createMealCard('Breakfast', day.breakfast, week.color, '🍳');
+    html += createMealCard('Breakfast', day.breakfast, week.color, '🍳', weekNum, dayIdx);
     // Lunch
-    html += createMealCard('Lunch', day.lunch, week.color, '🥗');
+    html += createMealCard('Lunch', day.lunch, week.color, '🥗', weekNum, dayIdx);
     // Dinner
-    html += createMealCard('Dinner', day.dinner, week.color, '🍽️');
+    html += createMealCard('Dinner', day.dinner, week.color, '🍽️', weekNum, dayIdx);
     
     html += `</div>
     
@@ -8044,13 +8062,21 @@ function displayDay(weekNum, dayIdx) {
 }
 
 
-function createMealCard(mealType, meal, color, icon) {
+function createMealCard(mealType, meal, color, icon, weekNum, dayIdx) {
+    const recipeId = `w${weekNum}d${dayIdx}${mealType}`;
+    const isFavorite = recipeFavorites.some(r => r.id === recipeId);
+    const starColor = isFavorite ? '#FFD700' : '#D1D5DB';
+    const starFill = isFavorite ? '★' : '☆';
+    
     return `
     <div class="meal-card" style="border: 2px solid ${color}30; border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.3s; background: linear-gradient(to right, ${color}05, white);" onclick="toggleMeal(this)">
         <div class="meal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <div>
+            <div style="flex: 1;">
                 <div style="font-size: 0.85rem; color: ${color}; font-weight: 600; margin-bottom: 0.3rem;">${icon} ${mealType.toUpperCase()}</div>
-                <div style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark);">${meal.name}</div>
+                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                    <div style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark);">${meal.name}</div>
+                    <button onclick="toggleRecipeFavorite(event, ${weekNum}, ${dayIdx}, '${mealType}', '${meal.name.replace(/'/g, "\\'")}', ${meal.nutrition.protein})" style="background: ${isFavorite ? 'rgba(255, 215, 0, 0.1)' : 'rgba(209, 213, 219, 0.1)'}; border: 2px solid ${starColor}; color: ${starColor}; font-size: 1.5rem; cursor: pointer; padding: 0.2rem 0.4rem; transition: all 0.2s; line-height: 1; border-radius: 8px; font-weight: bold;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'" title="${isFavorite ? 'Remove from favorites' : 'Add to favorites'}">${starFill}</button>
+                </div>
             </div>
             <div style="text-align: right;">
                 <div style="font-size: 0.85rem; color: var(--text-medium);">⏱️ ${meal.prep + meal.cook} mins</div>
@@ -8148,6 +8174,97 @@ document.querySelectorAll('.week-nav-btn').forEach(btn => {
 
 // Initialize with Week 1
 // Note: displayWeek(1) will be called from navigation handler
+
+// ===== RECIPE FAVORITES SYSTEM =====
+let recipeFavorites = JSON.parse(localStorage.getItem('recipeFavorites') || '[]');
+
+window.toggleRecipeFavorite = function(event, weekNum, dayIdx, mealType, recipeName, protein) {
+    event.stopPropagation();
+    const recipeId = `w${weekNum}d${dayIdx}${mealType}`;
+    const existingIndex = recipeFavorites.findIndex(r => r.id === recipeId);
+    
+    if (existingIndex !== -1) {
+        recipeFavorites.splice(existingIndex, 1);
+    } else {
+        recipeFavorites.push({
+            id: recipeId,
+            name: recipeName,
+            week: weekNum,
+            day: dayIdx,
+            meal: mealType,
+            protein: protein
+        });
+    }
+    
+    localStorage.setItem('recipeFavorites', JSON.stringify(recipeFavorites));
+    updateRecipeFavoriteCount();
+    displayDay(weekNum, dayIdx);
+};
+
+function updateRecipeFavoriteCount() {
+    const countEl = document.getElementById('recipeFavCount');
+    if (countEl) countEl.textContent = `Saved Recipes (${recipeFavorites.length})`;
+}
+
+function refreshRecipeFavoritesModal() {
+    const grid = document.getElementById('recipeFavoritesGrid');
+    if (!grid) return;
+    
+    if (recipeFavorites.length === 0) {
+        grid.innerHTML = `<div style="text-align: center; padding: 3rem 2rem; color: var(--text-medium);"><div style="font-size: 3rem; margin-bottom: 1rem;">💝</div><div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem;">No recipes saved yet</div><div style="font-size: 0.9rem;">Click the star (★) on any recipe to save it here</div></div>`;
+        return;
+    }
+    
+    const weekColors = ['#9B7EBD', '#FF9F7F', '#8EBFB5', '#FFB5C5'];
+    grid.innerHTML = recipeFavorites.map(recipe => {
+        const weekColor = weekColors[recipe.week - 1] || '#9B7EBD';
+        return `<div style="position: relative; background: linear-gradient(135deg, #FAF8F3, white); border: 2px solid var(--light-green); border-radius: 12px; padding: 1rem; cursor: pointer; transition: all 0.3s;" onclick="goToRecipeFavorite(${recipe.week}, ${recipe.day})"><button onclick="event.stopPropagation(); removeRecipeFavorite('${recipe.id}');" style="position: absolute; top: 0.5rem; right: 0.5rem; background: white; border: 2px solid #D1D5DB; color: #6B7280; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; font-weight: bold; line-height: 1; display: flex; align-items: center; justify-content: center; transition: all 0.2s; padding: 0;" onmouseover="this.style.background='#FF6B6B'; this.style.borderColor='#FF6B6B'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.borderColor='#D1D5DB'; this.style.color='#6B7280';">×</button><div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem; padding-right: 2rem;"><div style="font-size: 0.8rem; color: var(--text-medium); font-weight: 600;">Week ${recipe.week}, Day ${recipe.day + 1} • ${recipe.meal}</div><div style="background: rgba(255, 215, 0, 0.1); border: 2px solid #FFD700; color: #FFD700; font-size: 1.3rem; padding: 0.2rem 0.4rem; border-radius: 6px; font-weight: bold; line-height: 1;">★</div></div><div style="font-weight: 700; color: var(--primary-green); margin-bottom: 0.5rem;">${recipe.name}</div><div style="font-size: 0.85rem; color: ${weekColor}; font-weight: 600;">Protein: ${recipe.protein}g</div></div>`;
+    }).join('');
+}
+
+window.removeRecipeFavorite = function(recipeId) {
+    recipeFavorites = recipeFavorites.filter(r => r.id !== recipeId);
+    localStorage.setItem('recipeFavorites', JSON.stringify(recipeFavorites));
+    updateRecipeFavoriteCount();
+    refreshRecipeFavoritesModal();
+};
+
+window.goToRecipeFavorite = function(weekNum, dayIdx) {
+    const modal = document.getElementById('recipeFavoritesModal');
+    if (modal) modal.style.display = 'none';
+    displayDay(weekNum, dayIdx);
+    window.scrollTo(0, 0);
+};
+
+if (document.getElementById('viewRecipeFavoritesBtn')) {
+    document.getElementById('viewRecipeFavoritesBtn').addEventListener('click', () => {
+        if (recipeFavorites.length === 0) {
+            alert('You haven\'t saved any recipe favorites yet! 💝\n\nClick the star (★) on any recipe to save it.');
+            return;
+        }
+        refreshRecipeFavoritesModal();
+        document.getElementById('recipeFavoritesModal').style.display = 'flex';
+    });
+}
+
+if (document.getElementById('clearAllRecipeFavoritesBtn')) {
+    document.getElementById('clearAllRecipeFavoritesBtn').addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove all ${recipeFavorites.length} saved recipes?\n\nThis cannot be undone.`)) {
+            recipeFavorites = [];
+            localStorage.setItem('recipeFavorites', JSON.stringify(recipeFavorites));
+            updateRecipeFavoriteCount();
+            document.getElementById('recipeFavoritesModal').style.display = 'none';
+        }
+    });
+}
+
+if (document.getElementById('recipeFavoritesModal')) {
+    document.getElementById('recipeFavoritesModal').addEventListener('click', (e) => {
+        if (e.target.id === 'recipeFavoritesModal') document.getElementById('recipeFavoritesModal').style.display = 'none';
+    });
+}
+
+updateRecipeFavoriteCount();
 
 
             // ===== MOVEMENT & ACTIVITY PROTOCOLS =====
