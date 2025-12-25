@@ -1732,6 +1732,12 @@
                         <span class="menu-label">Progress</span>
                         <span class="menu-description">View milestones</span>
                     </a>
+                    
+                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="sos" style="border: 3px solid #E74C3C; background: linear-gradient(135deg, #FFE5E5, #FFFFFF);">
+                        <span class="menu-icon" style="font-size: 2rem;">🆘</span>
+                        <span class="menu-label" style="color: #E74C3C; font-weight: 700;">Quick Relief</span>
+                        <span class="menu-description" style="color: #C0392B;">Emergency help now</span>
+                    </a>
                 </div>
             </div>
             
@@ -3635,6 +3641,63 @@
             <button id="backToWelcomeFromDaily" style="padding: 1rem 3rem; background: var(--primary-green); color: white; border: none; border-radius: 20px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(116, 139, 117, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;">
                 <span>Back to Home</span>
                 <span>🏠</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- SOS PANIC BUTTON SECTION -->
+    <div class="container" id="sosContainer" style="display: none;">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="background: linear-gradient(135deg, #E74C3C, #C0392B); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0 auto 1rem; box-shadow: 0 8px 30px rgba(231, 76, 60, 0.4); display: inline-flex; align-items: center; gap: 1rem; font-size: 2rem;">
+                <span style="font-size: 2.5rem;">🆘</span>
+                <span>Quick Relief</span>
+            </h1>
+            <p style="color: #5A6C7D; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">You're going to be okay. Choose what you need right now:</p>
+        </div>
+
+        <!-- Quick Action Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto 3rem;">
+            
+            <!-- Hot Flush Relief -->
+            <div class="sos-card" data-relief="hotflush" style="background: linear-gradient(135deg, #FFE5D9, #FFFFFF); border: 3px solid #FF6B6B; border-radius: 20px; padding: 2rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 107, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 107, 0.2)';">
+                <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">🔥</div>
+                <h3 style="color: #E74C3C; text-align: center; margin-bottom: 0.5rem; font-size: 1.3rem;">Hot Flush Help</h3>
+                <p style="color: #5A6C7D; text-align: center; font-size: 0.95rem;">Cool down fast with breathing & quick actions</p>
+            </div>
+
+            <!-- Anxiety Relief -->
+            <div class="sos-card" data-relief="anxiety" style="background: linear-gradient(135deg, #E8DAEF, #FFFFFF); border: 3px solid #9B59B6; border-radius: 20px; padding: 2rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(155, 89, 182, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(155, 89, 182, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(155, 89, 182, 0.2)';">
+                <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">😰</div>
+                <h3 style="color: #8E44AD; text-align: center; margin-bottom: 0.5rem; font-size: 1.3rem;">Calm Anxiety</h3>
+                <p style="color: #5A6C7D; text-align: center; font-size: 0.95rem;">Grounding exercises & breathing to settle your mind</p>
+            </div>
+
+            <!-- Panic Attack -->
+            <div class="sos-card" data-relief="panic" style="background: linear-gradient(135deg, #D5F4E6, #FFFFFF); border: 3px solid #27AE60; border-radius: 20px; padding: 2rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(39, 174, 96, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(39, 174, 96, 0.2)';">
+                <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">💚</div>
+                <h3 style="color: #27AE60; text-align: center; margin-bottom: 0.5rem; font-size: 1.3rem;">Stop Panic</h3>
+                <p style="color: #5A6C7D; text-align: center; font-size: 0.95rem;">Emergency grounding for panic attacks</p>
+            </div>
+
+            <!-- Sleep/Insomnia -->
+            <div class="sos-card" data-relief="sleep" style="background: linear-gradient(135deg, #D4F1F4, #FFFFFF); border: 3px solid #3498DB; border-radius: 20px; padding: 2rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(52, 152, 219, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(52, 152, 219, 0.2)';">
+                <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">😴</div>
+                <h3 style="color: #2980B9; text-align: center; margin-bottom: 0.5rem; font-size: 1.3rem;">Can't Sleep</h3>
+                <p style="color: #5A6C7D; text-align: center; font-size: 0.95rem;">Wind down techniques to ease into sleep</p>
+            </div>
+
+        </div>
+
+        <!-- Relief Protocol Display (Hidden initially) -->
+        <div id="reliefProtocol" style="display: none; max-width: 800px; margin: 0 auto;">
+            <!-- Content will be dynamically inserted -->
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <button id="backToHomeFromSOS" style="padding: 1rem 2rem; background: white; border: 2px solid var(--primary-green); color: var(--primary-green); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='var(--primary-green)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--primary-green)';">
+                🏠 Back to Home
             </button>
         </div>
     </div>
@@ -6588,6 +6651,45 @@
                             window.scrollTo(0, 0);
                         }, 500);
                     }
+                } else if (section === 'sos') {
+                    // Navigate to SOS Quick Relief section
+                    const welcomeScreen = document.getElementById('welcomeScreen');
+                    const toolkitContainer = document.getElementById('toolkitContainer');
+                    const sosContainer = document.getElementById('sosContainer');
+                    
+                    if (sosContainer) {
+                        welcomeScreen.style.animation = 'fadeOut 0.5s ease-out forwards';
+                        
+                        setTimeout(() => {
+                            welcomeScreen.style.display = 'none';
+                            
+                            // Hide all other sections
+                            toolkitContainer.querySelector('.container').style.display = 'none';
+                            document.getElementById('supplementsContainer').style.display = 'none';
+                            if (document.getElementById('proteinContainer')) {
+                                document.getElementById('proteinContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('dailyPlanContainer')) {
+                                document.getElementById('dailyPlanContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('progressContainer')) {
+                                document.getElementById('progressContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('movementContainer')) {
+                                document.getElementById('movementContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('recipesMainPage')) {
+                                document.getElementById('recipesMainPage').style.display = 'none';
+                            }
+                            if (document.getElementById('trackingContainer')) {
+                                document.getElementById('trackingContainer').style.display = 'none';
+                            }
+                            
+                            // Show SOS section
+                            sosContainer.style.display = 'block';
+                            window.scrollTo(0, 0);
+                        }, 500);
+                    }
                 } else {
                     // Other sections - show coming soon
                     alert(this.querySelector('.menu-label').textContent + ' section coming soon! 🚀\n\nWe\'re building:\n✓ Symptoms & Supplements (ready now!)\n✓ Protein Target Calculator (ready now!)\n✓ Progress Tracker (ready now!)\n✓ Recipes (ready now!)\n✓ Movement (ready now!)\n✓ Daily Plan (ready now!)\n⏳ Tracking');
@@ -8134,6 +8236,329 @@
                     attributes: true,
                     attributeFilter: ['style']
                 });
+            }
+
+
+            // ===== SOS QUICK RELIEF SECTION =====
+            
+            // Back to home from SOS
+            if (document.getElementById('backToHomeFromSOS')) {
+                document.getElementById('backToHomeFromSOS').addEventListener('click', function() {
+                    document.getElementById('sosContainer').style.display = 'none';
+                    const welcomeScreen = document.getElementById('welcomeScreen');
+                    welcomeScreen.style.display = 'flex';
+                    welcomeScreen.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    window.scrollTo(0, 0);
+                });
+            }
+            
+            // Relief protocols data
+            const reliefProtocols = {
+                hotflush: {
+                    title: "🔥 Hot Flush Relief",
+                    color: "#E74C3C",
+                    gradient: "linear-gradient(135deg, #FFE5D9, #FFFFFF)",
+                    steps: [
+                        {
+                            title: "1. Cooling Breath (Right Now)",
+                            content: "Breathe in through your nose for 4 counts, out through your mouth for 8 counts. The long exhale helps cool your body. Repeat 5 times.",
+                            action: "Start Breathing Exercise"
+                        },
+                        {
+                            title: "2. Immediate Actions",
+                            content: "• Remove layers or loosen clothing<br>• Splash cold water on wrists and neck<br>• Stand near a window or fan<br>• Sip ice-cold water slowly<br>• Place a cool cloth on the back of your neck"
+                        },
+                        {
+                            title: "3. Ground Yourself",
+                            content: "Say out loud: 'This is a hot flush. It will pass in 2-3 minutes. My body is recalibrating. I am safe.'"
+                        },
+                        {
+                            title: "4. After It Passes",
+                            content: "• Change into dry clothes if needed<br>• Keep sipping water<br>• Note what triggered it (food, stress, temperature) in your Daily Plan"
+                        }
+                    ]
+                },
+                anxiety: {
+                    title: "😰 Calm Anxiety",
+                    color: "#8E44AD",
+                    gradient: "linear-gradient(135deg, #E8DAEF, #FFFFFF)",
+                    steps: [
+                        {
+                            title: "1. Box Breathing (Right Now)",
+                            content: "Breathe in for 4, hold for 4, out for 4, hold for 4. Repeat 4 times. This activates your calm nervous system.",
+                            action: "Start Breathing Exercise"
+                        },
+                        {
+                            title: "2. 5-4-3-2-1 Grounding",
+                            content: "Look around and name:<br>• 5 things you can SEE<br>• 4 things you can TOUCH<br>• 3 things you can HEAR<br>• 2 things you can SMELL<br>• 1 thing you can TASTE<br><br>This brings you back to the present moment."
+                        },
+                        {
+                            title: "3. Remind Yourself",
+                            content: "Say out loud: 'Anxiety is uncomfortable, but it cannot harm me. This feeling will pass. I am safe right now.'"
+                        },
+                        {
+                            title: "4. Move Your Body",
+                            content: "• Shake out your hands<br>• Roll your shoulders<br>• Take a short walk<br>• Stretch gently<br>Movement helps discharge anxious energy"
+                        }
+                    ]
+                },
+                panic: {
+                    title: "💚 Stop Panic Attack",
+                    color: "#27AE60",
+                    gradient: "linear-gradient(135deg, #D5F4E6, #FFFFFF)",
+                    steps: [
+                        {
+                            title: "1. 4-7-8 Breathing (URGENT)",
+                            content: "Breathe in for 4 counts, hold for 7, out for 8. This will slow your heart rate. Do this 4 times. Focus ONLY on counting.",
+                            action: "Start Breathing Exercise"
+                        },
+                        {
+                            title: "2. Physical Grounding",
+                            content: "• Press your feet firmly into the floor<br>• Squeeze an ice cube in your hand<br>• Splash very cold water on your face<br>• Hold something textured (keys, fabric)<br>These jolt your nervous system back to safety"
+                        },
+                        {
+                            title: "3. Name What's Happening",
+                            content: "Say out loud: 'This is a panic attack. It is not dangerous. It will peak and pass within 10 minutes. I have survived every panic attack I've ever had.'"
+                        },
+                        {
+                            title: "4. Don't Fight It",
+                            content: "Trying to stop panic makes it worse. Instead, say: 'Okay, panic. Do your worst. I'm not afraid of you.' Let the wave pass through you."
+                        },
+                        {
+                            title: "5. After It Passes",
+                            content: "• Rest without guilt<br>• Drink water<br>• Be gentle with yourself<br>• Consider speaking to your GP about panic attacks"
+                        }
+                    ]
+                },
+                sleep: {
+                    title: "😴 Can't Sleep Help",
+                    color: "#2980B9",
+                    gradient: "linear-gradient(135deg, #D4F1F4, #FFFFFF)",
+                    steps: [
+                        {
+                            title: "1. 4-7-8 Sleep Breath",
+                            content: "Lie down. Breathe in for 4, hold for 7, out for 8. Repeat 8 times. This triggers sleep hormones. Don't worry if your mind wanders—just return to counting.",
+                            action: "Start Breathing Exercise"
+                        },
+                        {
+                            title: "2. Body Scan Relaxation",
+                            content: "Starting at your toes, tense each muscle for 3 seconds, then release. Move up: feet, calves, thighs, belly, chest, arms, hands, neck, face. This releases physical tension."
+                        },
+                        {
+                            title: "3. If Still Awake After 20 Minutes",
+                            content: "• Get out of bed<br>• Do something boring (fold laundry, read something dull)<br>• Keep lights very dim<br>• Return to bed when you feel sleepy<br>Staying in bed while awake trains your brain that bed = awake"
+                        },
+                        {
+                            title: "4. Reframe Your Thoughts",
+                            content: "Instead of: 'I NEED to sleep or tomorrow will be awful'<br>Say: 'Rest is still helpful. My body knows how to sleep. It will come when it's ready.'"
+                        },
+                        {
+                            title: "5. Tomorrow",
+                            content: "• Get morning sunlight (even 5 minutes)<br>• Avoid napping<br>• Note what time you woke in Daily Plan to spot patterns"
+                        }
+                    ]
+                }
+            };
+            
+            // SOS card click handlers
+            document.querySelectorAll('.sos-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const reliefType = this.getAttribute('data-relief');
+                    showReliefProtocol(reliefType);
+                });
+            });
+            
+            // Function to display relief protocol
+            function showReliefProtocol(type) {
+                const protocol = reliefProtocols[type];
+                const container = document.getElementById('reliefProtocol');
+                
+                let stepsHTML = '';
+                protocol.steps.forEach((step, index) => {
+                    const hasAction = step.action;
+                    stepsHTML += `
+                        <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 5px solid ${protocol.color};">
+                            <h3 style="color: ${protocol.color}; margin-bottom: 1rem; font-size: 1.2rem;">${step.title}</h3>
+                            <p style="color: #4A5568; line-height: 1.7; font-size: 1rem; margin-bottom: ${hasAction ? '1.5rem' : '0'};">${step.content}</p>
+                            ${hasAction ? `
+                                <button class="breathing-btn" data-type="${type}" style="width: 100%; padding: 1rem; background: ${protocol.color}; color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                                    ${step.action}
+                                </button>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h2 style="color: ${protocol.color}; font-size: 2rem; margin-bottom: 0.5rem;">${protocol.title}</h2>
+                        <p style="color: #5A6C7D; font-size: 1rem;">Follow these steps at your own pace. You've got this. 💪</p>
+                    </div>
+                    
+                    ${stepsHTML}
+                    
+                    <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #FFF9E6, #FFFFFF); border-radius: 16px; border: 2px solid #F39C12;">
+                        <p style="color: #E67E22; font-weight: 600; font-size: 0.95rem; margin: 0;">
+                            ⚠️ If symptoms are severe or you're concerned, contact your GP or call 111. For mental health crisis, call Samaritans on 116 123 (free, 24/7).
+                        </p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button id="backToSOSMenu" style="padding: 1rem 2rem; background: white; border: 2px solid ${protocol.color}; color: ${protocol.color}; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='${protocol.color}'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='${protocol.color}';">
+                            ← Back to Quick Relief Menu
+                        </button>
+                    </div>
+                `;
+                
+                // Hide cards, show protocol
+                document.querySelectorAll('.sos-card').forEach(c => c.style.display = 'none');
+                container.style.display = 'block';
+                window.scrollTo(0, 0);
+                
+                // Add breathing exercise handlers
+                setTimeout(() => {
+                    const breathingBtns = document.querySelectorAll('.breathing-btn');
+                    breathingBtns.forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const breathType = this.getAttribute('data-type');
+                            startBreathingExercise(breathType);
+                        });
+                    });
+                    
+                    // Back to menu handler
+                    document.getElementById('backToSOSMenu').addEventListener('click', function() {
+                        container.style.display = 'none';
+                        document.querySelectorAll('.sos-card').forEach(c => c.style.display = 'block');
+                        window.scrollTo(0, 0);
+                    });
+                }, 100);
+            }
+            
+            // Breathing exercise animation
+            function startBreathingExercise(type) {
+                const breathPatterns = {
+                    hotflush: { in: 4, hold1: 0, out: 8, hold2: 0, cycles: 5, name: "Cooling Breath" },
+                    anxiety: { in: 4, hold1: 4, out: 4, hold2: 4, cycles: 4, name: "Box Breathing" },
+                    panic: { in: 4, hold1: 7, out: 8, hold2: 0, cycles: 4, name: "4-7-8 Breath" },
+                    sleep: { in: 4, hold1: 7, out: 8, hold2: 0, cycles: 8, name: "Sleep Breath" }
+                };
+                
+                const pattern = breathPatterns[type];
+                
+                // Create fullscreen breathing overlay
+                const overlay = document.createElement('div');
+                overlay.id = 'breathingOverlay';
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    z-index: 10000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                `;
+                
+                overlay.innerHTML = `
+                    <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center; padding: 0 1rem;">${pattern.name}</h2>
+                    <div id="breathCircle" style="width: 250px; height: 250px; border-radius: 50%; background: rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; transition: all 1s ease; margin-bottom: 2rem;">
+                        <div style="font-size: 3rem; font-weight: 700;" id="breathText">Ready?</div>
+                    </div>
+                    <div style="font-size: 1.5rem; margin-bottom: 1rem;" id="breathInstruction">Get comfortable...</div>
+                    <div style="font-size: 1rem; opacity: 0.9;" id="breathCount">Cycle 1 of ${pattern.cycles}</div>
+                    <button id="closeBreathing" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.3); border: 2px solid white; color: white; padding: 0.8rem 1.5rem; border-radius: 12px; cursor: pointer; font-weight: 600;">✕ Close</button>
+                `;
+                
+                document.body.appendChild(overlay);
+                
+                const circle = document.getElementById('breathCircle');
+                const text = document.getElementById('breathText');
+                const instruction = document.getElementById('breathInstruction');
+                const countEl = document.getElementById('breathCount');
+                
+                let currentCycle = 0;
+                
+                document.getElementById('closeBreathing').addEventListener('click', () => {
+                    overlay.remove();
+                });
+                
+                setTimeout(() => {
+                    runBreathCycle();
+                }, 2000);
+                
+                function runBreathCycle() {
+                    if (currentCycle >= pattern.cycles) {
+                        text.textContent = '✓';
+                        instruction.textContent = 'Complete! Well done.';
+                        setTimeout(() => overlay.remove(), 3000);
+                        return;
+                    }
+                    
+                    currentCycle++;
+                    countEl.textContent = `Cycle ${currentCycle} of ${pattern.cycles}`;
+                    
+                    // Breathe in
+                    circle.style.transform = 'scale(1.5)';
+                    circle.style.background = 'rgba(255,255,255,0.5)';
+                    text.textContent = pattern.in;
+                    instruction.textContent = 'Breathe IN';
+                    countdown(pattern.in, () => {
+                        
+                        // Hold 1
+                        if (pattern.hold1 > 0) {
+                            circle.style.transform = 'scale(1.5)';
+                            text.textContent = pattern.hold1;
+                            instruction.textContent = 'HOLD';
+                            countdown(pattern.hold1, () => {
+                                
+                                // Breathe out
+                                circle.style.transform = 'scale(1)';
+                                circle.style.background = 'rgba(255,255,255,0.3)';
+                                text.textContent = pattern.out;
+                                instruction.textContent = 'Breathe OUT';
+                                countdown(pattern.out, () => {
+                                    
+                                    // Hold 2
+                                    if (pattern.hold2 > 0) {
+                                        text.textContent = pattern.hold2;
+                                        instruction.textContent = 'HOLD';
+                                        countdown(pattern.hold2, () => {
+                                            setTimeout(runBreathCycle, 500);
+                                        });
+                                    } else {
+                                        setTimeout(runBreathCycle, 500);
+                                    }
+                                });
+                            });
+                        } else {
+                            // Breathe out
+                            circle.style.transform = 'scale(1)';
+                            circle.style.background = 'rgba(255,255,255,0.3)';
+                            text.textContent = pattern.out;
+                            instruction.textContent = 'Breathe OUT';
+                            countdown(pattern.out, () => {
+                                setTimeout(runBreathCycle, 500);
+                            });
+                        }
+                    });
+                }
+                
+                function countdown(seconds, callback) {
+                    let remaining = seconds;
+                    const interval = setInterval(() => {
+                        remaining--;
+                        if (remaining > 0) {
+                            text.textContent = remaining;
+                        } else {
+                            clearInterval(interval);
+                            callback();
+                        }
+                    }, 1000);
+                }
             }
 
 
