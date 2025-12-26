@@ -1752,10 +1752,18 @@
                 justify-items: center !important;
             }
             
-            /* Force single column for form grids */
-            [style*="grid-template-columns: 1fr 1fr"],
-            [style*="grid-template-columns: repeat(2, 1fr)"] {
+            /* Force single column for form grids EXCEPT mood/energy row */
+            [style*="grid-template-columns: 1fr 1fr"]:not([style*="margin-bottom: 2rem"]),
+            [style*="grid-template-columns: repeat(2, 1fr)"]:not(.keep-two-columns) {
                 grid-template-columns: 1fr !important;
+            }
+            
+            /* CRITICAL: Keep mood/energy side by side on mobile - must override everything */
+            div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 1.5rem"][style*="margin-bottom: 2rem"],
+            #diaryFormOverlay div[style*="grid-template-columns: 1fr 1fr"][style*="margin-bottom: 2rem"] {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem !important;
+                display: grid !important;
             }
             
             /* 3-column grids become 1 column on mobile */
@@ -1774,25 +1782,67 @@
                 gap: 1rem !important;
             }
             
-            /* Mood/energy button grids - 3 columns on mobile */
+            /* Mood/energy button grids - 2 columns on mobile (was 3) */
             .mood-btn-container,
             [style*="grid-template-columns: repeat(5, 1fr)"] {
-                grid-template-columns: repeat(3, 1fr) !important;
-                gap: 0.5rem !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.4rem !important;
             }
             
-            /* Diary form: Mood emoji buttons - larger touch targets */
+            /* Last emoji (5th) spans both columns */
+            .mood-btn:nth-child(5) {
+                grid-column: 1 / -1 !important;
+                max-width: 50% !important;
+                margin: 0 auto !important;
+            }
+            
+            /* Diary form: Mood emoji buttons - optimized for side-by-side layout */
             .mood-btn {
-                padding: 0.8rem 0.3rem !important;
-                min-height: 70px !important;
+                padding: 0.6rem 0.2rem !important;
+                min-height: 65px !important;
             }
             
             .mood-btn > div:first-child {
-                font-size: 1.5rem !important;
+                font-size: 1.3rem !important;
             }
             
             .mood-btn > div:last-child {
-                font-size: 0.65rem !important;
+                font-size: 0.6rem !important;
+            }
+            
+            /* Energy box optimization for side-by-side mobile layout */
+            #diaryFormOverlay #energySlider {
+                width: 100% !important;
+            }
+            
+            #diaryFormOverlay #energyValue {
+                font-size: 1.8rem !important;
+            }
+            
+            #diaryFormOverlay div[style*="padding: 1.5rem"][style*="border: 2px solid #F8BBD0"] {
+                padding: 1rem !important;
+            }
+            
+            /* Diary entry display: Keep mood/energy side by side */
+            .diary-mood-energy-display {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .diary-mood-energy-display > div {
+                padding: 0.8rem !important;
+            }
+            
+            .diary-mood-energy-display div[style*="font-size: 2.5rem"] {
+                font-size: 2rem !important;
+            }
+            
+            .diary-mood-energy-display div[style*="font-size: 1.8rem"] {
+                font-size: 1.5rem !important;
+            }
+            
+            .diary-mood-energy-display div[style*="font-size: 1.1rem"] {
+                font-size: 0.95rem !important;
             }
             
             /* Diary form buttons - wrap on mobile */
@@ -9170,7 +9220,7 @@
                             </div>
                             
                             <!-- Mood & Energy -->
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;" class="diary-mood-energy-display">
                                 <div style="background: linear-gradient(135deg, #FCE4EC, #FFFFFF); padding: 1.2rem; border-radius: 12px; border: 2px solid #F8BBD0;">
                                     <div style="font-size: 0.75rem; color: #AD1457; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: 0.5px;">MOOD</div>
                                     <div style="display: flex; align-items: center; gap: 0.8rem;">
