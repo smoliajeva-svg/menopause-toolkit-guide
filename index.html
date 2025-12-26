@@ -2,16 +2,7 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    
-    <!-- Mobile Optimization Meta Tags -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Menopause Toolkit">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="theme-color" content="#FF6B9D">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menopause Wellness Toolkit™ - Interactive Guide</title>
     <style>
         :root {
@@ -1983,120 +1974,9 @@
         .week-nav-btn[data-week="4"]:not(.week-active) div {
             color: #FFB5C5 !important;
         }
-
-        /* ========================================
-           MOBILE TOUCH & ACCESSIBILITY FIXES
-           ======================================== */
-
-        /* Remove hover effects on touch devices */
-        @media (hover: none) and (pointer: coarse) {
-            *[onmouseover]:hover {
-                transform: none !important;
-            }
-        }
-
-        /* Add touch feedback for interactive elements */
-        .card:active,
-        button:active,
-        [onclick]:active,
-        [role="button"]:active {
-            transform: scale(0.98) !important;
-            opacity: 0.9;
-            transition: all 0.1s ease;
-        }
-
-        /* Ensure minimum tap target sizes (Apple/Android guidelines) */
-        button,
-        [onclick],
-        input[type="checkbox"],
-        input[type="radio"],
-        select {
-            min-height: 44px;
-            min-width: 44px;
-        }
-
-        /* Prevent iOS zoom on input focus */
-        input,
-        select,
-        textarea {
-            font-size: 16px !important;
-        }
-
-        /* Better touch highlight color */
-        * {
-            -webkit-tap-highlight-color: rgba(255, 107, 157, 0.3);
-            -webkit-touch-callout: none;
-        }
-
-        /* Smooth scrolling on iOS */
-        * {
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Prevent double-tap zoom */
-        button,
-        [role="button"],
-        [onclick],
-        a {
-            touch-action: manipulation;
-        }
-
-        /* Fix for sticky hover states on mobile */
-        @media (hover: none) {
-            button:hover,
-            [onclick]:hover {
-                transform: none;
-            }
-        }
-
-        /* Improve button visibility on mobile */
-        @media (max-width: 768px) {
-            button,
-            .btn {
-                padding: 0.75rem 1.25rem;
-                font-size: 1rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Loading Indicator for Mobile -->
-    <div id="appLoading" style="position: fixed; inset: 0; background: linear-gradient(135deg, #FFF9F3 0%, #FFE4E4 100%); display: flex; align-items: center; justify-content: center; z-index: 9999999; transition: opacity 0.5s;">
-        <div style="text-align: center; padding: 2rem;">
-            <div style="width: 60px; height: 60px; border: 5px solid #FFE4E4; border-top-color: #FF6B9D; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-            <p style="margin-top: 1.5rem; color: #6B5B6B; font-size: 1.1rem; font-weight: 500;">Loading your toolkit...</p>
-            <p style="margin-top: 0.5rem; color: #8D7A8D; font-size: 0.9rem;">Initializing storage & features</p>
-        </div>
-    </div>
-    <style>
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
-    <script>
-        // Hide loading screen when page is fully loaded
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('appLoading');
-            if (loader) {
-                loader.style.opacity = '0';
-                setTimeout(function() {
-                    loader.style.display = 'none';
-                }, 500);
-            }
-        });
-        
-        // Fallback: hide after 3 seconds even if load event doesn't fire
-        setTimeout(function() {
-            const loader = document.getElementById('appLoading');
-            if (loader && loader.style.display !== 'none') {
-                loader.style.opacity = '0';
-                setTimeout(function() {
-                    loader.style.display = 'none';
-                }, 500);
-            }
-        }, 3000);
-    </script>
-    
     <!-- WELCOME SCREEN -->
     <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-content">
@@ -4633,211 +4513,34 @@
     </div>
 
     <script>
-        // ========================================
-        // CRITICAL FIX: Mobile/Private Browsing Storage Abstraction
-        // This MUST be at the top before any other code
-        // ========================================
-        
-        const SafeStorage = (function() {
-            let storageType = 'unknown';
-            let memoryStore = {};
-            let warningShown = false;
-            
-            function init() {
-                // Test localStorage
-                try {
-                    localStorage.setItem('__storage_test__', '1');
-                    localStorage.removeItem('__storage_test__');
-                    storageType = 'localStorage';
-                    console.log('✅ localStorage available - full persistence enabled');
-                    return;
-                } catch(e) {
-                    console.warn('❌ localStorage blocked:', e.message);
-                }
-                
-                // Test sessionStorage
-                try {
-                    sessionStorage.setItem('__storage_test__', '1');
-                    sessionStorage.removeItem('__storage_test__');
-                    storageType = 'sessionStorage';
-                    console.log('⚠️ sessionStorage available - data will be lost when tab closes');
-                    showStorageWarning('session');
-                    return;
-                } catch(e) {
-                    console.warn('❌ sessionStorage blocked:', e.message);
-                }
-                
-                // Fallback to memory
-                storageType = 'memory';
-                console.log('⚠️ Using memory storage - data will be lost on page refresh');
-                showStorageWarning('memory');
-            }
-            
-            function showStorageWarning(type) {
-                if (warningShown) return;
-                warningShown = true;
-                
-                const messages = {
-                    session: '⚠️ <strong>Temporary Storage Active</strong><br>Your data will be lost when you close this tab. This is normal in some browsing modes.',
-                    memory: '⚠️ <strong>Private Browsing Detected</strong><br>Your data will be lost when you refresh this page. This usually happens in private/incognito mode.'
+        // EMERGENCY FIX: Minimal localStorage shim for mobile/private browsing
+        (function() {
+            try {
+                localStorage.setItem('__test', '1');
+                localStorage.removeItem('__test');
+            } catch(e) {
+                // localStorage blocked - create shim
+                var store = {};
+                window.localStorage = {
+                    getItem: function(k) { return store[k] || null; },
+                    setItem: function(k, v) { store[k] = String(v); },
+                    removeItem: function(k) { delete store[k]; },
+                    clear: function() { store = {}; }
                 };
                 
-                // Wait for DOM to be ready
+                // Show simple alert once
                 setTimeout(function() {
-                    const notification = document.createElement('div');
-                    notification.id = 'storageWarning';
-                    notification.style.cssText = `
-                        position: fixed;
-                        top: 20px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        background: linear-gradient(135deg, #FFF3CD 0%, #FFE69C 100%);
-                        color: #856404;
-                        padding: 1rem 1.5rem;
-                        border-radius: 12px;
-                        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-                        z-index: 999999;
-                        max-width: 90%;
-                        width: auto;
-                        text-align: center;
-                        font-size: 0.9rem;
-                        border: 2px solid #FFD700;
-                        animation: slideDown 0.4s ease-out;
-                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                    `;
-                    notification.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                            <div style="flex: 1; min-width: 200px;">${messages[type]}</div>
-                            <button onclick="document.getElementById('storageWarning').remove()" 
-                                    style="background: #856404; color: white; border: none; padding: 0.5rem 1rem; 
-                                           border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;
-                                           transition: all 0.2s; white-space: nowrap;"
-                                    onmouseover="this.style.background='#664903'"
-                                    onmouseout="this.style.background='#856404'">
-                                Got it
-                            </button>
-                        </div>
-                    `;
-                    
-                    // Add animation
-                    const style = document.createElement('style');
-                    style.textContent = `
-                        @keyframes slideDown {
-                            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-                            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                    
-                    document.body.appendChild(notification);
-                    
-                    // Auto-remove after 15 seconds
-                    setTimeout(function() {
-                        if (notification && notification.parentElement) {
-                            notification.style.animation = 'slideDown 0.4s ease-out reverse';
-                            setTimeout(function() {
-                                if (notification.parentElement) notification.remove();
-                            }, 400);
-                        }
-                    }, 15000);
+                    if (!window.__storageWarningShown) {
+                        window.__storageWarningShown = true;
+                        var msg = document.createElement('div');
+                        msg.innerHTML = '⚠️ Private browsing: data won\'t save';
+                        msg.style.cssText = 'position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#fff3cd;padding:10px 20px;border-radius:8px;z-index:999999;font-size:14px;';
+                        document.body.appendChild(msg);
+                        setTimeout(function() { msg.remove(); }, 5000);
+                    }
                 }, 1000);
             }
-            
-            // Public API
-            return {
-                init: init,
-                
-                getItem: function(key) {
-                    if (storageType === 'memory') {
-                        return memoryStore[key] || null;
-                    }
-                    
-                    try {
-                        const storage = storageType === 'localStorage' ? localStorage : sessionStorage;
-                        return storage.getItem(key);
-                    } catch(e) {
-                        console.warn('Storage getItem failed, using memory:', e);
-                        return memoryStore[key] || null;
-                    }
-                },
-                
-                setItem: function(key, value) {
-                    if (storageType === 'memory') {
-                        memoryStore[key] = value;
-                        return true;
-                    }
-                    
-                    try {
-                        const storage = storageType === 'localStorage' ? localStorage : sessionStorage;
-                        storage.setItem(key, value);
-                        return true;
-                    } catch(e) {
-                        console.warn('Storage setItem failed, using memory fallback:', e);
-                        memoryStore[key] = value;
-                        return false;
-                    }
-                },
-                
-                removeItem: function(key) {
-                    if (storageType === 'memory') {
-                        delete memoryStore[key];
-                        return;
-                    }
-                    
-                    try {
-                        const storage = storageType === 'localStorage' ? localStorage : sessionStorage;
-                        storage.removeItem(key);
-                    } catch(e) {
-                        console.warn('Storage removeItem failed:', e);
-                        delete memoryStore[key];
-                    }
-                },
-                
-                clear: function() {
-                    if (storageType === 'memory') {
-                        memoryStore = {};
-                        return;
-                    }
-                    
-                    try {
-                        const storage = storageType === 'localStorage' ? localStorage : sessionStorage;
-                        storage.clear();
-                    } catch(e) {
-                        console.warn('Storage clear failed:', e);
-                        memoryStore = {};
-                    }
-                },
-                
-                getType: function() {
-                    return storageType;
-                },
-                
-                isPersistent: function() {
-                    return storageType === 'localStorage';
-                }
-            };
         })();
-        
-        // Initialize storage immediately
-        SafeStorage.init();
-        
-        // Override localStorage to use SafeStorage if not available
-        // This allows existing code to work without modification
-        if (SafeStorage.getType() !== 'localStorage') {
-            console.log('🔄 Creating localStorage shim using', SafeStorage.getType());
-            window.localStorage = {
-                getItem: function(key) { return SafeStorage.getItem(key); },
-                setItem: function(key, val) { return SafeStorage.setItem(key, val); },
-                removeItem: function(key) { return SafeStorage.removeItem(key); },
-                clear: function() { return SafeStorage.clear(); },
-                key: function(index) { return null; },
-                length: 0
-            };
-        }
-        
-        // ========================================
-        // END STORAGE FIX - Original code follows
-        // ========================================
         
         const cards = [
             {
