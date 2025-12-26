@@ -1733,6 +1733,12 @@
                         <span class="menu-description">View milestones</span>
                     </a>
                     
+                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="medication">
+                        <span class="menu-icon">💊</span>
+                        <span class="menu-label">Medications</span>
+                        <span class="menu-description">Track HRT & supplements</span>
+                    </a>
+                    
                     <a href="javascript:void(0)" class="welcome-menu-item" data-section="sos" style="border: 3px solid #E74C3C; background: linear-gradient(135deg, #FFE5E5, #FFFFFF);">
                         <span class="menu-icon" style="font-size: 2rem;">🆘</span>
                         <span class="menu-label" style="color: #E74C3C; font-weight: 700;">Quick Relief</span>
@@ -3743,6 +3749,64 @@
                 <span>Back to Home</span>
                 <span>🏠</span>
             </button>
+        </div>
+    </div>
+
+    <!-- MEDICATION/HRT TRACKER SECTION -->
+    <div class="container" id="medicationContainer" style="display: none;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <h1 style="background: linear-gradient(135deg, #8E44AD, #6C3483); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(142, 68, 173, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 2rem;">💊</span>
+                <span>Medication & HRT Tracker</span>
+            </h1>
+            <button id="backToHomeFromMedication" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid var(--primary-green); color: var(--primary-green); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='var(--primary-green)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--primary-green)';">
+                🏠 Back to Home
+            </button>
+        </div>
+
+        <div style="max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Important Notice -->
+            <div style="background: linear-gradient(135deg, #FFF9E6, #FFFFFF); border: 3px solid #F39C12; border-radius: 20px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 8px 30px rgba(243, 156, 18, 0.2);">
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                    <div style="font-size: 3rem;">⚠️</div>
+                    <div>
+                        <h3 style="color: #E67E22; margin-bottom: 1rem; font-size: 1.2rem;">Important Safety Information</h3>
+                        <p style="color: #5A6C7D; line-height: 1.7; margin-bottom: 0.8rem;">This tracker is for <strong>record-keeping only</strong>. It does not replace medical advice.</p>
+                        <p style="color: #5A6C7D; line-height: 1.7; margin-bottom: 0.8rem;">✓ Always consult your GP before starting, stopping, or changing medications<br>
+                        ✓ Never combine supplements with HRT without medical approval<br>
+                        ✓ Report any side effects to your doctor immediately</p>
+                        <p style="color: #E67E22; font-weight: 600; margin-top: 1rem;">If you experience severe side effects, contact your GP or call 111.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add New Medication Button -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button id="addMedicationBtn" onclick="if(typeof showMedicationForm === 'function') showMedicationForm(); else alert('Please wait, form is loading...');" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #8E44AD, #6C3483); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(142, 68, 173, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(142, 68, 173, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(142, 68, 173, 0.3)';">
+                    <span style="font-size: 1.5rem;">➕</span>
+                    <span>Add Medication / Supplement</span>
+                </button>
+            </div>
+
+            <!-- Current Medications List -->
+            <div id="medicationsList" style="margin-bottom: 2rem;">
+                <!-- Medications will be displayed here -->
+            </div>
+
+            <!-- Export/Print Buttons -->
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
+                <button id="exportMedicationHistory" style="padding: 1rem 2rem; background: white; border: 2px solid #3498DB; color: #3498DB; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.8rem;" onmouseover="this.style.background='#3498DB'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#3498DB';">
+                    <span>📄</span>
+                    <span>Generate GP Report</span>
+                </button>
+                <button id="printMedicationList" style="padding: 1rem 2rem; background: white; border: 2px solid #27AE60; color: #27AE60; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.8rem;" onmouseover="this.style.background='#27AE60'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#27AE60';">
+                    <span>🖨️</span>
+                    <span>Print Medication List</span>
+                </button>
+            </div>
+
         </div>
     </div>
 
@@ -6780,6 +6844,54 @@
                             window.scrollTo(0, 0);
                         }, 500);
                     }
+                } else if (section === 'medication') {
+                    // Navigate to Medication/HRT Tracker section
+                    const welcomeScreen = document.getElementById('welcomeScreen');
+                    const toolkitContainer = document.getElementById('toolkitContainer');
+                    const medicationContainer = document.getElementById('medicationContainer');
+                    
+                    if (medicationContainer) {
+                        welcomeScreen.style.animation = 'fadeOut 0.5s ease-out forwards';
+                        
+                        setTimeout(() => {
+                            welcomeScreen.style.display = 'none';
+                            
+                            // Hide all other sections
+                            toolkitContainer.querySelector('.container').style.display = 'none';
+                            document.getElementById('supplementsContainer').style.display = 'none';
+                            if (document.getElementById('proteinContainer')) {
+                                document.getElementById('proteinContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('dailyPlanContainer')) {
+                                document.getElementById('dailyPlanContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('progressContainer')) {
+                                document.getElementById('progressContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('movementContainer')) {
+                                document.getElementById('movementContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('recipesMainPage')) {
+                                document.getElementById('recipesMainPage').style.display = 'none';
+                            }
+                            if (document.getElementById('trackingContainer')) {
+                                document.getElementById('trackingContainer').style.display = 'none';
+                            }
+                            if (document.getElementById('sosContainer')) {
+                                document.getElementById('sosContainer').style.display = 'none';
+                            }
+                            
+                            // Show medication section
+                            medicationContainer.style.display = 'block';
+                            // Load medications after a brief delay to ensure function is available
+                            setTimeout(() => {
+                                if (typeof loadMedicationsList === 'function') {
+                                    loadMedicationsList();
+                                }
+                            }, 100);
+                            window.scrollTo(0, 0);
+                        }, 500);
+                    }
                 } else if (section === 'sos') {
                     // Navigate to SOS Quick Relief section
                     const welcomeScreen = document.getElementById('welcomeScreen');
@@ -8454,6 +8566,515 @@
                 });
             }
 
+
+            // ===== MEDICATION/HRT TRACKER SECTION =====
+            
+            // Silently clean up any corrupted medication data on load
+            (function() {
+                try {
+                    const testData = localStorage.getItem('medications');
+                    if (testData && testData !== '[]') {
+                        const parsed = JSON.parse(testData);
+                        if (Array.isArray(parsed)) {
+                            // Validate and clean data
+                            const cleaned = parsed.filter(m => {
+                                try {
+                                    return m && typeof m === 'object' && m.name && m.type;
+                                } catch {
+                                    return false;
+                                }
+                            });
+                            if (cleaned.length !== parsed.length) {
+                                localStorage.setItem('medications', JSON.stringify(cleaned));
+                            }
+                        } else {
+                            localStorage.setItem('medications', '[]');
+                        }
+                    }
+                } catch (e) {
+                    // Silently clear corrupted data
+                    try {
+                        localStorage.removeItem('medications');
+                    } catch {}
+                }
+            })();
+            
+            try {
+                // Back to home from medication
+                if (document.getElementById('backToHomeFromMedication')) {
+                    document.getElementById('backToHomeFromMedication').addEventListener('click', function() {
+                        document.getElementById('medicationContainer').style.display = 'none';
+                        const welcomeScreen = document.getElementById('welcomeScreen');
+                        welcomeScreen.style.display = 'flex';
+                        welcomeScreen.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                        window.scrollTo(0, 0);
+                    });
+                }
+            } catch (e) {
+                // Silently handle - back button is non-critical
+            }
+            
+            // Load medications from localStorage
+            function loadMedicationsList() {
+                try {
+                    const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+                    const container = document.getElementById('medicationsList');
+                    
+                    if (!container) {
+                        // Container not found, exit silently
+                        return;
+                    }
+                    
+                    // Attach all button handlers after DOM is ready
+                    setTimeout(() => {
+                        try {
+                            if (window.attachMedicationFormHandler) {
+                                window.attachMedicationFormHandler();
+                            }
+                            if (window.attachExportHandler) {
+                                window.attachExportHandler();
+                            }
+                            if (window.attachPrintHandler) {
+                                window.attachPrintHandler();
+                            }
+                        } catch (e) {
+                            // Silently handle handler attachment errors
+                        }
+                    }, 100);
+                    
+                    if (medications.length === 0) {
+                        container.innerHTML = `
+                            <div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #F8F9FA, #FFFFFF); border-radius: 20px; border: 2px dashed #D0D0D0;">
+                                <div style="font-size: 4rem; margin-bottom: 1rem;">💊</div>
+                                <h3 style="color: #5A6C7D; margin-bottom: 1rem;">No Medications Yet</h3>
+                                <p style="color: #7D8A99;">Click "Add Medication / Supplement" to start tracking</p>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Group medications by type - with safety checks
+                    const hrt = medications.filter(m => m && m.type === 'HRT');
+                    const supplements = medications.filter(m => m && m.type === 'Supplement');
+                    const prescription = medications.filter(m => m && m.type === 'Prescription');
+                    const otc = medications.filter(m => m && m.type === 'OTC');
+                    
+                    let html = '';
+                    
+                    if (hrt.length > 0) {
+                        html += generateMedicationGroup('💊 HRT (Hormone Replacement Therapy)', hrt, '#8E44AD');
+                    }
+                    if (prescription.length > 0) {
+                        html += generateMedicationGroup('🏥 Prescription Medications', prescription, '#3498DB');
+                    }
+                    if (supplements.length > 0) {
+                        html += generateMedicationGroup('🌿 Supplements', supplements, '#27AE60');
+                    }
+                    if (otc.length > 0) {
+                        html += generateMedicationGroup('💚 Over-the-Counter', otc, '#F39C12');
+                    }
+                    
+                    container.innerHTML = html;
+                    
+                    // Add event listeners to edit/delete buttons
+                    medications.forEach((med, index) => {
+                        if (!med) return;
+                        
+                        const editBtn = document.getElementById(`editMed${index}`);
+                        const deleteBtn = document.getElementById(`deleteMed${index}`);
+                        
+                        if (editBtn) {
+                            editBtn.addEventListener('click', () => editMedication(index));
+                        }
+                        if (deleteBtn) {
+                            deleteBtn.addEventListener('click', () => deleteMedication(index));
+                        }
+                    });
+                } catch (e) {
+                    // Silently handle errors - show empty state instead
+                    const container = document.getElementById('medicationsList');
+                    if (container) {
+                        container.innerHTML = `
+                            <div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #F8F9FA, #FFFFFF); border-radius: 20px; border: 2px dashed #D0D0D0;">
+                                <div style="font-size: 4rem; margin-bottom: 1rem;">💊</div>
+                                <h3 style="color: #5A6C7D; margin-bottom: 1rem;">No Medications Yet</h3>
+                                <p style="color: #7D8A99;">Click "Add Medication / Supplement" to start tracking</p>
+                            </div>
+                        `;
+                    }
+                }
+            }
+            
+            function generateMedicationGroup(title, meds, color) {
+                // Safety check
+                if (!meds || meds.length === 0) {
+                    return '';
+                }
+                
+                let html = `
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: ${color}; margin-bottom: 1.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.8rem;">
+                            <span>${title}</span>
+                            <span style="background: ${color}22; color: ${color}; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">${meds.length}</span>
+                        </h3>
+                        <div style="display: grid; gap: 1rem;">
+                `;
+                
+                const allMeds = JSON.parse(localStorage.getItem('medications') || '[]');
+                
+                meds.forEach((med) => {
+                    // Safety check for undefined medication
+                    if (!med || !med.name) {
+                        return;
+                    }
+                    
+                    const index = allMeds.findIndex(m => m && m.id === med.id);
+                    
+                    // Skip if medication not found
+                    if (index === -1) {
+                        return;
+                    }
+                    
+                    html += `
+                        <div style="background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 5px solid ${color};">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+                                <div style="flex: 1; min-width: 200px;">
+                                    <h4 style="color: #2C3E50; font-size: 1.2rem; margin-bottom: 0.8rem;">${med.name || 'Unnamed'}</h4>
+                                    <div style="display: grid; gap: 0.5rem; font-size: 0.95rem;">
+                                        <div><span style="color: #7D8A99;">Dosage:</span> <span style="color: #2C3E50; font-weight: 600;">${med.dosage || 'Not specified'}</span></div>
+                                        <div><span style="color: #7D8A99;">Frequency:</span> <span style="color: #2C3E50; font-weight: 600;">${med.frequency || 'Not specified'}</span></div>
+                                        <div><span style="color: #7D8A99;">Started:</span> <span style="color: #2C3E50; font-weight: 600;">${med.startDate ? new Date(med.startDate).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}) : 'Not specified'}</span></div>
+                                        ${med.prescriber ? `<div><span style="color: #7D8A99;">Prescribed by:</span> <span style="color: #2C3E50; font-weight: 600;">${med.prescriber}</span></div>` : ''}
+                                        ${med.purpose ? `<div style="margin-top: 0.5rem;"><span style="color: #7D8A99;">Purpose:</span> <span style="color: #2C3E50;">${med.purpose}</span></div>` : ''}
+                                        ${med.sideEffects && med.sideEffects.length > 0 ? `
+                                            <div style="margin-top: 0.5rem;">
+                                                <span style="color: #E67E22; font-weight: 600;">⚠️ Side Effects Noted:</span>
+                                                <div style="margin-top: 0.3rem;">${med.sideEffects.map(se => `<span style="display: inline-block; background: #FFE5D9; color: #D35400; padding: 0.2rem 0.6rem; border-radius: 8px; margin-right: 0.5rem; margin-bottom: 0.3rem; font-size: 0.85rem;">${se}</span>`).join('')}</div>
+                                            </div>
+                                        ` : ''}
+                                        ${med.notes ? `<div style="margin-top: 0.5rem; padding: 0.8rem; background: #F8F9FA; border-radius: 8px;"><span style="color: #7D8A99; font-size: 0.85rem;">Notes:</span><br><span style="color: #5A6C7D; font-size: 0.9rem;">${med.notes}</span></div>` : ''}
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 0.8rem;">
+                                    <button id="editMed${index}" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #3498DB; color: #3498DB; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" onmouseover="this.style.background='#3498DB'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#3498DB';">
+                                        ✏️ Edit
+                                    </button>
+                                    <button id="deleteMed${index}" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #E74C3C; color: #E74C3C; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" onmouseover="this.style.background='#E74C3C'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#E74C3C';">
+                                        🗑️ Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+                
+                return html;
+            }
+            
+            // Add new medication button
+            function attachMedicationFormHandler() {
+                const addBtn = document.getElementById('addMedicationBtn');
+                if (addBtn) {
+                    addBtn.addEventListener('click', showMedicationForm);
+                }
+            }
+            
+            // Call when medication section loads
+            window.attachMedicationFormHandler = attachMedicationFormHandler;
+            
+            // Make showMedicationForm globally available
+            window.showMedicationForm = function showMedicationForm(editIndex = null) {
+                try {
+                    const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+                    const isEdit = editIndex !== null && editIndex >= 0;
+                    const med = (isEdit && medications[editIndex]) ? medications[editIndex] : {};
+                    
+                    const overlay = document.createElement('div');
+                overlay.id = 'medicationFormOverlay';
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.7);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1rem;
+                    overflow-y: auto;
+                `;
+                
+                overlay.innerHTML = `
+                    <div onclick="event.stopPropagation();" style="background: white; border-radius: 20px; max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+                        <div style="background: linear-gradient(135deg, #8E44AD, #6C3483); color: white; padding: 2rem; border-radius: 20px 20px 0 0; position: relative;">
+                            <button onclick="document.getElementById('medicationFormOverlay').remove();" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">×</button>
+                            <h2 style="margin: 0; font-size: 1.5rem; padding-right: 3rem;">${isEdit ? '✏️ Edit' : '➕ Add New'} Medication / Supplement</h2>
+                        </div>
+                        
+                        <div style="padding: 2rem;">
+                            <form id="medicationForm">
+                                <!-- Type -->
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Type *</label>
+                                    <select id="medType" required style="width: 100%; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem;">
+                                        <option value="">Select type...</option>
+                                        <option value="HRT" ${(med && med.type) === 'HRT' ? 'selected' : ''}>HRT (Hormone Replacement Therapy)</option>
+                                        <option value="Prescription" ${(med && med.type) === 'Prescription' ? 'selected' : ''}>Prescription Medication</option>
+                                        <option value="Supplement" ${(med && med.type) === 'Supplement' ? 'selected' : ''}>Supplement</option>
+                                        <option value="OTC" ${(med && med.type) === 'OTC' ? 'selected' : ''}>Over-the-Counter</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Name -->
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Medication / Supplement Name *</label>
+                                    <input type="text" id="medName" required placeholder="e.g., Estradot, Magnesium, Propranolol" value="${(med && med.name) || ''}" style="width: 100%; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem;">
+                                </div>
+                                
+                                <!-- Dosage & Frequency -->
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Dosage *</label>
+                                        <input type="text" id="medDosage" required placeholder="e.g., 50mg, 2 patches" value="${(med && med.dosage) || ''}" style="width: 100%; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem;">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Frequency *</label>
+                                        <select id="medFrequency" required style="width: 100%; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem;">
+                                            <option value="">Select...</option>
+                                            <option value="Once daily" ${(med && med.frequency) === 'Once daily' ? 'selected' : ''}>Once daily</option>
+                                            <option value="Twice daily" ${(med && med.frequency) === 'Twice daily' ? 'selected' : ''}>Twice daily</option>
+                                            <option value="Three times daily" ${(med && med.frequency) === 'Three times daily' ? 'selected' : ''}>Three times daily</option>
+                                            <option value="Every other day" ${(med && med.frequency) === 'Every other day' ? 'selected' : ''}>Every other day</option>
+                                            <option value="Twice weekly" ${(med && med.frequency) === 'Twice weekly' ? 'selected' : ''}>Twice weekly</option>
+                                            <option value="Weekly" ${(med && med.frequency) === 'Weekly' ? 'selected' : ''}>Weekly</option>
+                                            <option value="As needed" ${(med && med.frequency) === 'As needed' ? 'selected' : ''}>As needed</option>
+                                            <option value="Other" ${(med && med.frequency && !['Once daily', 'Twice daily', 'Three times daily', 'Every other day', 'Twice weekly', 'Weekly', 'As needed'].includes(med.frequency)) ? 'selected' : ''}>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Start Date & Prescriber -->
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Start Date *</label>
+                                        <input type="date" id="medStartDate" required value="${(med && med.startDate) || ''}" style="width: 100%; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem;">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Prescribed By (optional)</label>
+                                        <input type="text" id="medPrescriber" placeholder="Dr. Name" value="${(med && med.prescriber) || ''}" style="width: 100%; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem;">
+                                    </div>
+                                </div>
+                                
+                                <!-- Purpose -->
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Purpose / Reason (optional)</label>
+                                    <textarea id="medPurpose" placeholder="e.g., Hot flushes, Anxiety, Bone health" style="width: 100%; min-height: 60px; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem; resize: vertical;">${(med && med.purpose) || ''}</textarea>
+                                </div>
+                                
+                                <!-- Side Effects -->
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50;">Any Side Effects? (optional)</label>
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem;">
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem; background: #F8F9FA; border-radius: 8px; cursor: pointer;">
+                                            <input type="checkbox" class="side-effect" value="Nausea" ${med.sideEffects?.includes('Nausea') ? 'checked' : ''}>
+                                            <span style="font-size: 0.9rem;">Nausea</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem; background: #F8F9FA; border-radius: 8px; cursor: pointer;">
+                                            <input type="checkbox" class="side-effect" value="Headache" ${med.sideEffects?.includes('Headache') ? 'checked' : ''}>
+                                            <span style="font-size: 0.9rem;">Headache</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem; background: #F8F9FA; border-radius: 8px; cursor: pointer;">
+                                            <input type="checkbox" class="side-effect" value="Dizziness" ${med.sideEffects?.includes('Dizziness') ? 'checked' : ''}>
+                                            <span style="font-size: 0.9rem;">Dizziness</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem; background: #F8F9FA; border-radius: 8px; cursor: pointer;">
+                                            <input type="checkbox" class="side-effect" value="Fatigue" ${med.sideEffects?.includes('Fatigue') ? 'checked' : ''}>
+                                            <span style="font-size: 0.9rem;">Fatigue</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem; background: #F8F9FA; border-radius: 8px; cursor: pointer;">
+                                            <input type="checkbox" class="side-effect" value="Bloating" ${med.sideEffects?.includes('Bloating') ? 'checked' : ''}>
+                                            <span style="font-size: 0.9rem;">Bloating</span>
+                                        </label>
+                                        <label style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem; background: #F8F9FA; border-radius: 8px; cursor: pointer;">
+                                            <input type="checkbox" class="side-effect" value="Mood changes" ${med.sideEffects?.includes('Mood changes') ? 'checked' : ''}>
+                                            <span style="font-size: 0.9rem;">Mood changes</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Notes -->
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Additional Notes (optional)</label>
+                                    <textarea id="medNotes" placeholder="Any other details, observations, or reminders..." style="width: 100%; min-height: 80px; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem; resize: vertical;">${(med && med.notes) || ''}</textarea>
+                                </div>
+                                
+                                <!-- Buttons -->
+                                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                                    <button type="button" id="cancelMedForm" onclick="document.getElementById('medicationFormOverlay').remove();" style="padding: 0.8rem 2rem; background: white; border: 2px solid #7D8A99; color: #7D8A99; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #8E44AD, #6C3483); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem;">
+                                        ${isEdit ? '💾 Save Changes' : '➕ Add Medication'}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(overlay);
+                
+                // Click outside to close
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) {
+                        overlay.remove();
+                    }
+                });
+                
+                // Cancel button
+                document.getElementById('cancelMedForm').addEventListener('click', () => {
+                    overlay.remove();
+                });
+                
+                // Form submission
+                document.getElementById('medicationForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const sideEffects = Array.from(document.querySelectorAll('.side-effect:checked')).map(cb => cb.value);
+                    
+                    const newMed = {
+                        id: isEdit ? med.id : Date.now(),
+                        type: document.getElementById('medType').value,
+                        name: document.getElementById('medName').value,
+                        dosage: document.getElementById('medDosage').value,
+                        frequency: document.getElementById('medFrequency').value,
+                        startDate: document.getElementById('medStartDate').value,
+                        prescriber: document.getElementById('medPrescriber').value,
+                        purpose: document.getElementById('medPurpose').value,
+                        sideEffects: sideEffects,
+                        notes: document.getElementById('medNotes').value,
+                        addedDate: isEdit ? med.addedDate : new Date().toISOString()
+                    };
+                    
+                    const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+                    
+                    if (isEdit) {
+                        medications[editIndex] = newMed;
+                    } else {
+                        medications.push(newMed);
+                    }
+                    
+                    localStorage.setItem('medications', JSON.stringify(medications));
+                    
+                    // Show brief success message
+                    const submitBtn = document.querySelector('#medicationForm button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = isEdit ? '✅ Saved!' : '✅ Added!';
+                    submitBtn.style.background = 'linear-gradient(135deg, #27AE60, #229954)';
+                    
+                    // Close after brief delay
+                    setTimeout(() => {
+                        overlay.remove();
+                        loadMedicationsList();
+                    }, 800);
+                });
+                } catch (e) {
+                    // Silently handle form creation errors
+                    alert('Unable to open medication form. Please refresh the page and try again.');
+                }
+            }
+            
+            window.editMedication = function editMedication(index) {
+                showMedicationForm(index);
+            }
+            
+            window.deleteMedication = function deleteMedication(index) {
+                const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+                const med = medications[index];
+                
+                if (confirm(`⚠️ Delete ${med.name}?\n\nThis will permanently remove this medication from your records.\n\nAre you sure?`)) {
+                    medications.splice(index, 1);
+                    localStorage.setItem('medications', JSON.stringify(medications));
+                    loadMedicationsList();
+                }
+            }
+            
+            // Export GP Report - attach handler when section loads
+            function attachExportHandler() {
+                const exportBtn = document.getElementById('exportMedicationHistory');
+                if (exportBtn) {
+                    exportBtn.addEventListener('click', generateGPReport);
+                }
+            }
+            window.attachExportHandler = attachExportHandler;
+            
+            function generateGPReport() {
+                const medications = JSON.parse(localStorage.getItem('medications') || '[]');
+                
+                if (medications.length === 0) {
+                    alert('No medications to export. Add some medications first!');
+                    return;
+                }
+                
+                let report = `MEDICATION HISTORY REPORT\n`;
+                report += `Generated: ${new Date().toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'})}\n`;
+                report += `\n${'='.repeat(60)}\n\n`;
+                
+                const groups = {
+                    'HRT': medications.filter(m => m.type === 'HRT'),
+                    'Prescription': medications.filter(m => m.type === 'Prescription'),
+                    'Supplement': medications.filter(m => m.type === 'Supplement'),
+                    'OTC': medications.filter(m => m.type === 'OTC')
+                };
+                
+                Object.entries(groups).forEach(([type, meds]) => {
+                    if (meds.length > 0) {
+                        report += `${type.toUpperCase()}\n${'-'.repeat(60)}\n`;
+                        meds.forEach((med, i) => {
+                            report += `\n${i + 1}. ${med.name}\n`;
+                            report += `   Dosage: ${med.dosage}\n`;
+                            report += `   Frequency: ${med.frequency}\n`;
+                            report += `   Started: ${new Date(med.startDate).toLocaleDateString('en-GB')}\n`;
+                            if (med.prescriber) report += `   Prescribed by: ${med.prescriber}\n`;
+                            if (med.purpose) report += `   Purpose: ${med.purpose}\n`;
+                            if (med.sideEffects?.length > 0) report += `   Side effects noted: ${med.sideEffects.join(', ')}\n`;
+                            if (med.notes) report += `   Notes: ${med.notes}\n`;
+                        });
+                        report += `\n`;
+                    }
+                });
+                
+                report += `\n${'='.repeat(60)}\n`;
+                report += `Total medications: ${medications.length}\n`;
+                report += `\nThis report was generated by the Menopause Wellness Toolkit\nfor information purposes only. Please review with your GP.`;
+                
+                // Create downloadable text file
+                const blob = new Blob([report], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `medication-history-${new Date().toISOString().split('T')[0]}.txt`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+            
+            // Print Medication List - attach handler when section loads
+            function attachPrintHandler() {
+                const printBtn = document.getElementById('printMedicationList');
+                if (printBtn) {
+                    printBtn.addEventListener('click', () => {
+                        window.print();
+                    });
+                }
+            }
+            window.attachPrintHandler = attachPrintHandler;
 
             // ===== SOS QUICK RELIEF SECTION =====
             
