@@ -206,6 +206,13 @@
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        /* Center single items in grid */
+        .welcome-menu-grid:has(.welcome-menu-item:only-child) {
+            grid-template-columns: minmax(160px, 300px);
+            justify-content: center;
         }
 
         .welcome-menu-item {
@@ -235,6 +242,44 @@
 
         .welcome-menu-item:active {
             transform: translateY(-3px);
+        }
+        
+        /* SOS CARDS - FORCE UNIFORM SIZE ON ALL DEVICES */
+        div.sos-card[data-relief] {
+            min-height: 220px !important;
+            max-height: 220px !important;
+            height: 220px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 1.5rem 1rem !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+        }
+        
+        div.sos-card[data-relief] > div:first-child {
+            flex-shrink: 0 !important;
+            margin-bottom: 0.8rem !important;
+            font-size: 2.5rem !important;
+            line-height: 1 !important;
+        }
+        
+        div.sos-card[data-relief] h3 {
+            margin: 0 0 0.5rem 0 !important;
+            flex-shrink: 0 !important;
+            font-size: 1.2rem !important;
+            line-height: 1.2 !important;
+        }
+        
+        div.sos-card[data-relief] p {
+            margin: 0 !important;
+            font-size: 0.85rem !important;
+            line-height: 1.3 !important;
+            flex-grow: 1 !important;
+            display: flex !important;
+            align-items: center !important;
+            text-align: center !important;
         }
 
         .menu-icon {
@@ -987,9 +1032,34 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.8rem;
             }
+            
+            /* Override desktop single-item styling on mobile */
+            .welcome-menu-grid:has(.welcome-menu-item:only-child) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            /* Center single items when there's an odd number */
+            .welcome-menu-grid .welcome-menu-item:only-child {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: calc(50% - 0.4rem);
+                max-width: none !important;
+            }
+            
+            /* Center last item if it's odd in a row */
+            .welcome-menu-grid .welcome-menu-item:nth-child(odd):last-child {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: calc(50% - 0.4rem);
+            }
 
             .welcome-menu-item {
                 padding: 1.2rem 0.8rem;
+                min-height: 140px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
             .menu-icon {
@@ -1698,6 +1768,12 @@
                 grid-template-columns: 1fr !important;
             }
             
+            /* SOS cards container - keep 2 columns on mobile */
+            #sosContainer [style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+            }
+            
             /* Mood/energy button grids - 3 columns on mobile */
             .mood-btn-container,
             [style*="grid-template-columns: repeat(5, 1fr)"] {
@@ -1723,6 +1799,39 @@
             /* Reduce padding in modal content */
             [style*="padding: 2rem"] {
                 padding: 1rem !important;
+            }
+            
+            /* SOS cards - ensure consistent sizing on mobile */
+            .sos-card {
+                min-height: 220px !important;
+                max-height: 220px !important;
+                height: 220px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 1.5rem 1rem !important;
+                box-sizing: border-box !important;
+            }
+            
+            .sos-card > div:first-child {
+                flex-shrink: 0 !important;
+                margin-bottom: 0.8rem !important;
+                font-size: 2.5rem !important;
+            }
+            
+            .sos-card h3 {
+                margin-bottom: 0.5rem !important;
+                flex-shrink: 0 !important;
+                font-size: 1.2rem !important;
+            }
+            
+            .sos-card p {
+                font-size: 0.85rem !important;
+                line-height: 1.3 !important;
+                flex-grow: 1 !important;
+                display: flex !important;
+                align-items: center !important;
             }
         }
 
@@ -1889,13 +1998,8 @@
                             <span class="menu-label">Progress</span>
                             <span class="menu-description">View all milestones</span>
                         </a>
-                    </div>
-                </div>
-
-                <!-- EMERGENCY HELP -->
-                <div style="margin-top: 2.5rem;">
-                    <div class="welcome-menu-grid">
-                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="sos" style="border: 3px solid #FFB5C5; background: linear-gradient(135deg, #FFE5F0, #FFFFFF); grid-column: 1 / -1;">
+                        
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="sos" style="border: 3px solid #FFB5C5; background: linear-gradient(135deg, #FFE5F0, #FFFFFF);">
                             <span class="menu-icon" style="font-size: 2.5rem;">🆘</span>
                             <span class="menu-label" style="color: #E74C3C; font-weight: 700; font-size: 1.1rem;">Quick Relief</span>
                             <span class="menu-description" style="color: #E74C3C;">Emergency help when you need it now</span>
@@ -4038,7 +4142,7 @@
     <div class="container" id="sosContainer" style="display: none;">
         <!-- Header -->
         <div style="text-align: center; margin-bottom: 2rem;">
-            <h1 style="background: linear-gradient(135deg, #E74C3C, #C0392B); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0 auto 1rem; box-shadow: 0 8px 30px rgba(231, 76, 60, 0.4); display: inline-flex; align-items: center; gap: 1rem; font-size: 2rem;">
+            <h1 style="background: linear-gradient(135deg, #FFB3BA, #FFCCCE); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0 auto 1rem; box-shadow: 0 8px 30px rgba(255, 179, 186, 0.3); display: inline-flex; align-items: center; gap: 1rem; font-size: 2rem;">
                 <span style="font-size: 2.5rem;">🆘</span>
                 <span>Quick Relief</span>
             </h1>
@@ -4046,7 +4150,7 @@
         </div>
 
         <!-- Quick Action Cards -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto 3rem;">
+        <div id="sosCardsGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 800px; margin: 0 auto 3rem;">
             
             <!-- Hot Flush Relief -->
             <div class="sos-card" data-relief="hotflush" style="background: linear-gradient(135deg, #FFE5D9, #FFFFFF); border: 3px solid #FF6B6B; border-radius: 20px; padding: 2rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(255, 107, 107, 0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 107, 0.2)';">
@@ -10091,7 +10195,9 @@ Examples:
                     </div>
                 `;
                 
-                // Hide cards, show protocol
+                // Hide cards grid, show protocol
+                const cardsGrid = document.getElementById('sosCardsGrid');
+                if (cardsGrid) cardsGrid.style.display = 'none';
                 document.querySelectorAll('.sos-card').forEach(c => c.style.display = 'none');
                 container.style.display = 'block';
                 window.scrollTo(0, 0);
@@ -10100,7 +10206,9 @@ Examples:
                 setTimeout(() => {
                     const breathingBtns = document.querySelectorAll('.breathing-btn');
                     breathingBtns.forEach(btn => {
-                        btn.addEventListener('click', function() {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
                             const breathType = this.getAttribute('data-type');
                             startBreathingExercise(breathType);
                         });
@@ -10109,6 +10217,8 @@ Examples:
                     // Back to menu handler
                     document.getElementById('backToSOSMenu').addEventListener('click', function() {
                         container.style.display = 'none';
+                        const cardsGrid = document.getElementById('sosCardsGrid');
+                        if (cardsGrid) cardsGrid.style.display = 'grid';
                         document.querySelectorAll('.sos-card').forEach(c => c.style.display = 'block');
                         window.scrollTo(0, 0);
                     });
@@ -10117,6 +10227,13 @@ Examples:
             
             // Breathing exercise animation
             function startBreathingExercise(type) {
+                // First, scroll to top and hide SOS content
+                window.scrollTo(0, 0);
+                const reliefProtocol = document.getElementById('reliefProtocol');
+                const sosContainer = document.getElementById('sosContainer');
+                if (reliefProtocol) reliefProtocol.style.display = 'none';
+                if (sosContainer) sosContainer.style.display = 'none';
+                
                 const breathPatterns = {
                     hotflush: { in: 4, hold1: 0, out: 8, hold2: 0, cycles: 5, name: "Cooling Breath" },
                     anxiety: { in: 4, hold1: 4, out: 4, hold2: 4, cycles: 4, name: "Box Breathing" },
@@ -10243,7 +10360,7 @@ Examples:
                     width: 100%;
                     height: 100%;
                     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    z-index: 10000;
+                    z-index: 99999;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -10256,7 +10373,7 @@ Examples:
                         <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">${pattern.name}</h2>
                         <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Find a comfortable position and prepare to breathe</p>
                         <button id="beginBreathing" style="background: white; color: #667eea; border: none; padding: 1.5rem 3rem; border-radius: 16px; font-size: 1.3rem; font-weight: 700; cursor: pointer; box-shadow: 0 8px 30px rgba(0,0,0,0.3); transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            🎵 Start with Music
+                            🎵 Start with Sound
                         </button>
                         <p style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.8;">Calming sounds will play</p>
                     </div>
@@ -10264,7 +10381,7 @@ Examples:
                     <div id="breathingScreen" style="display: none; width: 100%; height: 100%; position: relative;">
                         <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 1rem; align-items: center; z-index: 10;">
                             <button id="toggleMusic" style="background: rgba(255,255,255,0.3); border: 2px solid white; color: white; padding: 0.6rem 1.2rem; border-radius: 12px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
-                                <span id="musicIcon">🔊</span> <span id="musicText">Music On</span>
+                                <span id="musicIcon">🔊</span> <span id="musicText">Sound On</span>
                             </button>
                             <button id="closeBreathing" style="background: rgba(255,255,255,0.3); border: 2px solid white; color: white; padding: 0.6rem 1.2rem; border-radius: 12px; cursor: pointer; font-weight: 600;">
                                 ✕ Close
@@ -10317,13 +10434,13 @@ Examples:
                     
                     if (musicEnabled) {
                         icon.textContent = '🔊';
-                        musicText.textContent = 'Music On';
+                        musicText.textContent = 'Sound On';
                         if (musicGainNode && audioContext) {
                             musicGainNode.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.5);
                         }
                     } else {
                         icon.textContent = '🔇';
-                        musicText.textContent = 'Music Off';
+                        musicText.textContent = 'Sound Off';
                         if (musicGainNode && audioContext) {
                             musicGainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.5);
                         }
@@ -10333,6 +10450,12 @@ Examples:
                 document.getElementById('closeBreathing').addEventListener('click', () => {
                     stopMusic();
                     overlay.remove();
+                    // Restore SOS content
+                    const reliefProtocol = document.getElementById('reliefProtocol');
+                    const sosContainer = document.getElementById('sosContainer');
+                    if (reliefProtocol) reliefProtocol.style.display = 'block';
+                    if (sosContainer) sosContainer.style.display = 'block';
+                    window.scrollTo(0, 0);
                 });
                 
                 function runBreathCycle() {
@@ -10343,6 +10466,12 @@ Examples:
                         setTimeout(() => {
                             stopMusic();
                             overlay.remove();
+                            // Restore SOS content
+                            const reliefProtocol = document.getElementById('reliefProtocol');
+                            const sosContainer = document.getElementById('sosContainer');
+                            if (reliefProtocol) reliefProtocol.style.display = 'block';
+                            if (sosContainer) sosContainer.style.display = 'block';
+                            window.scrollTo(0, 0);
                         }, 3000);
                         return;
                     }
@@ -10412,7 +10541,7 @@ Examples:
                             clearInterval(interval);
                             callback();
                         }
-                    }, 1000);
+                    }, 1500);
                 }
             }
 
