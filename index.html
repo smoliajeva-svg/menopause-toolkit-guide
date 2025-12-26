@@ -1677,9 +1677,24 @@
                 padding: 0.8rem 1.5rem !important;
             }
             
+            /* Center all grid containers */
+            [style*="display: grid"] {
+                justify-items: center !important;
+            }
+            
             /* Force single column for form grids */
             [style*="grid-template-columns: 1fr 1fr"],
             [style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* 3-column grids become 1 column on mobile */
+            [style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Auto-fit grids - make full width cards */
+            [style*="grid-template-columns: repeat(auto-fit"] {
                 grid-template-columns: 1fr !important;
             }
             
@@ -8996,8 +9011,8 @@
                 
                 overlay.innerHTML = `
                     <div onclick="event.stopPropagation();" style="background: white; border-radius: 20px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-                        <div style="background: linear-gradient(135deg, #E91E63, #C2185B); color: white; padding: 2rem; border-radius: 20px 20px 0 0; position: relative;">
-                            <button onclick="document.getElementById('diaryFormOverlay').remove();" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">×</button>
+                        <div style="background: linear-gradient(135deg, #FF6B9D, #E91E63); color: white; padding: 2rem; border-radius: 20px 20px 0 0; position: relative;">
+                            <button onclick="document.getElementById('diaryFormOverlay').remove();" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700; transition: all 0.3s; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">×</button>
                             <h2 style="margin: 0; font-size: 1.5rem; padding-right: 3rem;">${isEdit ? '✏️ Edit' : '📔 New'} Journal Entry</h2>
                         </div>
                         
