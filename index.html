@@ -6,12 +6,12 @@
     <title>Menopause Wellness Toolkit™ - Interactive Guide</title>
     <style>
         :root {
-            --primary-green: #748B75;
-            --secondary-green: #9CAF88;
-            --light-green: #C8D5B9;
-            --bg-cream: #FAF8F3;
-            --text-dark: #2C3E2F;
-            --text-medium: #5A6C5B;
+            --primary-green: #F4C2C2;
+            --secondary-green: #E6D5E8;
+            --light-green: #FFD8CC;
+            --bg-cream: #FFF9F3;
+            --text-dark: #6B5B6B;
+            --text-medium: #8D7A8D;
             --white: #FFFFFF;
             --shadow: rgba(116, 139, 117, 0.15);
             --nervous: #9B7EBD;
@@ -1660,6 +1660,56 @@
             }
         }
         
+
+        /* ===== MOBILE FIXES FOR DIARY, MEDICATION, TRACKING ===== */
+        @media (max-width: 768px) {
+            /* Make section headers stack on mobile */
+            h1 {
+                font-size: 1.5rem !important;
+                padding: 1rem 1.5rem !important;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* Button sizing for mobile */
+            button {
+                font-size: 0.9rem !important;
+                padding: 0.8rem 1.5rem !important;
+            }
+            
+            /* Force single column for form grids */
+            [style*="grid-template-columns: 1fr 1fr"],
+            [style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Mood/energy button grids - 3 columns on mobile */
+            .mood-btn-container,
+            [style*="grid-template-columns: repeat(5, 1fr)"] {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 0.5rem !important;
+            }
+            
+            /* Make medication form inputs full width */
+            input[type="text"],
+            input[type="date"],
+            input[type="number"],
+            select,
+            textarea {
+                font-size: 16px !important; /* Prevents zoom on iOS */
+            }
+            
+            /* Adjust modal padding on mobile */
+            [style*="max-width: 800px"] {
+                margin: 0.5rem !important;
+                max-width: 95% !important;
+            }
+            
+            /* Reduce padding in modal content */
+            [style*="padding: 2rem"] {
+                padding: 1rem !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1671,7 +1721,7 @@
             <p class="welcome-subtitle">Interactive Flashcards, Recipes & Daily Support Tools</p>
             
             <div class="welcome-card-count">
-                180 Flashcards: Symptoms • Self-Care • Supplements
+                179 Flashcards: Symptoms • Self-Care • Supplements
             </div>
             <p style="font-size: 0.95rem; color: var(--text-medium); margin-bottom: 1.5rem; opacity: 0.9;">
                 132 symptoms + 17 self-care + 30 supplements | Plus: Movement Protocols • Protein Target • Tracking
@@ -1684,78 +1734,118 @@
             <!-- NAVIGATION MENU -->
             <div class="welcome-menu">
                 <h3 class="welcome-menu-title">Explore the Toolkit</h3>
-                <div class="welcome-menu-grid">
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="symptoms">
-                        <span class="menu-icon">🔍</span>
-                        <span class="menu-label">Symptoms</span>
-                        <span class="menu-description">132 symptom flashcards</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="supplements">
-                        <span class="menu-icon">💊</span>
-                        <span class="menu-label">Supplements</span>
-                        <span class="menu-description">30 supplement cards</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="recipes">
-                        <span class="menu-icon">👩‍🍳</span>
-                        <span class="menu-label">Recipes</span>
-                        <span class="menu-description">30-day meal plans</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="protein">
-                        <span class="menu-icon">🎯</span>
-                        <span class="menu-label">Protein Target</span>
-                        <span class="menu-description">Calculate your needs</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="movement">
-                        <span class="menu-icon">💪</span>
-                        <span class="menu-label">Movement & Activity</span>
-                        <span class="menu-description">Exercise protocols</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="dailyplan">
-                        <span class="menu-icon">📅</span>
-                        <span class="menu-label">Daily Plan</span>
-                        <span class="menu-description">Your daily guide</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="tracking">
-                        <span class="menu-icon">📊</span>
-                        <span class="menu-label">Tracking</span>
-                        <span class="menu-description">Monitor progress</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="progress">
-                        <span class="menu-icon">⭐</span>
-                        <span class="menu-label">Progress</span>
-                        <span class="menu-description">View milestones</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="medication">
-                        <span class="menu-icon">💊</span>
-                        <span class="menu-label">Medications</span>
-                        <span class="menu-description">Track HRT & supplements</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="diary">
-                        <span class="menu-icon">📔</span>
-                        <span class="menu-label">Diary</span>
-                        <span class="menu-description">Journal your journey</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="habits">
-                        <span class="menu-icon">🎯</span>
-                        <span class="menu-label">Habits & Streaks</span>
-                        <span class="menu-description">Build healthy routines</span>
-                    </a>
-                    
-                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="sos" style="border: 3px solid #E74C3C; background: linear-gradient(135deg, #FFE5E5, #FFFFFF);">
-                        <span class="menu-icon" style="font-size: 2rem;">🆘</span>
-                        <span class="menu-label" style="color: #E74C3C; font-weight: 700;">Quick Relief</span>
-                        <span class="menu-description" style="color: #C0392B;">Emergency help now</span>
-                    </a>
+                
+                <!-- LEARN Section -->
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #8D7A8D; font-size: 1rem; margin-bottom: 1rem; text-align: center; font-weight: 600;">📚 LEARN</h4>
+                    <div class="welcome-menu-grid">
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="symptoms">
+                            <span class="menu-icon">🔍</span>
+                            <span class="menu-label">Symptoms</span>
+                            <span class="menu-description">What's happening & what helps</span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="supplements">
+                            <span class="menu-icon">💊</span>
+                            <span class="menu-label">Supplements</span>
+                            <span class="menu-description">Natural support options</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- NUTRITION Section -->
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #8D7A8D; font-size: 1rem; margin-bottom: 1rem; text-align: center; font-weight: 600;">🥗 NUTRITION</h4>
+                    <div class="welcome-menu-grid">
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="recipes">
+                            <span class="menu-icon">👩‍🍳</span>
+                            <span class="menu-label">Recipes</span>
+                            <span class="menu-description">30-day meal plans</span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="protein">
+                            <span class="menu-icon">🥄</span>
+                            <span class="menu-label">Protein Target</span>
+                            <span class="menu-description">Calculate your needs</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MOVEMENT Section -->
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #8D7A8D; font-size: 1rem; margin-bottom: 1rem; text-align: center; font-weight: 600;">💪 MOVEMENT</h4>
+                    <div class="welcome-menu-grid">
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="movement">
+                            <span class="menu-icon">💪</span>
+                            <span class="menu-label">Exercise</span>
+                            <span class="menu-description">Movement protocols</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DAILY TOOLS Section -->
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #8D7A8D; font-size: 1rem; margin-bottom: 1rem; text-align: center; font-weight: 600;">📅 DAILY TOOLS</h4>
+                    <div class="welcome-menu-grid">
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="dailyplan">
+                            <span class="menu-icon">📅</span>
+                            <span class="menu-label">Daily Plan</span>
+                            <span class="menu-description">Plan your day</span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="diary">
+                            <span class="menu-icon">📔</span>
+                            <span class="menu-label">Diary</span>
+                            <span class="menu-description">Journal your journey</span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="habits">
+                            <span class="menu-icon">🎯</span>
+                            <span class="menu-label">Habits</span>
+                            <span class="menu-description">Build routines</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- TRACKING Section -->
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #8D7A8D; font-size: 1rem; margin-bottom: 1rem; text-align: center; font-weight: 600;">📊 TRACKING</h4>
+                    <div class="welcome-menu-grid">
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="medication">
+                            <span class="menu-icon">💊</span>
+                            <span class="menu-label">Medications</span>
+                            <span class="menu-description">Track HRT & supplements</span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="tracking">
+                            <span class="menu-icon">📊</span>
+                            <span class="menu-label">Symptoms</span>
+                            <span class="menu-description">Monitor daily symptoms</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PROGRESS Section -->
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: #8D7A8D; font-size: 1rem; margin-bottom: 1rem; text-align: center; font-weight: 600;">⭐ PROGRESS</h4>
+                    <div class="welcome-menu-grid">
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="progress">
+                            <span class="menu-icon">⭐</span>
+                            <span class="menu-label">Progress</span>
+                            <span class="menu-description">View all milestones</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- EMERGENCY HELP -->
+                <div style="margin-top: 2.5rem;">
+                    <div class="welcome-menu-grid">
+                        <a href="javascript:void(0)" class="welcome-menu-item" data-section="sos" style="border: 3px solid #FFB5C5; background: linear-gradient(135deg, #FFE5F0, #FFFFFF); grid-column: 1 / -1;">
+                            <span class="menu-icon" style="font-size: 2.5rem;">🆘</span>
+                            <span class="menu-label" style="color: #E74C3C; font-weight: 700; font-size: 1.1rem;">Quick Relief</span>
+                            <span class="menu-description" style="color: #E74C3C;">Emergency help when you need it now</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -2057,13 +2147,22 @@
                     </div>
                 </div>
 
-                <!-- Calculate Button -->
-                <button 
-                    id="calculateProteinBtn"
-                    style="width: 100%; padding: 1.2rem; background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)); color: white; border: none; border-radius: 50px; font-size: 1.2rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(116, 139, 117, 0.3); transition: all 0.3s; margin-bottom: 1.5rem;"
-                >
-                    Calculate My Target 🎯
-                </button>
+                <!-- Calculate and Reset Buttons -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button 
+                        id="calculateProteinBtn"
+                        style="flex: 1; padding: 1.2rem; background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)); color: white; border: none; border-radius: 20px; font-size: 1.2rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(244, 194, 194, 0.3); transition: all 0.3s;"
+                    >
+                        Calculate My Target 🎯
+                    </button>
+                    <button 
+                        id="resetProteinBtn"
+                        style="padding: 1.2rem 1.5rem; background: white; color: var(--primary-green); border: 2px solid var(--primary-green); border-radius: 20px; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: all 0.3s;"
+                        onclick="resetProteinCalculator()"
+                    >
+                        🔄 Reset
+                    </button>
+                </div>
 
                 <!-- Results Area -->
                 <div id="proteinResults" style="display: none;">
@@ -2318,25 +2417,25 @@
                     </button>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                    <button class="week-nav-btn active" data-week="1" style="padding: 1.5rem; border: 3px solid #9B7EBD; background: linear-gradient(135deg, #9B7EBD, #B89FD1); color: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Week 1</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9;">🧠 Nervous System</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem;">Hot Flushes • Mood • Sleep</div>
+                    <button class="week-nav-btn active" data-week="1" style="padding: 1.5rem; border: 3px solid #9B7EBD; background: linear-gradient(135deg, #9B7EBD, #B89FD1); border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: white;">Week 1</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9; color: white;">🧠 Nervous System</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: white;">Hot Flushes • Mood • Sleep</div>
                     </button>
-                    <button class="week-nav-btn" data-week="2" style="padding: 1.5rem; border: 3px solid #FF9F7F; background: white; color: #FF9F7F; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Week 2</div>
-                        <div style="font-size: 0.9rem;">⚖️ Metabolic</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem;">Weight • Energy • Digestion</div>
+                    <button class="week-nav-btn" data-week="2" style="padding: 1.5rem; border: 3px solid #FF9F7F; background: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #FF9F7F;">Week 2</div>
+                        <div style="font-size: 0.9rem; color: #FF9F7F;">⚖️ Metabolic</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #FF9F7F;">Weight • Energy • Digestion</div>
                     </button>
-                    <button class="week-nav-btn" data-week="3" style="padding: 1.5rem; border: 3px solid #8EBFB5; background: white; color: #8EBFB5; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Week 3</div>
-                        <div style="font-size: 0.9rem;">🦴 Musculoskeletal</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem;">Joints • Bones • Skin</div>
+                    <button class="week-nav-btn" data-week="3" style="padding: 1.5rem; border: 3px solid #8EBFB5; background: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #8EBFB5;">Week 3</div>
+                        <div style="font-size: 0.9rem; color: #8EBFB5;">🦴 Musculoskeletal</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #8EBFB5;">Joints • Bones • Skin</div>
                     </button>
-                    <button class="week-nav-btn" data-week="4" style="padding: 1.5rem; border: 3px solid #FFB5C5; background: white; color: #FFB5C5; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">Week 4</div>
-                        <div style="font-size: 0.9rem;">🌸 Urogenital & Immune</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem;">Urinary Health • Immunity</div>
+                    <button class="week-nav-btn" data-week="4" style="padding: 1.5rem; border: 3px solid #FFB5C5; background: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #FFB5C5;">Week 4</div>
+                        <div style="font-size: 0.9rem; color: #FFB5C5;">🌸 Urogenital & Immune</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #FFB5C5;">Urinary Health • Immunity</div>
                     </button>
                 </div>
             </div>
@@ -2388,7 +2487,7 @@
                         <div style="max-width: 500px; margin: 0 auto 2rem;">
                             <svg viewBox="0 0 400 400" style="width: 100%; height: auto;">
                                 <!-- Plate circle -->
-                                <circle cx="200" cy="200" r="180" fill="#F8F9FA" stroke="#C8D5B9" stroke-width="4"/>
+                                <circle cx="200" cy="200" r="180" fill="#F8F9FA" stroke="#FFD8CC" stroke-width="4"/>
                                 
                                 <!-- Half plate - Vegetables (left half) -->
                                 <path d="M 200 200 L 200 20 A 180 180 0 0 1 200 380 Z" fill="rgba(139, 195, 74, 0.3)" stroke="#8BC34A" stroke-width="2"/>
@@ -2406,7 +2505,7 @@
                                 <text x="280" y="290" text-anchor="middle" fill="#F57C00" font-size="14">🌾 🍠 🍚</text>
                                 
                                 <!-- Healthy fats indicator (small circle on side) -->
-                                <circle cx="360" cy="80" r="30" fill="rgba(200, 213, 185, 0.4)" stroke="#748B75" stroke-width="2"/>
+                                <circle cx="360" cy="80" r="30" fill="rgba(200, 213, 185, 0.4)" stroke="#F4C2C2" stroke-width="2"/>
                                 <text x="360" y="85" text-anchor="middle" fill="#4A5D4B" font-size="20">🫒</text>
                             </svg>
                             <div style="text-align: center; margin-top: 1rem; color: #5A6C7D; font-size: 0.9rem; font-weight: 500;">
@@ -2489,7 +2588,7 @@
         <div style="max-width: 900px; margin: 2rem auto;">
             
             <!-- Introduction Card -->
-            <div style="background: linear-gradient(135deg, #748B75, #9CAF88); color: white; border-radius: 20px; padding: 2rem; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.2); margin-bottom: 2rem;">
+            <div style="background: linear-gradient(135deg, #F4C2C2, #E6D5E8); color: white; border-radius: 20px; padding: 2rem; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.2); margin-bottom: 2rem;">
                 <h2 style="color: white; margin-bottom: 1rem;">🏃 Why Movement Matters in Menopause</h2>
                 <p style="margin-bottom: 0.8rem; line-height: 1.7;">Regular physical activity is one of the most effective ways to manage menopause symptoms. Exercise helps regulate hormones, improves mood, supports bone density, aids weight management, and reduces the severity of hot flushes.</p>
                 <p style="margin-bottom: 0.8rem; line-height: 1.7;"><strong>The key:</strong> Different symptoms respond to different types of movement. This section provides evidence-based protocols for the most common menopause symptoms.</p>
@@ -2554,7 +2653,7 @@
         <div style="max-width: 1000px; margin: 2rem auto;">
             
             <!-- Date Selector -->
-            <div style="background: linear-gradient(135deg, #748B75, #9CAF88); color: white; border-radius: 20px; padding: 2rem; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.2); margin-bottom: 2rem;">
+            <div style="background: linear-gradient(135deg, #F4C2C2, #E6D5E8); color: white; border-radius: 20px; padding: 2rem; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.2); margin-bottom: 2rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                     <div>
                         <h2 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.8rem;">Today's Plan</h2>
@@ -3768,7 +3867,7 @@
     <div class="container" id="diaryContainer" style="display: none;">
         <!-- Header -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-            <h1 style="background: linear-gradient(135deg, #E91E63, #C2185B); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(233, 30, 99, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
+            <h1 style="background: linear-gradient(135deg, #F4C2C2, #E6D5E8); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(244, 194, 194, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
                 <span style="font-size: 2rem;">📔</span>
                 <span>Diary</span>
             </h1>
@@ -3781,7 +3880,7 @@
             
             <!-- Today's Entry Button -->
             <div style="text-align: center; margin-bottom: 2rem;">
-                <button id="addDiaryEntry" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #E91E63, #C2185B); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(233, 30, 99, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(233, 30, 99, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(233, 30, 99, 0.3)';">
+                <button id="addDiaryEntry" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #F4C2C2, #E6D5E8); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(244, 194, 194, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(244, 194, 194, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(244, 194, 194, 0.3)';">
                     <span style="font-size: 1.5rem;">➕</span>
                     <span>Add Today's Entry</span>
                 </button>
@@ -3799,7 +3898,7 @@
     <div class="container" id="habitsContainer" style="display: none;">
         <!-- Header -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-            <h1 style="background: linear-gradient(135deg, #FF9800, #F57C00); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(255, 152, 0, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
+            <h1 style="background: linear-gradient(135deg, #FFD8CC, #FFE5D9); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(255, 216, 204, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
                 <span style="font-size: 2rem;">🎯</span>
                 <span>Habits & Streaks</span>
             </h1>
@@ -3812,7 +3911,7 @@
             
             <!-- Add Habit Button -->
             <div style="text-align: center; margin-bottom: 2rem;">
-                <button id="addHabitBtn" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #FF9800, #F57C00); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(255, 152, 0, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(255, 152, 0, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(255, 152, 0, 0.3)';">
+                <button id="addHabitBtn" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #FFD8CC, #FFE5D9); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(255, 216, 204, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(255, 216, 204, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(255, 216, 204, 0.3)';">
                     <span style="font-size: 1.5rem;">➕</span>
                     <span>Create New Habit</span>
                 </button>
@@ -3830,7 +3929,7 @@
     <div class="container" id="medicationContainer" style="display: none;">
         <!-- Header -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-            <h1 style="background: linear-gradient(135deg, #8E44AD, #6C3483); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(142, 68, 173, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
+            <h1 style="background: linear-gradient(135deg, #E6D5E8, #D4BFD7); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(230, 213, 232, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
                 <span style="font-size: 2rem;">💊</span>
                 <span>Medication & HRT Tracker</span>
             </h1>
@@ -3842,23 +3941,19 @@
         <div style="max-width: 1200px; margin: 0 auto;">
             
             <!-- Important Notice -->
-            <div style="background: linear-gradient(135deg, #FFF9E6, #FFFFFF); border: 3px solid #F39C12; border-radius: 20px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 8px 30px rgba(243, 156, 18, 0.2);">
-                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
-                    <div style="font-size: 3rem;">⚠️</div>
+            <div style="background: linear-gradient(135deg, #FFF9E6, #FFFFFF); border: 3px solid #FFD8CC; border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 8px 30px rgba(255, 216, 204, 0.2);">
+                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                    <div style="font-size: 2rem;">⚠️</div>
                     <div>
-                        <h3 style="color: #E67E22; margin-bottom: 1rem; font-size: 1.2rem;">Important Safety Information</h3>
-                        <p style="color: #5A6C7D; line-height: 1.7; margin-bottom: 0.8rem;">This tracker is for <strong>record-keeping only</strong>. It does not replace medical advice.</p>
-                        <p style="color: #5A6C7D; line-height: 1.7; margin-bottom: 0.8rem;">✓ Always consult your GP before starting, stopping, or changing medications<br>
-                        ✓ Never combine supplements with HRT without medical approval<br>
-                        ✓ Report any side effects to your doctor immediately</p>
-                        <p style="color: #E67E22; font-weight: 600; margin-top: 1rem;">If you experience severe side effects, contact your GP or call 111.</p>
+                        <h3 style="color: #E67E22; margin-bottom: 0.8rem; font-size: 1.1rem;">Important Safety Information</h3>
+                        <p style="color: #6B5B6B; line-height: 1.6; margin-bottom: 0.5rem; font-size: 0.95rem;">This tracker is for <strong>record-keeping only</strong>. Always consult your GP before starting, stopping, or changing medications.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Add New Medication Button -->
             <div style="text-align: center; margin-bottom: 2rem;">
-                <button id="addMedicationBtn" onclick="if(typeof showMedicationForm === 'function') showMedicationForm(); else alert('Please wait, form is loading...');" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #8E44AD, #6C3483); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(142, 68, 173, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(142, 68, 173, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(142, 68, 173, 0.3)';">
+                <button id="addMedicationBtn" onclick="if(typeof showMedicationForm === 'function') showMedicationForm(); else alert('Please wait, form is loading...');" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #E6D5E8, #D4BFD7); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(230, 213, 232, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(230, 213, 232, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(230, 213, 232, 0.3)';">
                     <span style="font-size: 1.5rem;">➕</span>
                     <span>Add Medication / Supplement</span>
                 </button>
@@ -3945,7 +4040,7 @@
     <div class="container" id="progressContainer" style="display: none;">
         <!-- Header with Back Button -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-            <h1 style="background: linear-gradient(135deg, #748B75, #9CAF88); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
+            <h1 style="background: linear-gradient(135deg, #F4C2C2, #E6D5E8); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(116, 139, 117, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
                 <span style="font-size: 2rem;">📊</span>
                 <span>Your Progress</span>
             </h1>
@@ -7539,6 +7634,31 @@
             }, 100);
         });
 
+        // Reset protein calculator
+        window.resetProteinCalculator = function() {
+            // Clear all input fields
+            document.getElementById('weightInput').value = '';
+            document.getElementById('weightUnit').value = 'kg';
+            
+            // Uncheck all activity radio buttons
+            document.querySelectorAll('input[name="activity"]').forEach(radio => {
+                radio.checked = false;
+            });
+            
+            // Hide results
+            document.getElementById('proteinResults').style.display = 'none';
+            
+            // Reset displayed values
+            document.getElementById('proteinAmount').textContent = '---';
+            document.getElementById('breakfastProtein').textContent = '---';
+            document.getElementById('lunchProtein').textContent = '---';
+            document.getElementById('dinnerProtein').textContent = '---';
+            
+            // Scroll to top of form
+            document.getElementById('proteinContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+
         // ===== PROGRESS TRACKER FUNCTIONALITY =====
         const symptomsBySystem = {
             'Nervous System / Vasomotor': [
@@ -7613,14 +7733,14 @@
             'Cognitive': '#FF9F7F',
             'Musculoskeletal': '#8EBFB5',
             'Cardiovascular': '#FFB5C5',
-            'Digestive': '#C8D5B9',
+            'Digestive': '#FFD8CC',
             'Urogenital': '#FFB5C5',
             'Breast & Reproductive': '#FFB5C5',
             'Skin, Hair & Nails': '#9B7EBD',
             'Head & Face': '#FF9F7F',
             'Sensory & Neurological': '#9B7EBD',
             'Metabolic & Weight': '#FF9F7F',
-            'General & Whole Body': '#C8D5B9'
+            'General & Whole Body': '#FFD8CC'
         };
 
         let currentTrackingDate = new Date();
@@ -7783,7 +7903,7 @@
             const selectedMood = document.querySelector('.mood-btn[data-mood]');
             let mood = null;
             document.querySelectorAll('.mood-btn').forEach(btn => {
-                if (btn.style.background.includes('rgb(116, 139, 117)') || btn.style.background.includes('#748B75')) {
+                if (btn.style.background.includes('rgb(116, 139, 117)') || btn.style.background.includes('#F4C2C2')) {
                     mood = btn.getAttribute('data-mood');
                 }
             });
@@ -8873,7 +8993,7 @@
                                 <!-- Journal Entry -->
                                 <div style="margin-bottom: 2rem;">
                                     <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">✍️ How are you feeling today?</label>
-                                    <textarea id="journalEntry" required placeholder="Write about your day, how you're feeling, any symptoms you noticed, what helped or didn't help, triggers, patterns...
+                                    <textarea id="journalEntry" required placeholder="Write here... Share your thoughts, feelings, symptoms, what helped or didn't help, triggers, patterns...
 
 Examples:
 • Had 3 hot flushes today, worst one around 3pm
@@ -9164,8 +9284,8 @@ Examples:
                 
                 overlay.innerHTML = `
                     <div onclick="event.stopPropagation();" style="background: white; border-radius: 20px; max-width: 600px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-                        <div style="background: linear-gradient(135deg, #FF9800, #F57C00); color: white; padding: 2rem; border-radius: 20px 20px 0 0; position: relative;">
-                            <button onclick="document.getElementById('habitFormOverlay').remove();" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700;">×</button>
+                        <div style="background: linear-gradient(135deg, #FFD8CC, #FFE5D9); color: white; padding: 2rem; border-radius: 20px 20px 0 0; position: relative;">
+                            <button onclick="document.getElementById('habitFormOverlay').remove();" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0;">×</button>
                             <h2 style="margin: 0; font-size: 1.5rem; padding-right: 3rem;">🎯 Create New Habit</h2>
                         </div>
                         
@@ -12894,22 +13014,20 @@ function displayWeek(weekNum) {
             <!-- Back Button to Main Recipes Page - JOYFUL DESIGN -->
             <div style="margin-bottom: 2.5rem; text-align: center;">
                 <button onclick="backToRecipesMain()" style="
-                    padding: 0.9rem 2.5rem;
-                    background: linear-gradient(135deg, #FFE5B4, #FFD98E);
-                    color: #8B4513;
-                    border: 2px solid #FFB347;
-                    border-radius: 25px;
+                    padding: 1rem 2rem;
+                    background: linear-gradient(135deg, #FFD8CC, #FFE5D9);
+                    color: white;
+                    border: none;
+                    border-radius: 20px;
                     cursor: pointer;
                     font-weight: 600;
                     font-size: 1rem;
-                    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                    box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3), 0 2px 5px rgba(0,0,0,0.1);
+                    transition: all 0.3s;
+                    box-shadow: 0 4px 15px rgba(255, 216, 204, 0.3);
                     display: inline-flex;
                     align-items: center;
                     gap: 0.8rem;
-                    letter-spacing: 0.5px;
-                    text-transform: uppercase;
-                " onmouseover="this.style.transform='scale(1.05) translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(255, 179, 71, 0.4), 0 4px 10px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 179, 71, 0.3), 0 2px 5px rgba(0,0,0,0.1)';">
+                " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(255, 216, 204, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 216, 204, 0.3)';">
                     <span style="font-size: 1.3rem;">←</span>
                     <span>Back to Choose Your Week</span>
                 </button>
@@ -13140,10 +13258,36 @@ function backToRecipesMain() {
     const weekViewContainer = document.getElementById('weekViewContainer');
     const contentArea = document.getElementById('weekContent');
     
+    // Save current week to localStorage
+    const lastWeek = localStorage.getItem('lastViewedWeek') || '1';
+    
     // Hide week view, show main recipes page
     weekViewContainer.style.display = 'none';
     recipesMainPage.style.display = 'block';
     contentArea.innerHTML = ''; // Clear the week content
+    
+    // Restore the active state of the last viewed week
+    document.querySelectorAll('.week-nav-btn').forEach(btn => {
+        const weekNum = btn.getAttribute('data-week');
+        const color = btn.style.borderColor;
+        
+        if (weekNum === lastWeek) {
+            // Active button - highlight it
+            btn.style.background = `linear-gradient(135deg, ${color}, ${color}DD)`;
+            // Make all child divs white text
+            btn.querySelectorAll('div').forEach(div => {
+                div.style.color = 'white';
+            });
+        } else {
+            // Inactive buttons
+            btn.style.background = 'white';
+            // Make all child divs colored text
+            btn.querySelectorAll('div').forEach(div => {
+                div.style.color = color;
+            });
+        }
+    });
+    
     window.scrollTo(0, 0);
 }
 
@@ -13431,18 +13575,27 @@ document.querySelectorAll('.week-nav-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         const weekNum = this.getAttribute('data-week');
         
+        // Save to localStorage so we can restore it
+        localStorage.setItem('lastViewedWeek', weekNum);
+        
         // Update button styles
         document.querySelectorAll('.week-nav-btn').forEach(b => {
+            const color = b.style.borderColor;
+            
             if (b === this) {
-                // Active button
-                const color = b.style.borderColor;
+                // Active button - highlighted
                 b.style.background = `linear-gradient(135deg, ${color}, ${color}DD)`;
-                b.style.color = 'white';
+                // Make all child divs white text
+                b.querySelectorAll('div').forEach(div => {
+                    div.style.color = 'white';
+                });
             } else {
-                // Inactive buttons
-                const color = b.style.borderColor;
+                // Inactive buttons - white background
                 b.style.background = 'white';
-                b.style.color = color;
+                // Make all child divs colored text
+                b.querySelectorAll('div').forEach(div => {
+                    div.style.color = color;
+                });
             }
         });
         
