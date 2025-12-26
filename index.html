@@ -1268,6 +1268,13 @@
             .mood-btn div:first-child {
                 font-size: 2rem !important;
             }
+            
+            .mood-btn-selected {
+                border: 3px solid #E91E63 !important;
+                background: linear-gradient(135deg, #FFB3D9, #FFD4E8) !important;
+                transform: scale(1.1) !important;
+                box-shadow: 0 4px 12px rgba(233, 30, 99, 0.4) !important;
+            }
 
             #weekOverview {
                 grid-template-columns: repeat(7, minmax(60px, 1fr)) !important;
@@ -1879,6 +1886,112 @@
 <body>
     <!-- WELCOME SCREEN -->
     <div class="welcome-screen" id="welcomeScreen">
+        
+        <!-- FIRST-TIME USER ORIENTATION OVERLAY -->
+        <div id="orientationOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 99999; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(8px);">
+            <div style="background: white; border-radius: 24px; max-width: 650px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
+                
+                <!-- Header -->
+                <div style="background: linear-gradient(135deg, #FFC0D9, #FFD4E5); color: white; padding: 2rem; border-radius: 24px 24px 0 0; text-align: center; position: relative;">
+                    <!-- Close Button -->
+                    <button onclick="closeOrientation()" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.3); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: all 0.3s; line-height: 1;" onmouseover="this.style.background='rgba(255, 255, 255, 0.5)'; this.style.transform='rotate(90deg)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.3)'; this.style.transform='rotate(0deg)';" aria-label="Close">
+                        ×
+                    </button>
+                    
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">👋</div>
+                    <h2 style="margin: 0; font-size: 1.8rem; font-weight: 700;">Welcome to Your Toolkit!</h2>
+                    <p style="margin: 0.5rem 0 0; font-size: 1rem; opacity: 0.95;">Let's get you started in 60 seconds</p>
+                </div>
+                
+                <!-- Content -->
+                <div style="padding: 2rem;">
+                    
+                    <!-- Intro -->
+                    <p style="font-size: 1.05rem; color: #2C3E50; margin-bottom: 2rem; text-align: center; line-height: 1.6;">
+                        This toolkit has lots to explore, but you don't need to use it all at once. 
+                        <strong>Start where you are, use what you need.</strong>
+                    </p>
+                    
+                    <!-- Quick Start Options -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: #2C3E50; font-size: 1.2rem; margin-bottom: 1rem; text-align: center;">Choose your starting point:</h3>
+                        
+                        <div style="display: grid; gap: 1rem;">
+                            
+                            <!-- Option 1: SOS -->
+                            <div class="orientation-option" onclick="orientationNavigate('sos')" style="background: linear-gradient(135deg, #FFE5F0, #FFFFFF); border: 3px solid #FFB5C5; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='0 6px 20px rgba(255, 181, 197, 0.3)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="font-size: 2.5rem; flex-shrink: 0;">🆘</div>
+                                    <div>
+                                        <div style="font-weight: 700; color: #E74C3C; font-size: 1.1rem; margin-bottom: 0.3rem;">Feeling overwhelmed right now?</div>
+                                        <div style="color: #5A6C7D; font-size: 0.9rem;">Go straight to Quick Relief for breathing exercises and calming techniques</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Option 2: Learn -->
+                            <div class="orientation-option" onclick="orientationNavigate('flashcards')" style="background: linear-gradient(135deg, #E8DAEF, #FFFFFF); border: 3px solid #9B7EBD; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='0 6px 20px rgba(155, 126, 189, 0.3)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="font-size: 2.5rem; flex-shrink: 0;">🎓</div>
+                                    <div>
+                                        <div style="font-weight: 700; color: #9B7EBD; font-size: 1.1rem; margin-bottom: 0.3rem;">Want to understand your symptoms?</div>
+                                        <div style="color: #5A6C7D; font-size: 0.9rem;">Explore 180 flashcards with 'what's happening' and 'what helps'</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Option 3: Nutrition -->
+                            <div class="orientation-option" onclick="orientationNavigate('recipes')" style="background: linear-gradient(135deg, #FFE5D9, #FFFFFF); border: 3px solid #FF9F7F; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='0 6px 20px rgba(255, 159, 127, 0.3)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="font-size: 2.5rem; flex-shrink: 0;">🍽️</div>
+                                    <div>
+                                        <div style="font-weight: 700; color: #FF9F7F; font-size: 1.1rem; margin-bottom: 0.3rem;">Ready to take action with food?</div>
+                                        <div style="color: #5A6C7D; font-size: 0.9rem;">Try the 30-day Mediterranean meal plans with 96 recipes</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Option 4: Explore -->
+                            <div class="orientation-option" onclick="closeOrientation()" style="background: linear-gradient(135deg, #D5F4E6, #FFFFFF); border: 3px solid #8EBFB5; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateX(8px)'; this.style.boxShadow='0 6px 20px rgba(142, 191, 181, 0.3)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="font-size: 2.5rem; flex-shrink: 0;">🗺️</div>
+                                    <div>
+                                        <div style="font-weight: 700; color: #8EBFB5; font-size: 1.1rem; margin-bottom: 0.3rem;">I want to explore on my own</div>
+                                        <div style="color: #5A6C7D; font-size: 0.9rem;">Take me to the main menu - I'll find my way around</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Helpful Tips -->
+                    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05)); border-radius: 12px; padding: 1.5rem; border: 2px solid rgba(255, 215, 0, 0.3);">
+                        <div style="font-weight: 700; color: #2C3E50; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.3rem;">💡</span>
+                            <span>Helpful tips:</span>
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: #5A6C7D; font-size: 0.95rem; line-height: 1.7;">
+                            <li>Click the <span style="color: #FFD700; font-weight: 700;">★</span> star on any flashcard to save your favourites</li>
+                            <li>All your data stays private on your device - nothing is shared</li>
+                            <li>You can print any section for offline use</li>
+                            <li>On mobile, swipe flashcards left/right to navigate</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Don't Show Again -->
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <label style="display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; color: #5A6C7D; font-size: 0.9rem;">
+                            <input type="checkbox" id="dontShowAgainCheckbox" style="cursor: pointer; width: 18px; height: 18px;">
+                            <span>Don't show this again</span>
+                        </label>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
         <div class="welcome-content">
             <div class="welcome-logo">🌸</div>
             <h1 class="welcome-title">Menopause Wellness Toolkit™</h1>
@@ -1894,6 +2007,14 @@
             <p class="welcome-description">
                 Your comprehensive menopause companion with symptom insights, Mediterranean recipes, meal planning, protein tracking, and personalised daily support.
             </p>
+            
+            <!-- Quick Help Button -->
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <button onclick="showOrientationManually()" style="background: linear-gradient(135deg, rgba(155, 126, 189, 0.15), rgba(155, 126, 189, 0.05)); border: 2px solid #9B7EBD; color: #9B7EBD; padding: 0.8rem 1.5rem; border-radius: 16px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 15px rgba(155, 126, 189, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                    <span style="font-size: 1.2rem;">❓</span>
+                    <span>Need help getting started?</span>
+                </button>
+            </div>
 
             <!-- NAVIGATION MENU -->
             <div class="welcome-menu">
@@ -8611,16 +8732,18 @@
                     btn.style.border = '3px solid #E0E0E0';
                     btn.style.background = 'white';
                     btn.style.transform = 'scale(1)';
+                    btn.style.boxShadow = 'none';
                 });
                 
-                // Add active state to selected button
+                // Add active state to selected button with strong visual feedback
                 const selectedBtn = document.querySelector(`.sleep-quality-btn[data-quality="${quality}"]`);
-                selectedBtn.style.border = '3px solid #3498DB';
-                selectedBtn.style.background = 'linear-gradient(135deg, #EBF5FB, #FFFFFF)';
-                selectedBtn.style.transform = 'scale(1.05)';
+                selectedBtn.style.border = '4px solid #3498DB';
+                selectedBtn.style.background = 'linear-gradient(135deg, #AED6F1, #D6EAF8)';
+                selectedBtn.style.transform = 'scale(1.1)';
+                selectedBtn.style.boxShadow = '0 4px 12px rgba(52, 152, 219, 0.4)';
                 
                 // Save to local storage
-                saveDailyPlan();
+                saveDailyPlanData();
             };
             
             function setupDailyPlanAutoSave() {
@@ -9172,12 +9295,13 @@
                 container.innerHTML = html;
             }
             
-            function getMoodEmoji(mood) {
+            // Make helper functions globally accessible
+            window.getMoodEmoji = function(mood) {
                 const moods = { 1: '😫', 2: '😔', 3: '😐', 4: '🙂', 5: '😊' };
                 return moods[mood] || '😐';
             }
             
-            function getMoodLabel(mood) {
+            window.getMoodLabel = function(mood) {
                 const labels = { 1: 'Awful', 2: 'Low', 3: 'Okay', 4: 'Good', 5: 'Great' };
                 return labels[mood] || 'Okay';
             }
@@ -9222,9 +9346,9 @@
                                         <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">😊 Mood</label>
                                         <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
                                             ${[1,2,3,4,5].map(m => `
-                                                <button type="button" class="mood-btn" data-mood="${m}" onclick="selectMood(${m})" style="aspect-ratio: 1; border-radius: 12px; border: 2px solid ${entry.mood === m ? '#E91E63' : '#E0E0E0'}; background: ${entry.mood === m ? 'linear-gradient(135deg, #FCE4EC, #FFFFFF)' : 'white'}; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s; padding: 0.5rem;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                                    <div style="font-size: 1.8rem;">${getMoodEmoji(m)}</div>
-                                                    <div style="font-size: 0.7rem; color: #5A6C7D; margin-top: 0.2rem;">${getMoodLabel(m)}</div>
+                                                <button type="button" class="mood-btn ${entry.mood === m ? 'mood-btn-selected' : ''}" data-mood="${m}" style="aspect-ratio: 1; border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s; padding: 0.5rem; border: 2px solid #E0E0E0; background: white;">
+                                                    <div style="font-size: 1.8rem;">${window.getMoodEmoji(m)}</div>
+                                                    <div style="font-size: 0.7rem; color: #5A6C7D; margin-top: 0.2rem;">${window.getMoodLabel(m)}</div>
                                                 </button>
                                             `).join('')}
                                         </div>
@@ -9283,6 +9407,28 @@ Examples:
                 
                 document.body.appendChild(overlay);
                 
+                // Add mood button click listeners
+                document.querySelectorAll('.mood-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const mood = this.dataset.mood;
+                        window.selectMood(mood);
+                    });
+                    
+                    // Add hover effect via event listeners (only for non-selected buttons)
+                    btn.addEventListener('mouseenter', function() {
+                        if (!this.classList.contains('mood-btn-selected')) {
+                            this.style.transform = 'scale(1.05)';
+                        }
+                    });
+                    
+                    btn.addEventListener('mouseleave', function() {
+                        if (!this.classList.contains('mood-btn-selected')) {
+                            this.style.transform = 'scale(1)';
+                        }
+                    });
+                });
+                
                 // Add intensity slider listeners
                 document.querySelectorAll('.symptom-intensity').forEach(slider => {
                     slider.addEventListener('input', function() {
@@ -9291,11 +9437,10 @@ Examples:
                 });
                 
                 // Form submission
-                // Form submission
                 document.getElementById('diaryForm').addEventListener('submit', (e) => {
                     e.preventDefault();
                     
-                    const selectedMood = document.querySelector('.mood-btn[data-mood][style*="E91E63"]')?.dataset.mood;
+                    const selectedMood = document.querySelector('.mood-btn.mood-btn-selected')?.dataset.mood;
                     if (!selectedMood) {
                         alert('Please select your mood');
                         return;
@@ -9341,14 +9486,17 @@ Examples:
             };
             
             window.selectMood = function(mood) {
-                document.querySelectorAll('.mood-btn').forEach(btn => {
-                    btn.style.border = '2px solid #E0E0E0';
-                    btn.style.background = 'white';
+                // Reset all mood buttons - remove selected class
+                const allButtons = document.querySelectorAll('.mood-btn');
+                allButtons.forEach(btn => {
+                    btn.classList.remove('mood-btn-selected');
                 });
+                
+                // Highlight selected mood button - add selected class
                 const selected = document.querySelector(`.mood-btn[data-mood="${mood}"]`);
-                selected.style.border = '2px solid #E91E63';
-                selected.style.background = 'linear-gradient(135deg, #FCE4EC, #FFFFFF)';
-                selected.style.transform = 'scale(1.05)';
+                if (selected) {
+                    selected.classList.add('mood-btn-selected');
+                }
             };
             
             window.editDiaryEntry = function(index) {
@@ -11143,6 +11291,111 @@ Examples:
                 const insights = [];
                 const target = parseInt(localStorage.getItem('dailyProteinTarget') || '100');
                 
+                // Get diary entries for correlation analysis
+                const diaryEntries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                const diaryByDate = {};
+                diaryEntries.forEach(entry => {
+                    diaryByDate[entry.date] = entry;
+                });
+                
+                // Add mood and energy to data for correlation
+                data.mood = [];
+                data.energy = [];
+                data.dates.forEach(date => {
+                    if (diaryByDate[date]) {
+                        data.mood.push(diaryByDate[date].mood || 0);
+                        data.energy.push(diaryByDate[date].energy || 0);
+                    } else {
+                        data.mood.push(0);
+                        data.energy.push(0);
+                    }
+                });
+                
+                // ===== PATTERN-SPOTTING CORRELATIONS =====
+                
+                // 1. Protein vs Mood/Energy Correlation
+                const proteinMoodCorrelation = calculateCorrelation(data.protein, data.mood, data.dates.length);
+                const proteinEnergyCorrelation = calculateCorrelation(data.protein, data.energy, data.dates.length);
+                
+                if (proteinMoodCorrelation.confidence !== 'none' && proteinMoodCorrelation.strength > 0.3) {
+                    insights.push({
+                        icon: '🎯',
+                        title: 'Protein & Mood Pattern',
+                        message: `You tend to feel better emotionally on days when you meet your protein target. ${proteinMoodCorrelation.confidence === 'high' ? 'This is a strong pattern!' : proteinMoodCorrelation.confidence === 'moderate' ? 'This pattern is emerging clearly.' : 'This pattern is starting to appear.'}`,
+                        color: '#8B5CF6',
+                        confidence: proteinMoodCorrelation.confidence,
+                        badge: true
+                    });
+                }
+                
+                if (proteinEnergyCorrelation.confidence !== 'none' && proteinEnergyCorrelation.strength > 0.3) {
+                    insights.push({
+                        icon: '⚡',
+                        title: 'Protein & Energy Connection',
+                        message: `Your energy levels appear higher on days with adequate protein intake (${target}g+). Consistent protein supports sustained energy through the day.`,
+                        color: '#F59E0B',
+                        confidence: proteinEnergyCorrelation.confidence,
+                        badge: true
+                    });
+                }
+                
+                // 2. Water vs Symptoms Correlation
+                const waterSleepCorrelation = calculateCorrelation(data.water, data.sleep, data.dates.length);
+                
+                if (waterSleepCorrelation.confidence !== 'none' && waterSleepCorrelation.strength > 0.25) {
+                    insights.push({
+                        icon: '💧',
+                        title: 'Hydration & Sleep Quality',
+                        message: `You tend to sleep better on days when you drink 7+ glasses of water. Good hydration supports better rest.`,
+                        color: '#06B6D4',
+                        confidence: waterSleepCorrelation.confidence,
+                        badge: true
+                    });
+                }
+                
+                // 3. Movement vs Mood/Sleep Correlation
+                const movementMoodCorrelation = calculateCorrelation(data.movement, data.mood, data.dates.length);
+                const movementSleepCorrelation = calculateCorrelation(data.movement, data.sleep, data.dates.length);
+                
+                if (movementMoodCorrelation.confidence !== 'none' && movementMoodCorrelation.strength > 0.25) {
+                    insights.push({
+                        icon: '💪',
+                        title: 'Movement & Mood Boost',
+                        message: `Your mood tends to be brighter on days you move your body. Even gentle exercise releases feel-good endorphins.`,
+                        color: '#10B981',
+                        confidence: movementMoodCorrelation.confidence,
+                        badge: true
+                    });
+                }
+                
+                if (movementSleepCorrelation.confidence !== 'none' && movementSleepCorrelation.strength > 0.25) {
+                    insights.push({
+                        icon: '🌙',
+                        title: 'Movement Helps Sleep',
+                        message: `You appear to sleep more soundly on days with physical activity. Regular movement supports natural sleep rhythms.`,
+                        color: '#6366F1',
+                        confidence: movementSleepCorrelation.confidence,
+                        badge: true
+                    });
+                }
+                
+                // 4. Self-Care vs Mood/Energy
+                const selfCareMoodCorrelation = calculateCorrelation(data.selfCare, data.mood, data.dates.length);
+                const selfCareEnergyCorrelation = calculateCorrelation(data.selfCare, data.energy, data.dates.length);
+                
+                if (selfCareMoodCorrelation.confidence !== 'none' && selfCareMoodCorrelation.strength > 0.3) {
+                    insights.push({
+                        icon: '💝',
+                        title: 'Self-Care Impact',
+                        message: `Your mood tends to lift on days with 3+ self-care activities. Small acts of kindness to yourself matter.`,
+                        color: '#EC4899',
+                        confidence: selfCareMoodCorrelation.confidence,
+                        badge: true
+                    });
+                }
+                
+                // ===== STANDARD INSIGHTS =====
+                
                 // Water insight
                 const avgWater = data.water.reduce((a, b) => a + b, 0) / data.water.length;
                 if (avgWater >= 8) {
@@ -11212,7 +11465,7 @@ Examples:
                     });
                 }
                 
-                // Pattern detection
+                // Pattern detection (weekend vs weekday)
                 const weekendWater = [];
                 const weekdayWater = [];
                 data.water.forEach((w, i) => {
@@ -11296,7 +11549,7 @@ Examples:
                     });
                 }
                 
-                // Render insights
+                // Render insights with confidence badges
                 insights.forEach(insight => {
                     const card = document.createElement('div');
                     card.style.cssText = `
@@ -11306,6 +11559,22 @@ Examples:
                         border-left: 4px solid ${insight.color};
                         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
                     `;
+                    
+                    let confidenceBadge = '';
+                    if (insight.badge && insight.confidence) {
+                        const badges = {
+                            'high': { text: 'Strong Pattern', color: '#10B981', bg: '#D1FAE5' },
+                            'moderate': { text: 'Clear Pattern', color: '#F59E0B', bg: '#FEF3C7' },
+                            'emerging': { text: 'Emerging Pattern', color: '#8B5CF6', bg: '#EDE9FE' }
+                        };
+                        const badge = badges[insight.confidence];
+                        confidenceBadge = `
+                            <span style="display: inline-block; padding: 0.25rem 0.75rem; background: ${badge.bg}; color: ${badge.color}; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-top: 0.5rem;">
+                                ${badge.text}
+                            </span>
+                        `;
+                    }
+                    
                     card.innerHTML = `
                         <div style="display: flex; align-items: flex-start; gap: 1rem;">
                             <div style="font-size: 2rem;">${insight.icon}</div>
@@ -11316,6 +11585,7 @@ Examples:
                                 <div style="font-size: 0.9rem; color: #5A6C7D; line-height: 1.5;">
                                     ${insight.message}
                                 </div>
+                                ${confidenceBadge}
                             </div>
                         </div>
                     `;
@@ -11323,8 +11593,56 @@ Examples:
                 });
                 
                 if (insights.length === 0) {
-                    container.innerHTML = '<p style="text-align: center; color: #7D8A99; padding: 2rem;">Start tracking your daily plan to see personalized insights!</p>';
+                    container.innerHTML = '<p style="text-align: center; color: #7D8A99; padding: 2rem;">Start tracking your daily plan and diary entries to see personalized insights!</p>';
                 }
+            }
+            
+            // Calculate correlation between two arrays (simplified Pearson correlation)
+            function calculateCorrelation(arr1, arr2, totalDays) {
+                // Filter out days with no data (0 values)
+                const pairs = [];
+                for (let i = 0; i < arr1.length; i++) {
+                    if (arr1[i] > 0 && arr2[i] > 0) {
+                        pairs.push([arr1[i], arr2[i]]);
+                    }
+                }
+                
+                const n = pairs.length;
+                
+                // Need minimum data points for confidence levels
+                if (n < 5) return { strength: 0, confidence: 'none' };
+                
+                // Calculate means
+                const mean1 = pairs.reduce((sum, p) => sum + p[0], 0) / n;
+                const mean2 = pairs.reduce((sum, p) => sum + p[1], 0) / n;
+                
+                // Calculate correlation coefficient
+                let numerator = 0;
+                let denominator1 = 0;
+                let denominator2 = 0;
+                
+                for (let i = 0; i < n; i++) {
+                    const diff1 = pairs[i][0] - mean1;
+                    const diff2 = pairs[i][1] - mean2;
+                    numerator += diff1 * diff2;
+                    denominator1 += diff1 * diff1;
+                    denominator2 += diff2 * diff2;
+                }
+                
+                const correlation = numerator / Math.sqrt(denominator1 * denominator2);
+                const strength = Math.abs(correlation);
+                
+                // Determine confidence based on sample size and strength
+                let confidence = 'none';
+                if (n >= 14 && strength > 0.4) {
+                    confidence = 'high';
+                } else if (n >= 10 && strength > 0.35) {
+                    confidence = 'moderate';
+                } else if (n >= 5 && strength > 0.25) {
+                    confidence = 'emerging';
+                }
+                
+                return { strength, confidence };
             }
             
             // Initialize progress when section becomes visible
@@ -14686,6 +15004,101 @@ document.querySelectorAll('.protocol-nav-btn').forEach(btn => {
                 window.scrollTo(0, 0);
             });
         }
+        
+        // ===== FIRST-TIME USER ORIENTATION =====
+        
+        // Check if this is the user's first visit
+        // First visit function (kept for future use if needed, but not auto-called)
+        function checkFirstVisit() {
+            const hasVisited = localStorage.getItem('hasVisitedBefore');
+            return hasVisited;
+        }
+        
+        // Close orientation overlay
+        function closeOrientation() {
+            const overlay = document.getElementById('orientationOverlay');
+            const checkbox = document.getElementById('dontShowAgainCheckbox');
+            
+            // Save preference if checkbox is checked
+            if (checkbox && checkbox.checked) {
+                localStorage.setItem('dontShowOrientation', 'true');
+            }
+            
+            // Fade out overlay
+            if (overlay) {
+                overlay.style.opacity = '0';
+                overlay.style.transition = 'opacity 0.3s ease-out';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    overlay.style.opacity = '1';
+                }, 300);
+            }
+        }
+        
+        // Navigate from orientation to specific section
+        function orientationNavigate(destination) {
+            const checkbox = document.getElementById('dontShowAgainCheckbox');
+            
+            // Save preference if checkbox is checked
+            if (checkbox && checkbox.checked) {
+                localStorage.setItem('dontShowOrientation', 'true');
+            }
+            
+            // Close overlay first
+            const overlay = document.getElementById('orientationOverlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+            
+            // Navigate to destination
+            switch(destination) {
+                case 'sos':
+                    // Navigate to SOS section - hide toolkit, show only SOS
+                    document.getElementById('welcomeScreen').style.display = 'none';
+                    document.getElementById('toolkitContainer').style.display = 'none';
+                    document.getElementById('toolkitContainer').classList.remove('active');
+                    document.getElementById('sosContainer').style.display = 'block';
+                    window.scrollTo(0, 0);
+                    break;
+                    
+                case 'flashcards':
+                    // Navigate to flashcards - show toolkit, hide SOS
+                    document.getElementById('welcomeScreen').style.display = 'none';
+                    document.getElementById('sosContainer').style.display = 'none';
+                    document.getElementById('toolkitContainer').style.display = 'block';
+                    document.getElementById('toolkitContainer').classList.add('active');
+                    window.scrollTo(0, 0);
+                    break;
+                    
+                case 'recipes':
+                    // Navigate to recipes - show toolkit, hide SOS
+                    document.getElementById('welcomeScreen').style.display = 'none';
+                    document.getElementById('sosContainer').style.display = 'none';
+                    document.getElementById('toolkitContainer').style.display = 'block';
+                    document.getElementById('toolkitContainer').classList.add('active');
+                    document.getElementById('recipesContainer').style.display = 'block';
+                    displayWeek(1); // Show Week 1 by default
+                    window.scrollTo(0, 0);
+                    break;
+            }
+        }
+        
+        // Manually show orientation (for returning users who want help)
+        function showOrientationManually() {
+            const overlay = document.getElementById('orientationOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+                // Uncheck the "don't show again" box
+                const checkbox = document.getElementById('dontShowAgainCheckbox');
+                if (checkbox) {
+                    checkbox.checked = false;
+                }
+            }
+        }
+        
+        // Orientation is now only accessible via "Need help?" button
+        // Removed automatic first visit check
+        
     </script>
     </div> <!-- Close toolkit-container -->
     </div> <!-- Close container -->
