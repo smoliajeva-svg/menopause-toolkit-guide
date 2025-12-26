@@ -1781,6 +1781,41 @@
                 gap: 0.5rem !important;
             }
             
+            /* Diary form: Mood emoji buttons - larger touch targets */
+            .mood-btn {
+                padding: 0.8rem 0.3rem !important;
+                min-height: 70px !important;
+            }
+            
+            .mood-btn > div:first-child {
+                font-size: 1.5rem !important;
+            }
+            
+            .mood-btn > div:last-child {
+                font-size: 0.65rem !important;
+            }
+            
+            /* Diary form buttons - wrap on mobile */
+            #diaryFormOverlay [style*="justify-content: space-between"] {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            
+            #diaryFormOverlay [style*="justify-content: space-between"] > div {
+                width: 100% !important;
+                display: flex !important;
+                gap: 0.5rem !important;
+            }
+            
+            #diaryFormOverlay button {
+                flex: 1 !important;
+                min-width: 0 !important;
+            }
+            
+            #resetFormBtn {
+                width: 100% !important;
+            }
+            
             /* Make medication form inputs full width */
             input[type="text"],
             input[type="date"],
@@ -9187,6 +9222,32 @@
                 return labels[mood] || 'Okay';
             }
             
+            // Track selected mood globally
+            let selectedMoodValue = null;
+            
+            function selectMood(mood) {
+                selectedMoodValue = mood;
+                console.log('Mood selected:', mood); // Debug log
+                
+                // Update all mood buttons
+                document.querySelectorAll('.mood-btn').forEach(btn => {
+                    const btnMood = parseInt(btn.getAttribute('data-mood'));
+                    if (btnMood === mood) {
+                        // Selected button - colored with stronger effect
+                        btn.style.border = '3px solid #E91E63';
+                        btn.style.background = 'linear-gradient(135deg, #FCE4EC, #FFFFFF)';
+                        btn.style.boxShadow = '0 4px 12px rgba(233, 30, 99, 0.3)';
+                        btn.style.transform = 'scale(1.05)';
+                    } else {
+                        // Unselected buttons - white and grey
+                        btn.style.border = '2px solid #E0E0E0';
+                        btn.style.background = 'white';
+                        btn.style.boxShadow = 'none';
+                        btn.style.transform = 'scale(1)';
+                    }
+                });
+            }
+            
             function getEnergyColor(energy) {
                 if (energy >= 4) return '#27AE60';
                 if (energy >= 3) return '#F39C12';
@@ -9224,10 +9285,10 @@
                                 <!-- Mood & Energy Row -->
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
                                     <div>
-                                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">😊 Mood</label>
+                                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">😊 Mood <span style="font-weight: 400; color: #7D8A99; font-size: 0.85rem;">(optional)</span></label>
                                         <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
                                             ${[1,2,3,4,5].map(m => `
-                                                <button type="button" class="mood-btn" data-mood="${m}" onclick="selectMood(${m})" style="aspect-ratio: 1; border-radius: 12px; border: 2px solid ${entry.mood === m ? '#E91E63' : '#E0E0E0'}; background: ${entry.mood === m ? 'linear-gradient(135deg, #FCE4EC, #FFFFFF)' : 'white'}; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s; padding: 0.5rem;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                                <button type="button" class="mood-btn" data-mood="${m}" onclick="selectMood(${m})" style="aspect-ratio: 1; border-radius: 12px; border: 2px solid #E0E0E0; background: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s; padding: 0.5rem;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                                                     <div style="font-size: 1.8rem;">${getMoodEmoji(m)}</div>
                                                     <div style="font-size: 0.7rem; color: #5A6C7D; margin-top: 0.2rem;">${getMoodLabel(m)}</div>
                                                 </button>
@@ -9277,9 +9338,12 @@ Examples:
                                 </div>
                                 
                                 <!-- Buttons -->
-                                <div style="display: flex; gap: 1rem; justify-content: flex-end; padding-top: 1rem; border-top: 2px solid #F0F0F0;">
-                                    <button type="button" onclick="document.getElementById('diaryFormOverlay').remove();" style="padding: 1rem 2rem; background: white; border: 2px solid #D0D0D0; color: #7D8A99; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='white'">Cancel</button>
-                                    <button type="submit" style="padding: 1rem 2rem; background: linear-gradient(135deg, #E91E63, #C2185B); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(233, 30, 99, 0.3)'">${isEdit ? '💾 Save Changes' : '📔 Save Entry'}</button>
+                                <div style="display: flex; gap: 1rem; justify-content: space-between; padding-top: 1rem; border-top: 2px solid #F0F0F0; flex-wrap: wrap;">
+                                    <button type="button" id="resetFormBtn" style="padding: 1rem 2rem; background: white; border: 2px solid #FF6B6B; color: #FF6B6B; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#FF6B6B'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#FF6B6B'">🔄 Reset All</button>
+                                    <div style="display: flex; gap: 1rem;">
+                                        <button type="button" onclick="document.getElementById('diaryFormOverlay').remove();" style="padding: 1rem 2rem; background: white; border: 2px solid #D0D0D0; color: #7D8A99; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='white'">Cancel</button>
+                                        <button type="submit" style="padding: 1rem 2rem; background: linear-gradient(135deg, #E91E63, #C2185B); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(233, 30, 99, 0.3)'">${isEdit ? '💾 Save Changes' : '📔 Save Entry'}</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -9287,6 +9351,46 @@ Examples:
                 `;
                 
                 document.body.appendChild(overlay);
+                
+                // Initialize selected mood if editing
+                if (entry.mood) {
+                    selectedMoodValue = entry.mood;
+                    selectMood(entry.mood);
+                } else {
+                    selectedMoodValue = null;
+                }
+                
+                // Reset form button
+                document.getElementById('resetFormBtn').addEventListener('click', function() {
+                    if (confirm('Are you sure you want to reset all fields? This cannot be undone.')) {
+                        // Reset mood
+                        selectedMoodValue = null;
+                        document.querySelectorAll('.mood-btn').forEach(btn => {
+                            btn.style.border = '2px solid #E0E0E0';
+                            btn.style.background = 'white';
+                        });
+                        
+                        // Reset energy slider
+                        const energySlider = document.getElementById('energySlider');
+                        energySlider.value = 3;
+                        document.getElementById('energyValue').textContent = '3';
+                        
+                        // Reset journal textarea
+                        document.getElementById('journalEntry').value = '';
+                        
+                        // Reset all tags
+                        document.querySelectorAll('.tag-checkbox').forEach(checkbox => {
+                            checkbox.checked = false;
+                        });
+                        document.querySelectorAll('.tag-label').forEach(label => {
+                            label.style.background = '#F8BBD0';
+                            label.style.color = '#C2185B';
+                        });
+                        
+                        // Reset date to today
+                        document.getElementById('entryDate').value = new Date().toISOString().split('T')[0];
+                    }
+                });
                 
                 // Add intensity slider listeners
                 document.querySelectorAll('.symptom-intensity').forEach(slider => {
@@ -9300,12 +9404,6 @@ Examples:
                 document.getElementById('diaryForm').addEventListener('submit', (e) => {
                     e.preventDefault();
                     
-                    const selectedMood = document.querySelector('.mood-btn[data-mood][style*="E91E63"]')?.dataset.mood;
-                    if (!selectedMood) {
-                        alert('Please select your mood');
-                        return;
-                    }
-                    
                     const journalText = document.getElementById('journalEntry').value.trim();
                     if (!journalText) {
                         alert('Please write something in your journal');
@@ -9316,7 +9414,7 @@ Examples:
                     
                     const newEntry = {
                         date: document.getElementById('entryDate').value,
-                        mood: parseInt(selectedMood),
+                        mood: selectedMoodValue ? parseInt(selectedMoodValue) : 3,
                         energy: parseInt(document.getElementById('energySlider').value),
                         journal: journalText,
                         tags: tags
