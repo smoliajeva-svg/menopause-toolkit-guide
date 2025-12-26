@@ -6,7 +6,7 @@
     <title>Menopause Wellness Toolkit™ - Interactive Guide</title>
     <style>
         :root {
-            --primary-green: #F4C2C2;
+            --primary-green: #FFD1D1;
             --secondary-green: #E6D5E8;
             --light-green: #FFD8CC;
             --bg-cream: #FFF9F3;
@@ -158,14 +158,14 @@
         }
 
         .welcome-card-count {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            background: linear-gradient(135deg, #FFC0D9, #FFD4E5);
             color: white;
             padding: 1.5rem 3rem;
             border-radius: 20px;
             font-size: 1.6rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            box-shadow: 0 8px 20px rgba(116, 139, 117, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 192, 217, 0.4);
             animation: slideIn 1s ease-out 0.3s both;
         }
 
@@ -1776,10 +1776,10 @@
             <p class="welcome-subtitle">Interactive Flashcards, Recipes & Daily Support Tools</p>
             
             <div class="welcome-card-count">
-                179 Flashcards: Symptoms • Self-Care • Supplements
+                180 Flashcards: Symptoms • Self-Care • Supplements
             </div>
             <p style="font-size: 0.95rem; color: var(--text-medium); margin-bottom: 1.5rem; opacity: 0.9;">
-                132 symptoms + 17 self-care + 30 supplements | Plus: Movement Protocols • Protein Target • Tracking
+                133 symptoms + 17 self-care + 30 supplements | Plus: Movement Protocols • Protein Target • Tracking
             </p>
             
             <p class="welcome-description">
@@ -1922,7 +1922,7 @@
     <div class="toolkit-container" id="toolkitContainer">
     <div class="container">
         <h1>Your Symptom Pocket Guide</h1>
-        <p class="subtitle">✨ 139 cards: What's happening + What helps ✨</p>
+        <p class="subtitle">✨ 140 cards: What's happening + What helps ✨</p>
 
         <!-- SEARCH BAR -->
         <div class="search-bar-container">
@@ -4967,54 +4967,59 @@
             },
             {
                 id: 133,
+                front: { title: "Digestive bloating & discomfort", why: "Falling oestrogen slows digestion and can increase gas, bloating, and sensitivity to certain foods. Your gut microbiome also changes during menopause", system: "Digestive" },
+                back: { actions: ["Eat slowly and chew thoroughly—rushing meals worsens bloating", "Keep a food diary to identify trigger foods (common ones: wheat, dairy, onions, beans)", "Try smaller, more frequent meals rather than large portions"], foods: ["Probiotic foods (live yogurt, kefir, sauerkraut)", "Ginger tea or peppermint tea for digestive comfort", "Prebiotic fibre (oats, bananas, asparagus) to feed good gut bacteria"], mindset: "Digestive changes can be frustrating and uncomfortable. Your gut is adjusting to new hormone levels." }
+            },
+            {
+                id: 134,
                 type: "selfcare",
                 front: { title: "Self-Care: Rest & Recovery", why: "Menopause demands more from your body and mind. Rest isn't laziness—it's how your body repairs, balances hormones, and builds resilience", system: "Self-Care" },
                 back: { actions: ["Schedule 10-15 minutes of complete rest each day (lie down, close eyes, no phone)", "Say 'no' to one non-essential commitment this week", "Go to bed 30 minutes earlier than usual"], when: "Daily: Morning rest or afternoon pause • Weekly: One full rest day • As needed: When overwhelmed", mindset: "Rest is not earned. You don't have to be 'productive enough' to deserve it. Your body needs rest to function.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 134,
+                id: 135,
                 type: "selfcare",
                 front: { title: "Self-Care: Stress Management", why: "Chronic stress worsens menopause symptoms by raising cortisol, disrupting sleep, and depleting your emotional reserves", system: "Self-Care" },
                 back: { actions: ["Practice 5 minutes of slow breathing daily (4 seconds in, 6 seconds out)", "Set one boundary this week (say no, delegate, or ask for help)", "Identify and reduce one regular stressor"], when: "Daily: Morning or before bed breathing • Weekly: Boundary review • Ongoing: Stress audit", mindset: "You cannot 'stress yourself better'. Reducing stress is not optional—it's protective.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 135,
+                id: 136,
                 type: "selfcare",
                 front: { title: "Self-Care: Movement & Gentle Exercise", why: "Regular movement supports bone health, muscle strength, mood, sleep, and metabolic health—but overexercising can worsen fatigue and stress", system: "Self-Care" },
                 back: { actions: ["Aim for 20-30 minutes of gentle daily movement (walking, stretching, swimming)", "Include 2-3 sessions of strength work weekly (resistance bands, weights)", "Rest when tired—movement is helpful, but rest is essential"], when: "Daily: Gentle movement • 2-3x weekly: Strength work • Listen to your body always", mindset: "Movement is medicine, but rest is too. You don't need to earn rest through exercise.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 136,
+                id: 137,
                 type: "selfcare",
                 front: { title: "Self-Care: Social Connection", why: "Isolation worsens mood, anxiety, and stress. Connection—even brief, simple contact—supports nervous system regulation and emotional resilience", system: "Self-Care" },
                 back: { actions: ["Reach out to one person this week (text, call, or meet)", "Join one group or activity where you feel safe and accepted", "Share how you're feeling with someone you trust"], when: "Weekly: One meaningful connection • Monthly: Group activity • As needed: Reach out when struggling", mindset: "You are not a burden. People who care about you want to know how you are.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 137,
+                id: 138,
                 type: "selfcare",
                 front: { title: "Self-Care: Mindful Eating", why: "Food restriction, guilt, and diet culture worsen stress and hormone imbalance. Gentle, nourishing eating supports your body without punishment", system: "Self-Care" },
                 back: { actions: ["Eat regular meals with protein, fibre, and healthy fats—no skipping", "Notice when you're eating from hunger vs. stress, without judgment", "Allow foods you enjoy—restriction often leads to overeating later"], when: "Every meal: Balanced plate • Daily: Hunger check-in • Ongoing: Food kindness", mindset: "Food is not the enemy. Your body needs nourishment, not punishment.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 138,
+                id: 139,
                 type: "selfcare",
                 front: { title: "Self-Care: Sleep Hygiene", why: "Good sleep hygiene supports your natural sleep hormones and helps your body repair overnight, even when menopause disrupts sleep", system: "Self-Care" },
                 back: { actions: ["Keep bedroom cool, dark, and quiet (fan, blackout curtains, earplugs)", "Screen-free wind-down for 30-60 minutes before bed", "Keep a regular wake time, even if sleep was poor"], when: "Nightly: Wind-down routine • Daily: Consistent wake time • Ongoing: Optimise sleep environment", mindset: "You may not control when sleep comes, but you can create the best conditions for it.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 139,
+                id: 140,
                 type: "selfcare",
                 front: { title: "Self-Care: Emotional Support", why: "Menopause can bring up difficult emotions, past trauma, or relationship challenges. You don't have to cope alone", system: "Self-Care" },
                 back: { actions: ["Consider talking therapy (GP referral, online therapy, or menopause specialist)", "Journal or write about difficult feelings—getting them out helps", "Allow yourself to feel without fixing—not every emotion needs a solution"], when: "As needed: Seek therapy • Daily: Journaling or check-in • Ongoing: Permission to feel", mindset: "Asking for help is strength, not weakness. You deserve support.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 140,
+                id: 141,
                 type: "selfcare",
                 front: { title: "Self-Care: Body Kindness", why: "Your body is changing, and that can feel like loss. Self-criticism adds suffering. Kindness doesn't mean loving everything—it means treating yourself with respect", system: "Self-Care" },
                 back: { actions: ["Notice critical thoughts about your body and pause—would you speak this way to a friend?", "Focus on what your body can do, not just how it looks", "Wear clothes that feel comfortable and fit your current body"], when: "Daily: Gentle self-talk practice • Ongoing: Shift focus from appearance to function", mindset: "Your worth is not determined by your weight, your wrinkles, or your waistline.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
             },
             {
-                id: 141,
+                id: 142,
                 type: "selfcare",
                 front: { title: "Self-Care: When to Seek Help", why: "Some symptoms need medical investigation, not self-management. Knowing when to seek help protects your health", system: "Self-Care" },
                 back: { actions: ["See GP urgently for: heavy bleeding, severe pain, sudden new symptoms, chest pain, severe headache", "Book routine GP appointment for: persistent symptoms, quality of life impact, HRT discussion", "Seek specialist help for: complex symptoms, HRT side effects, ongoing struggles"], when: "Urgent: Same day or A&E • Routine: Within 2 weeks • Specialist: GP referral when needed", mindset: "You are not wasting anyone's time. Your symptoms matter, and you deserve medical support.", closing: "Self-care is not selfish. It's essential for your wellbeing." }
