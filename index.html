@@ -1739,6 +1739,18 @@
                         <span class="menu-description">Track HRT & supplements</span>
                     </a>
                     
+                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="diary">
+                        <span class="menu-icon">📔</span>
+                        <span class="menu-label">Diary</span>
+                        <span class="menu-description">Journal your journey</span>
+                    </a>
+                    
+                    <a href="javascript:void(0)" class="welcome-menu-item" data-section="habits">
+                        <span class="menu-icon">🎯</span>
+                        <span class="menu-label">Habits & Streaks</span>
+                        <span class="menu-description">Build healthy routines</span>
+                    </a>
+                    
                     <a href="javascript:void(0)" class="welcome-menu-item" data-section="sos" style="border: 3px solid #E74C3C; background: linear-gradient(135deg, #FFE5E5, #FFFFFF);">
                         <span class="menu-icon" style="font-size: 2rem;">🆘</span>
                         <span class="menu-label" style="color: #E74C3C; font-weight: 700;">Quick Relief</span>
@@ -3749,6 +3761,68 @@
                 <span>Back to Home</span>
                 <span>🏠</span>
             </button>
+        </div>
+    </div>
+
+    <!-- DIARY SECTION -->
+    <div class="container" id="diaryContainer" style="display: none;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <h1 style="background: linear-gradient(135deg, #E91E63, #C2185B); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(233, 30, 99, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 2rem;">📔</span>
+                <span>Diary</span>
+            </h1>
+            <button id="backToHomeFromDiary" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid var(--primary-green); color: var(--primary-green); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='var(--primary-green)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--primary-green)';">
+                🏠 Back to Home
+            </button>
+        </div>
+
+        <div style="max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Today's Entry Button -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button id="addDiaryEntry" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #E91E63, #C2185B); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(233, 30, 99, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(233, 30, 99, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(233, 30, 99, 0.3)';">
+                    <span style="font-size: 1.5rem;">➕</span>
+                    <span>Add Today's Entry</span>
+                </button>
+            </div>
+
+            <!-- Diary Entries List -->
+            <div id="diaryEntriesList" style="margin-bottom: 2rem;">
+                <!-- Entries will be displayed here -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- HABITS & STREAKS SECTION -->
+    <div class="container" id="habitsContainer" style="display: none;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+            <h1 style="background: linear-gradient(135deg, #FF9800, #F57C00); color: white; padding: 1.5rem 2.5rem; border-radius: 20px; margin: 0; box-shadow: 0 8px 30px rgba(255, 152, 0, 0.3); display: inline-flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 2rem;">🎯</span>
+                <span>Habits & Streaks</span>
+            </h1>
+            <button id="backToHomeFromHabits" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid var(--primary-green); color: var(--primary-green); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='var(--primary-green)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--primary-green)';">
+                🏠 Back to Home
+            </button>
+        </div>
+
+        <div style="max-width: 1200px; margin: 0 auto;">
+            
+            <!-- Add Habit Button -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button id="addHabitBtn" style="padding: 1.2rem 3rem; background: linear-gradient(135deg, #FF9800, #F57C00); color: white; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(255, 152, 0, 0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 1rem;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 30px rgba(255, 152, 0, 0.4)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(255, 152, 0, 0.3)';">
+                    <span style="font-size: 1.5rem;">➕</span>
+                    <span>Create New Habit</span>
+                </button>
+            </div>
+
+            <!-- Active Habits List -->
+            <div id="habitsList" style="margin-bottom: 2rem;">
+                <!-- Habits will be displayed here -->
+            </div>
+
         </div>
     </div>
 
@@ -6844,6 +6918,68 @@
                             window.scrollTo(0, 0);
                         }, 500);
                     }
+                } else if (section === 'diary') {
+                    // Navigate to Diary section
+                    const welcomeScreen = document.getElementById('welcomeScreen');
+                    const diaryContainer = document.getElementById('diaryContainer');
+                    
+                    if (diaryContainer) {
+                        welcomeScreen.style.animation = 'fadeOut 0.5s ease-out forwards';
+                        
+                        setTimeout(() => {
+                            welcomeScreen.style.display = 'none';
+                            
+                            // Hide all other sections
+                            document.getElementById('toolkitContainer').querySelector('.container').style.display = 'none';
+                            document.getElementById('supplementsContainer').style.display = 'none';
+                            if (document.getElementById('proteinContainer')) document.getElementById('proteinContainer').style.display = 'none';
+                            if (document.getElementById('dailyPlanContainer')) document.getElementById('dailyPlanContainer').style.display = 'none';
+                            if (document.getElementById('progressContainer')) document.getElementById('progressContainer').style.display = 'none';
+                            if (document.getElementById('movementContainer')) document.getElementById('movementContainer').style.display = 'none';
+                            if (document.getElementById('recipesMainPage')) document.getElementById('recipesMainPage').style.display = 'none';
+                            if (document.getElementById('trackingContainer')) document.getElementById('trackingContainer').style.display = 'none';
+                            if (document.getElementById('medicationContainer')) document.getElementById('medicationContainer').style.display = 'none';
+                            if (document.getElementById('habitsContainer')) document.getElementById('habitsContainer').style.display = 'none';
+                            if (document.getElementById('sosContainer')) document.getElementById('sosContainer').style.display = 'none';
+                            
+                            diaryContainer.style.display = 'block';
+                            if (typeof loadDiaryEntries === 'function') {
+                                loadDiaryEntries();
+                            }
+                            window.scrollTo(0, 0);
+                        }, 500);
+                    }
+                } else if (section === 'habits') {
+                    // Navigate to Habits section
+                    const welcomeScreen = document.getElementById('welcomeScreen');
+                    const habitsContainer = document.getElementById('habitsContainer');
+                    
+                    if (habitsContainer) {
+                        welcomeScreen.style.animation = 'fadeOut 0.5s ease-out forwards';
+                        
+                        setTimeout(() => {
+                            welcomeScreen.style.display = 'none';
+                            
+                            // Hide all other sections
+                            document.getElementById('toolkitContainer').querySelector('.container').style.display = 'none';
+                            document.getElementById('supplementsContainer').style.display = 'none';
+                            if (document.getElementById('proteinContainer')) document.getElementById('proteinContainer').style.display = 'none';
+                            if (document.getElementById('dailyPlanContainer')) document.getElementById('dailyPlanContainer').style.display = 'none';
+                            if (document.getElementById('progressContainer')) document.getElementById('progressContainer').style.display = 'none';
+                            if (document.getElementById('movementContainer')) document.getElementById('movementContainer').style.display = 'none';
+                            if (document.getElementById('recipesMainPage')) document.getElementById('recipesMainPage').style.display = 'none';
+                            if (document.getElementById('trackingContainer')) document.getElementById('trackingContainer').style.display = 'none';
+                            if (document.getElementById('medicationContainer')) document.getElementById('medicationContainer').style.display = 'none';
+                            if (document.getElementById('diaryContainer')) document.getElementById('diaryContainer').style.display = 'none';
+                            if (document.getElementById('sosContainer')) document.getElementById('sosContainer').style.display = 'none';
+                            
+                            habitsContainer.style.display = 'block';
+                            if (typeof loadHabitsList === 'function') {
+                                loadHabitsList();
+                            }
+                            window.scrollTo(0, 0);
+                        }, 500);
+                    }
                 } else if (section === 'medication') {
                     // Navigate to Medication/HRT Tracker section
                     const welcomeScreen = document.getElementById('welcomeScreen');
@@ -8566,6 +8702,530 @@
                 });
             }
 
+
+            // ===== DIARY SECTION =====
+            
+            // Back to home from diary
+            if (document.getElementById('backToHomeFromDiary')) {
+                document.getElementById('backToHomeFromDiary').addEventListener('click', function() {
+                    document.getElementById('diaryContainer').style.display = 'none';
+                    const welcomeScreen = document.getElementById('welcomeScreen');
+                    welcomeScreen.style.display = 'flex';
+                    welcomeScreen.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    window.scrollTo(0, 0);
+                });
+            }
+            
+            // Load diary entries
+            function loadDiaryEntries() {
+                const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                const container = document.getElementById('diaryEntriesList');
+                
+                if (!container) return;
+                
+                if (entries.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #FCE4EC, #FFFFFF); border-radius: 20px; border: 2px dashed #F06292;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">📔</div>
+                            <h3 style="color: #C2185B; margin-bottom: 1rem;">No Journal Entries Yet</h3>
+                            <p style="color: #AD1457;">Start journaling about your menopause journey</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Sort by date (newest first)
+                entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                let html = '';
+                entries.forEach((entry, index) => {
+                    const entryDate = new Date(entry.date);
+                    const isToday = entryDate.toDateString() === new Date().toDateString();
+                    
+                    html += `
+                        <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 6px solid ${isToday ? '#E91E63' : '#F8BBD0'};">
+                            <!-- Header -->
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #F8F9FA;">
+                                <div>
+                                    <h3 style="color: #C2185B; margin-bottom: 0.3rem; font-size: 1.3rem; font-weight: 700;">
+                                        ${entryDate.toLocaleDateString('en-GB', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'})}
+                                    </h3>
+                                    ${isToday ? '<span style="background: linear-gradient(135deg, #E91E63, #C2185B); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">✨ Today</span>' : ''}
+                                </div>
+                                <div style="display: flex; gap: 0.8rem;">
+                                    <button onclick="editDiaryEntry(${index})" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #E91E63; color: #E91E63; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" onmouseover="this.style.background='#E91E63'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#E91E63'">✏️ Edit</button>
+                                    <button onclick="deleteDiaryEntry(${index})" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #E74C3C; color: #E74C3C; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" onmouseover="this.style.background='#E74C3C'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#E74C3C'">🗑️</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Mood & Energy -->
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <div style="background: linear-gradient(135deg, #FCE4EC, #FFFFFF); padding: 1.2rem; border-radius: 12px; border: 2px solid #F8BBD0;">
+                                    <div style="font-size: 0.75rem; color: #AD1457; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: 0.5px;">MOOD</div>
+                                    <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                        <div style="font-size: 2.5rem;">${getMoodEmoji(entry.mood)}</div>
+                                        <div style="font-size: 1.1rem; color: #5A6C7D; font-weight: 600;">${getMoodLabel(entry.mood)}</div>
+                                    </div>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #FCE4EC, #FFFFFF); padding: 1.2rem; border-radius: 12px; border: 2px solid #F8BBD0;">
+                                    <div style="font-size: 0.75rem; color: #AD1457; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: 0.5px;">ENERGY</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: ${getEnergyColor(entry.energy)}; margin-bottom: 0.5rem;">${entry.energy}/5</div>
+                                    <div style="height: 10px; background: #F0F0F0; border-radius: 5px; overflow: hidden;">
+                                        <div style="height: 100%; background: ${getEnergyColor(entry.energy)}; width: ${entry.energy * 20}%; transition: width 0.3s;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tags -->
+                            ${entry.tags && entry.tags.length > 0 ? `
+                            <div style="margin-bottom: 1.5rem;">
+                                <div style="font-size: 0.75rem; color: #7D8A99; margin-bottom: 0.8rem; font-weight: 700; letter-spacing: 0.5px;">🏷️ TAGS</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                                    ${entry.tags.map(tag => `<span style="background: #E91E63; color: white; padding: 0.4rem 1rem; border-radius: 16px; font-size: 0.85rem; font-weight: 600;">${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                            ` : ''}
+                            
+                            <!-- Journal Entry -->
+                            ${entry.journal ? `
+                            <div>
+                                <div style="font-size: 0.75rem; color: #7D8A99; margin-bottom: 0.8rem; font-weight: 700; letter-spacing: 0.5px;">✍️ JOURNAL ENTRY</div>
+                                <div style="padding: 1.5rem; background: #FFFAF0; border-radius: 12px; border: 2px solid #F8BBD0; color: #2C3E50; font-size: 1rem; line-height: 1.8; white-space: pre-wrap;">${entry.journal}</div>
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            }
+            
+            function getMoodEmoji(mood) {
+                const moods = { 1: '😫', 2: '😔', 3: '😐', 4: '🙂', 5: '😊' };
+                return moods[mood] || '😐';
+            }
+            
+            function getMoodLabel(mood) {
+                const labels = { 1: 'Awful', 2: 'Low', 3: 'Okay', 4: 'Good', 5: 'Great' };
+                return labels[mood] || 'Okay';
+            }
+            
+            function getEnergyColor(energy) {
+                if (energy >= 4) return '#27AE60';
+                if (energy >= 3) return '#F39C12';
+                return '#E74C3C';
+            }
+            
+            // Add/Edit diary entry
+            window.showDiaryForm = function(editIndex = null) {
+                const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                const isEdit = editIndex !== null && editIndex >= 0;
+                const entry = (isEdit && entries[editIndex]) ? entries[editIndex] : { date: new Date().toISOString().split('T')[0] };
+                
+                const overlay = document.createElement('div');
+                overlay.id = 'diaryFormOverlay';
+                overlay.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7);
+                    z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem; overflow-y: auto;
+                `;
+                
+                overlay.innerHTML = `
+                    <div onclick="event.stopPropagation();" style="background: white; border-radius: 20px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+                        <div style="background: linear-gradient(135deg, #E91E63, #C2185B); color: white; padding: 2rem; border-radius: 20px 20px 0 0; position: relative;">
+                            <button onclick="document.getElementById('diaryFormOverlay').remove();" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">×</button>
+                            <h2 style="margin: 0; font-size: 1.5rem; padding-right: 3rem;">${isEdit ? '✏️ Edit' : '📔 New'} Journal Entry</h2>
+                        </div>
+                        
+                        <div style="padding: 2rem;">
+                            <form id="diaryForm">
+                                <!-- Date -->
+                                <div style="margin-bottom: 2rem;">
+                                    <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">📅 Date</label>
+                                    <input type="date" id="entryDate" required value="${entry.date || ''}" max="${new Date().toISOString().split('T')[0]}" style="width: 100%; padding: 1rem; border: 2px solid #F8BBD0; border-radius: 12px; font-size: 1rem; background: #FFF;">
+                                </div>
+                                
+                                <!-- Mood & Energy Row -->
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">😊 Mood</label>
+                                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
+                                            ${[1,2,3,4,5].map(m => `
+                                                <button type="button" class="mood-btn" data-mood="${m}" onclick="selectMood(${m})" style="aspect-ratio: 1; border-radius: 12px; border: 2px solid ${entry.mood === m ? '#E91E63' : '#E0E0E0'}; background: ${entry.mood === m ? 'linear-gradient(135deg, #FCE4EC, #FFFFFF)' : 'white'}; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s; padding: 0.5rem;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                                    <div style="font-size: 1.8rem;">${getMoodEmoji(m)}</div>
+                                                    <div style="font-size: 0.7rem; color: #5A6C7D; margin-top: 0.2rem;">${getMoodLabel(m)}</div>
+                                                </button>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">⚡ Energy</label>
+                                        <div style="background: #F8F9FA; padding: 1.5rem; border-radius: 12px; border: 2px solid #F8BBD0;">
+                                            <input type="range" id="energySlider" min="1" max="5" value="${entry.energy || 3}" oninput="document.getElementById('energyValue').textContent = this.value" style="width: 100%; cursor: pointer;">
+                                            <div style="text-align: center; margin-top: 0.8rem;">
+                                                <span style="font-size: 2rem; font-weight: 700; color: #E91E63;" id="energyValue">${entry.energy || 3}</span><span style="color: #7D8A99; font-size: 1.2rem;">/5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Journal Entry -->
+                                <div style="margin-bottom: 2rem;">
+                                    <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">✍️ How are you feeling today?</label>
+                                    <textarea id="journalEntry" required placeholder="Write about your day, how you're feeling, any symptoms you noticed, what helped or didn't help, triggers, patterns...
+
+Examples:
+• Had 3 hot flushes today, worst one around 3pm
+• Feeling anxious about work presentation
+• Slept poorly - woke up 4 times
+• Really helped: went for a walk, felt so much better
+• Noticed: sugar makes brain fog worse" style="width: 100%; min-height: 250px; padding: 1.5rem; border: 2px solid #F8BBD0; border-radius: 12px; font-size: 1rem; font-family: inherit; line-height: 1.8; resize: vertical; background: #FFFAF0;">${entry.journal || ''}</textarea>
+                                    <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #7D8A99;">💡 Tip: Write freely - this is your private space. Note symptoms, triggers, wins, struggles.</div>
+                                </div>
+                                
+                                <!-- Quick Tags (Optional) -->
+                                <div style="margin-bottom: 2rem;">
+                                    <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">🏷️ Quick Tags (Optional)</label>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                                        ${['Hot Flushes', 'Night Sweats', 'Anxiety', 'Brain Fog', 'Great Day', 'Tough Day', 'Insomnia', 'Headache', 'Good Sleep', 'Exercise'].map(tag => {
+                                            const isSelected = entry.tags?.includes(tag);
+                                            return `
+                                                <label style="cursor: pointer;">
+                                                    <input type="checkbox" class="tag-checkbox" value="${tag}" ${isSelected ? 'checked' : ''} style="display: none;">
+                                                    <span class="tag-label" onclick="this.previousElementSibling.checked = !this.previousElementSibling.checked; this.style.background = this.previousElementSibling.checked ? '#E91E63' : '#F8BBD0'; this.style.color = this.previousElementSibling.checked ? 'white' : '#C2185B';" style="display: inline-block; padding: 0.5rem 1rem; background: ${isSelected ? '#E91E63' : '#F8BBD0'}; color: ${isSelected ? 'white' : '#C2185B'}; border-radius: 20px; font-size: 0.85rem; font-weight: 600; transition: all 0.3s;">${tag}</span>
+                                                </label>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                                
+                                <!-- Buttons -->
+                                <div style="display: flex; gap: 1rem; justify-content: flex-end; padding-top: 1rem; border-top: 2px solid #F0F0F0;">
+                                    <button type="button" onclick="document.getElementById('diaryFormOverlay').remove();" style="padding: 1rem 2rem; background: white; border: 2px solid #D0D0D0; color: #7D8A99; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='white'">Cancel</button>
+                                    <button type="submit" style="padding: 1rem 2rem; background: linear-gradient(135deg, #E91E63, #C2185B); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(233, 30, 99, 0.3)'">${isEdit ? '💾 Save Changes' : '📔 Save Entry'}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(overlay);
+                
+                // Add intensity slider listeners
+                document.querySelectorAll('.symptom-intensity').forEach(slider => {
+                    slider.addEventListener('input', function() {
+                        this.nextElementSibling.textContent = this.value;
+                    });
+                });
+                
+                // Form submission
+                // Form submission
+                document.getElementById('diaryForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const selectedMood = document.querySelector('.mood-btn[data-mood][style*="E91E63"]')?.dataset.mood;
+                    if (!selectedMood) {
+                        alert('Please select your mood');
+                        return;
+                    }
+                    
+                    const journalText = document.getElementById('journalEntry').value.trim();
+                    if (!journalText) {
+                        alert('Please write something in your journal');
+                        return;
+                    }
+                    
+                    const tags = Array.from(document.querySelectorAll('.tag-checkbox:checked')).map(cb => cb.value);
+                    
+                    const newEntry = {
+                        date: document.getElementById('entryDate').value,
+                        mood: parseInt(selectedMood),
+                        energy: parseInt(document.getElementById('energySlider').value),
+                        journal: journalText,
+                        tags: tags
+                    };
+                    
+                    const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                    
+                    if (isEdit) {
+                        entries[editIndex] = newEntry;
+                    } else {
+                        entries.push(newEntry);
+                    }
+                    
+                    localStorage.setItem('diaryEntries', JSON.stringify(entries));
+                    
+                    // Success feedback
+                    const submitBtn = document.querySelector('#diaryForm button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '✅ Saved!';
+                    submitBtn.style.background = 'linear-gradient(135deg, #4CAF50, #388E3C)';
+                    
+                    setTimeout(() => {
+                        overlay.remove();
+                        loadDiaryEntries();
+                    }, 800);
+                });
+            };
+            
+            window.selectMood = function(mood) {
+                document.querySelectorAll('.mood-btn').forEach(btn => {
+                    btn.style.border = '2px solid #E0E0E0';
+                    btn.style.background = 'white';
+                });
+                const selected = document.querySelector(`.mood-btn[data-mood="${mood}"]`);
+                selected.style.border = '2px solid #E91E63';
+                selected.style.background = 'linear-gradient(135deg, #FCE4EC, #FFFFFF)';
+                selected.style.transform = 'scale(1.05)';
+            };
+            
+            window.editDiaryEntry = function(index) {
+                showDiaryForm(index);
+            };
+            
+            window.deleteDiaryEntry = function(index) {
+                if (confirm('Delete this diary entry?')) {
+                    const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
+                    entries.splice(index, 1);
+                    localStorage.setItem('diaryEntries', JSON.stringify(entries));
+                    loadDiaryEntries();
+                }
+            };
+            
+            // Add diary entry button
+            if (document.getElementById('addDiaryEntry')) {
+                document.getElementById('addDiaryEntry').addEventListener('click', () => showDiaryForm());
+            }
+            
+            // ===== HABITS & STREAKS SECTION =====
+            
+            // Back to home from habits
+            if (document.getElementById('backToHomeFromHabits')) {
+                document.getElementById('backToHomeFromHabits').addEventListener('click', function() {
+                    document.getElementById('habitsContainer').style.display = 'none';
+                    const welcomeScreen = document.getElementById('welcomeScreen');
+                    welcomeScreen.style.display = 'flex';
+                    welcomeScreen.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    window.scrollTo(0, 0);
+                });
+            }
+            
+            // Load habits list
+            function loadHabitsList() {
+                const habits = JSON.parse(localStorage.getItem('habits') || '[]');
+                const container = document.getElementById('habitsList');
+                
+                if (!container) return;
+                
+                if (habits.length === 0) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #FFF3E0, #FFFFFF); border-radius: 20px; border: 2px dashed #FFB74D;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🎯</div>
+                            <h3 style="color: #F57C00; margin-bottom: 1rem;">No Habits Yet</h3>
+                            <p style="color: #E65100;">Create your first habit to start building streaks!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const today = new Date().toISOString().split('T')[0];
+                
+                let html = '';
+                habits.forEach((habit, index) => {
+                    const streak = calculateStreak(habit);
+                    const completedToday = habit.completions?.includes(today);
+                    const longestStreak = calculateLongestStreak(habit);
+                    
+                    html += `
+                        <div style="background: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 5px solid ${completedToday ? '#4CAF50' : '#FF9800'};">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+                                <div style="flex: 1;">
+                                    <h3 style="color: #E65100; margin-bottom: 0.5rem; font-size: 1.2rem;">${habit.name}</h3>
+                                    ${habit.description ? `<p style="color: #7D8A99; margin-bottom: 1rem; font-size: 0.9rem;">${habit.description}</p>` : ''}
+                                    
+                                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                                        <div>
+                                            <div style="font-size: 0.75rem; color: #7D8A99; margin-bottom: 0.3rem;">CURRENT STREAK</div>
+                                            <div style="font-size: 1.8rem; font-weight: 700; color: ${streak >= 7 ? '#4CAF50' : '#FF9800'};">${streak} 🔥</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.75rem; color: #7D8A99; margin-bottom: 0.3rem;">BEST STREAK</div>
+                                            <div style="font-size: 1.3rem; font-weight: 700; color: #7D8A99;">${longestStreak} days</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.75rem; color: #7D8A99; margin-bottom: 0.3rem;">TOTAL DAYS</div>
+                                            <div style="font-size: 1.3rem; font-weight: 700; color: #7D8A99;">${habit.completions?.length || 0}</div>
+                                        </div>
+                                    </div>
+                                    
+                                    ${streak >= 30 ? '<div style="margin-top: 1rem; padding: 0.8rem; background: linear-gradient(135deg, #FFD700, #FFA000); border-radius: 10px; color: white; font-weight: 700; text-align: center;">🏆 30-DAY CHAMPION! 🏆</div>' : ''}
+                                    ${streak >= 7 && streak < 30 ? '<div style="margin-top: 1rem; padding: 0.8rem; background: linear-gradient(135deg, #4CAF50, #388E3C); border-radius: 10px; color: white; font-weight: 600; text-align: center;">🎉 Week Streak! Keep going! 🎉</div>' : ''}
+                                </div>
+                                
+                                <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                                    ${completedToday ? `
+                                        <button onclick="uncompleteHabit(${index})" style="padding: 0.8rem 1.5rem; background: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                                            ✓ Done Today
+                                        </button>
+                                    ` : `
+                                        <button onclick="completeHabit(${index})" style="padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #FF9800, #F57C00); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+                                            ✓ Mark Done
+                                        </button>
+                                    `}
+                                    <button onclick="deleteHabit(${index})" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #E74C3C; color: #E74C3C; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem;">🗑️ Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            }
+            
+            function calculateStreak(habit) {
+                if (!habit.completions || habit.completions.length === 0) return 0;
+                
+                const sorted = [...habit.completions].sort((a, b) => new Date(b) - new Date(a));
+                const today = new Date().toISOString().split('T')[0];
+                
+                let streak = 0;
+                const startDate = sorted[0] === today ? new Date(today) : new Date(new Date(today).getTime() - 86400000);
+                
+                for (let i = 0; i < 365; i++) {
+                    const checkDate = new Date(startDate.getTime() - i * 86400000).toISOString().split('T')[0];
+                    if (sorted.includes(checkDate)) {
+                        streak++;
+                    } else {
+                        break;
+                    }
+                }
+                
+                return streak;
+            }
+            
+            function calculateLongestStreak(habit) {
+                if (!habit.completions || habit.completions.length === 0) return 0;
+                
+                const sorted = [...habit.completions].sort((a, b) => new Date(a) - new Date(b));
+                let longest = 1;
+                let current = 1;
+                
+                for (let i = 1; i < sorted.length; i++) {
+                    const diff = (new Date(sorted[i]) - new Date(sorted[i-1])) / 86400000;
+                    if (diff === 1) {
+                        current++;
+                        longest = Math.max(longest, current);
+                    } else {
+                        current = 1;
+                    }
+                }
+                
+                return longest;
+            }
+            
+            window.completeHabit = function(index) {
+                const habits = JSON.parse(localStorage.getItem('habits') || '[]');
+                const today = new Date().toISOString().split('T')[0];
+                
+                if (!habits[index].completions) {
+                    habits[index].completions = [];
+                }
+                
+                if (!habits[index].completions.includes(today)) {
+                    habits[index].completions.push(today);
+                    localStorage.setItem('habits', JSON.stringify(habits));
+                    loadHabitsList();
+                }
+            };
+            
+            window.uncompleteHabit = function(index) {
+                const habits = JSON.parse(localStorage.getItem('habits') || '[]');
+                const today = new Date().toISOString().split('T')[0];
+                
+                habits[index].completions = habits[index].completions.filter(d => d !== today);
+                localStorage.setItem('habits', JSON.stringify(habits));
+                loadHabitsList();
+            };
+            
+            window.deleteHabit = function(index) {
+                if (confirm('Delete this habit? All streak data will be lost.')) {
+                    const habits = JSON.parse(localStorage.getItem('habits') || '[]');
+                    habits.splice(index, 1);
+                    localStorage.setItem('habits', JSON.stringify(habits));
+                    loadHabitsList();
+                }
+            };
+            
+            window.showHabitForm = function() {
+                const overlay = document.createElement('div');
+                overlay.id = 'habitFormOverlay';
+                overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+                
+                overlay.innerHTML = `
+                    <div onclick="event.stopPropagation();" style="background: white; border-radius: 20px; max-width: 600px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+                        <div style="background: linear-gradient(135deg, #FF9800, #F57C00); color: white; padding: 2rem; border-radius: 20px 20px 0 0; position: relative;">
+                            <button onclick="document.getElementById('habitFormOverlay').remove();" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; font-weight: 700;">×</button>
+                            <h2 style="margin: 0; font-size: 1.5rem; padding-right: 3rem;">🎯 Create New Habit</h2>
+                        </div>
+                        
+                        <div style="padding: 2rem;">
+                            <form id="habitForm">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Habit Name *</label>
+                                    <input type="text" id="habitName" required placeholder="e.g., Take evening primrose oil" style="width: 100%; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem;">
+                                </div>
+                                
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #2C3E50;">Description (optional)</label>
+                                    <textarea id="habitDesc" placeholder="Why this habit matters to you..." style="width: 100%; min-height: 80px; padding: 0.8rem; border: 2px solid #E0E0E0; border-radius: 10px; font-size: 1rem; resize: vertical;"></textarea>
+                                </div>
+                                
+                                <div style="padding: 1rem; background: #FFF3E0; border-radius: 10px; margin-bottom: 1.5rem;">
+                                    <div style="font-weight: 600; color: #E65100; margin-bottom: 0.5rem;">💡 Habit Ideas:</div>
+                                    <ul style="margin: 0; padding-left: 1.5rem; color: #5A6C7D; font-size: 0.9rem;">
+                                        <li>30-minute walk after lunch</li>
+                                        <li>No caffeine after 2pm</li>
+                                        <li>Journal before bed</li>
+                                        <li>Take supplements with breakfast</li>
+                                        <li>10 minutes of stretching</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                                    <button type="button" onclick="document.getElementById('habitFormOverlay').remove();" style="padding: 0.8rem 2rem; background: white; border: 2px solid #7D8A99; color: #7D8A99; border-radius: 12px; cursor: pointer; font-weight: 600;">Cancel</button>
+                                    <button type="submit" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, #FF9800, #F57C00); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600;">🎯 Create Habit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(overlay);
+                
+                document.getElementById('habitForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const newHabit = {
+                        name: document.getElementById('habitName').value,
+                        description: document.getElementById('habitDesc').value,
+                        createdDate: new Date().toISOString(),
+                        completions: []
+                    };
+                    
+                    const habits = JSON.parse(localStorage.getItem('habits') || '[]');
+                    habits.push(newHabit);
+                    localStorage.setItem('habits', JSON.stringify(habits));
+                    
+                    overlay.remove();
+                    loadHabitsList();
+                });
+            };
+            
+            // Add habit button
+            if (document.getElementById('addHabitBtn')) {
+                document.getElementById('addHabitBtn').addEventListener('click', () => showHabitForm());
+            }
 
             // ===== MEDICATION/HRT TRACKER SECTION =====
             
