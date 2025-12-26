@@ -1710,6 +1710,46 @@
                 padding: 1rem !important;
             }
         }
+
+        /* ===== WEEK BUTTON COLOR STATES ===== */
+        .week-nav-btn div {
+            transition: color 0.3s ease;
+            visibility: visible !important;
+            opacity: 1 !important;
+            display: block !important;
+        }
+        
+        /* Week 1 - Purple - Override inline styles when active */
+        .week-nav-btn[data-week="1"].week-active div {
+            color: white !important;
+        }
+        .week-nav-btn[data-week="1"]:not(.week-active) div {
+            color: #9B7EBD !important;
+        }
+        
+        /* Week 2 - Orange - Override inline styles when active */
+        .week-nav-btn[data-week="2"].week-active div {
+            color: white !important;
+        }
+        .week-nav-btn[data-week="2"]:not(.week-active) div {
+            color: #FF9F7F !important;
+        }
+        
+        /* Week 3 - Teal - Override inline styles when active */
+        .week-nav-btn[data-week="3"].week-active div {
+            color: white !important;
+        }
+        .week-nav-btn[data-week="3"]:not(.week-active) div {
+            color: #8EBFB5 !important;
+        }
+        
+        /* Week 4 - Pink - Override inline styles when active */
+        .week-nav-btn[data-week="4"].week-active div {
+            color: white !important;
+        }
+        .week-nav-btn[data-week="4"]:not(.week-active) div {
+            color: #FFB5C5 !important;
+        }
     </style>
 </head>
 <body>
@@ -2417,25 +2457,25 @@
                     </button>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                    <button class="week-nav-btn active" data-week="1" style="padding: 1.5rem; border: 3px solid #9B7EBD; background: linear-gradient(135deg, #9B7EBD, #B89FD1); border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: white;">Week 1</div>
-                        <div style="font-size: 0.9rem; opacity: 0.9; color: white;">🧠 Nervous System</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: white;">Hot Flushes • Mood • Sleep</div>
+                    <button class="week-nav-btn week-active" data-week="1" style="padding: 1.5rem; border: 3px solid #9B7EBD; background: linear-gradient(135deg, #9B7EBD, #B89FD1); border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #9B7EBD !important;">Week 1</div>
+                        <div style="font-size: 0.9rem; opacity: 0.9; color: #9B7EBD !important;">🧠 Nervous System</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #9B7EBD !important;">Hot Flushes • Mood • Sleep</div>
                     </button>
                     <button class="week-nav-btn" data-week="2" style="padding: 1.5rem; border: 3px solid #FF9F7F; background: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #FF9F7F;">Week 2</div>
-                        <div style="font-size: 0.9rem; color: #FF9F7F;">⚖️ Metabolic</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #FF9F7F;">Weight • Energy • Digestion</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #FF9F7F !important;">Week 2</div>
+                        <div style="font-size: 0.9rem; color: #FF9F7F !important;">⚖️ Metabolic</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #FF9F7F !important;">Weight • Energy • Digestion</div>
                     </button>
                     <button class="week-nav-btn" data-week="3" style="padding: 1.5rem; border: 3px solid #8EBFB5; background: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #8EBFB5;">Week 3</div>
-                        <div style="font-size: 0.9rem; color: #8EBFB5;">🦴 Musculoskeletal</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #8EBFB5;">Joints • Bones • Skin</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #8EBFB5 !important;">Week 3</div>
+                        <div style="font-size: 0.9rem; color: #8EBFB5 !important;">🦴 Musculoskeletal</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #8EBFB5 !important;">Joints • Bones • Skin</div>
                     </button>
                     <button class="week-nav-btn" data-week="4" style="padding: 1.5rem; border: 3px solid #FFB5C5; background: white; border-radius: 12px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
-                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #FFB5C5;">Week 4</div>
-                        <div style="font-size: 0.9rem; color: #FFB5C5;">🌸 Urogenital & Immune</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #FFB5C5;">Urinary Health • Immunity</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #FFB5C5 !important;">Week 4</div>
+                        <div style="font-size: 0.9rem; color: #FFB5C5 !important;">🌸 Urogenital & Immune</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; color: #FFB5C5 !important;">Urinary Health • Immunity</div>
                     </button>
                 </div>
             </div>
@@ -6919,6 +6959,10 @@
                         
                         // Show main recipes page (don't auto-load Week 1)
                         recipesMainPage.style.display = 'block';
+                        
+                        // Initialize week button colors
+                        initializeWeekButtons();
+                        
                         window.scrollTo(0, 0);
                     }, 500);
                 } else if (section === 'movement') {
@@ -12985,16 +13029,23 @@ function displayBatchCookingIdeas(weekNum) {
 
 // Display week function - shows day boxes first
 function displayWeek(weekNum) {
-    const week = recipeData[`week${weekNum}`];
-    const weekViewContainer = document.getElementById('weekViewContainer');
-    const recipesMainPage = document.getElementById('recipesMainPage');
-    const contentArea = document.getElementById('weekContent');
-    
-    // Hide main recipes page, show week view
-    recipesMainPage.style.display = 'none';
-    weekViewContainer.style.display = 'block';
-    
-    let html = `
+    try {
+        const week = recipeData[`week${weekNum}`];
+        
+        if (!week) {
+            alert('Error: No data for Week ' + weekNum);
+            return;
+        }
+        
+        const weekViewContainer = document.getElementById('weekViewContainer');
+        const recipesMainPage = document.getElementById('recipesMainPage');
+        const contentArea = document.getElementById('weekContent');
+        
+        // Hide main recipes page, show week view
+        recipesMainPage.style.display = 'none';
+        weekViewContainer.style.display = 'block';
+        
+        let html = `
         <div style="animation: fadeInUp 0.5s ease-out;">
             <!-- Week Title - JOYFUL DESIGN -->
             <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -13250,6 +13301,10 @@ function displayWeek(weekNum) {
     html += '</div>';
     contentArea.innerHTML = html;
     window.scrollTo(0, 0);
+    
+    } catch (error) {
+        alert('Error displaying week: ' + error.message);
+    }
 }
 
 // Back to main recipes page (clear week content)
@@ -13258,35 +13313,13 @@ function backToRecipesMain() {
     const weekViewContainer = document.getElementById('weekViewContainer');
     const contentArea = document.getElementById('weekContent');
     
-    // Save current week to localStorage
-    const lastWeek = localStorage.getItem('lastViewedWeek') || '1';
-    
     // Hide week view, show main recipes page
     weekViewContainer.style.display = 'none';
     recipesMainPage.style.display = 'block';
     contentArea.innerHTML = ''; // Clear the week content
     
     // Restore the active state of the last viewed week
-    document.querySelectorAll('.week-nav-btn').forEach(btn => {
-        const weekNum = btn.getAttribute('data-week');
-        const color = btn.style.borderColor;
-        
-        if (weekNum === lastWeek) {
-            // Active button - highlight it
-            btn.style.background = `linear-gradient(135deg, ${color}, ${color}DD)`;
-            // Make all child divs white text
-            btn.querySelectorAll('div').forEach(div => {
-                div.style.color = 'white';
-            });
-        } else {
-            // Inactive buttons
-            btn.style.background = 'white';
-            // Make all child divs colored text
-            btn.querySelectorAll('div').forEach(div => {
-                div.style.color = color;
-            });
-        }
-    });
+    initializeWeekButtons();
     
     window.scrollTo(0, 0);
 }
@@ -13570,39 +13603,53 @@ function toggleMeal(card) {
     }
 }
 
-// Week navigation buttons
-document.querySelectorAll('.week-nav-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const weekNum = this.getAttribute('data-week');
+// Initialize week button colors based on last viewed week
+function initializeWeekButtons() {
+    const lastWeek = localStorage.getItem('lastViewedWeek') || '1';
+    
+    document.querySelectorAll('.week-nav-btn').forEach(btn => {
+        const weekNum = btn.getAttribute('data-week');
+        const color = btn.style.borderColor;
         
-        // Save to localStorage so we can restore it
-        localStorage.setItem('lastViewedWeek', weekNum);
-        
-        // Update button styles
-        document.querySelectorAll('.week-nav-btn').forEach(b => {
-            const color = b.style.borderColor;
-            
-            if (b === this) {
-                // Active button - highlighted
-                b.style.background = `linear-gradient(135deg, ${color}, ${color}DD)`;
-                // Make all child divs white text
-                b.querySelectorAll('div').forEach(div => {
-                    div.style.color = 'white';
-                });
-            } else {
-                // Inactive buttons - white background
-                b.style.background = 'white';
-                // Make all child divs colored text
-                b.querySelectorAll('div').forEach(div => {
-                    div.style.color = color;
-                });
-            }
-        });
-        
-        // Display the week
-        displayWeek(weekNum);
+        if (weekNum === lastWeek) {
+            // Active button
+            btn.classList.add('week-active');
+            btn.style.background = `linear-gradient(135deg, ${color}, ${color}DD)`;
+        } else {
+            // Inactive buttons
+            btn.classList.remove('week-active');
+            btn.style.background = 'white';
+        }
     });
-});
+}
+
+// Week navigation buttons - wait for DOM to be ready
+setTimeout(function() {
+    document.querySelectorAll('.week-nav-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const weekNum = this.getAttribute('data-week');
+            localStorage.setItem('lastViewedWeek', weekNum);
+            
+            // Update button styles
+            document.querySelectorAll('.week-nav-btn').forEach(b => {
+                const color = b.style.borderColor;
+                
+                if (b === this) {
+                    b.classList.add('week-active');
+                    b.style.background = `linear-gradient(135deg, ${color}, ${color}DD)`;
+                } else {
+                    b.classList.remove('week-active');
+                    b.style.background = 'white';
+                }
+            });
+            
+            displayWeek(weekNum);
+        });
+    });
+}, 100);
 
 // Initialize with Week 1
 // Note: displayWeek(1) will be called from navigation handler
