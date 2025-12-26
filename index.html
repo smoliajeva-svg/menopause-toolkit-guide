@@ -1753,12 +1753,13 @@
             }
             
             /* Force single column for form grids EXCEPT mood/energy row */
-            [style*="grid-template-columns: 1fr 1fr"]:not([style*="margin-bottom: 2rem"]),
-            [style*="grid-template-columns: repeat(2, 1fr)"]:not(.keep-two-columns) {
+            [style*="grid-template-columns: 1fr 1fr"]:not([style*="margin-bottom: 2rem"]):not(.diary-mood-energy-display),
+            [style*="grid-template-columns: repeat(2, 1fr)"]:not(.keep-two-columns):not(.diary-mood-energy-display) {
                 grid-template-columns: 1fr !important;
             }
             
             /* CRITICAL: Keep mood/energy side by side on mobile - must override everything */
+            .diary-mood-energy-display,
             div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 1.5rem"][style*="margin-bottom: 2rem"],
             #diaryFormOverlay div[style*="grid-template-columns: 1fr 1fr"][style*="margin-bottom: 2rem"] {
                 grid-template-columns: 1fr 1fr !important;
@@ -1823,26 +1824,31 @@
                 padding: 1rem !important;
             }
             
-            /* Diary entry display: Keep mood/energy side by side */
-            .diary-mood-energy-display {
+            /* Diary entry display: Keep mood/energy side by side - ABSOLUTE PRIORITY */
+            .diary-mood-energy-display,
+            div.diary-mood-energy-display,
+            #diaryEntriesList .diary-mood-energy-display,
+            #diaryEntriesList div[style*="grid-template-columns: 1fr 1fr"] {
                 grid-template-columns: 1fr 1fr !important;
                 gap: 1rem !important;
+                display: grid !important;
             }
             
             .diary-mood-energy-display > div {
                 padding: 0.8rem !important;
+                min-width: 0 !important;
             }
             
             .diary-mood-energy-display div[style*="font-size: 2.5rem"] {
-                font-size: 2rem !important;
+                font-size: 1.8rem !important;
             }
             
             .diary-mood-energy-display div[style*="font-size: 1.8rem"] {
-                font-size: 1.5rem !important;
+                font-size: 1.4rem !important;
             }
             
             .diary-mood-energy-display div[style*="font-size: 1.1rem"] {
-                font-size: 0.95rem !important;
+                font-size: 0.9rem !important;
             }
             
             /* Diary form buttons - wrap on mobile */
@@ -9272,15 +9278,19 @@
                 return labels[mood] || 'Okay';
             }
             
-            // Track selected mood globally
-            let selectedMoodValue = null;
+            // Track selected mood globally on window object so form submission can access it
+            window.selectedMoodValue = null;
             
-            function selectMood(mood) {
-                selectedMoodValue = mood;
-                console.log('Mood selected:', mood); // Debug log
+            // Make selectMood available globally
+            window.selectMood = function(mood) {
+                window.selectedMoodValue = mood;
+                console.log('Mood selected:', mood, 'selectedMoodValue now:', window.selectedMoodValue); // Debug log
                 
                 // Update all mood buttons
-                document.querySelectorAll('.mood-btn').forEach(btn => {
+                const buttons = document.querySelectorAll('.mood-btn');
+                console.log('Found mood buttons:', buttons.length); // Debug log
+                
+                buttons.forEach(btn => {
                     const btnMood = parseInt(btn.getAttribute('data-mood'));
                     if (btnMood === mood) {
                         // Selected button - colored with stronger effect
@@ -9288,12 +9298,14 @@
                         btn.style.background = 'linear-gradient(135deg, #FCE4EC, #FFFFFF)';
                         btn.style.boxShadow = '0 4px 12px rgba(233, 30, 99, 0.3)';
                         btn.style.transform = 'scale(1.05)';
+                        btn.classList.add('mood-selected');
                     } else {
                         // Unselected buttons - white and grey
                         btn.style.border = '2px solid #E0E0E0';
                         btn.style.background = 'white';
                         btn.style.boxShadow = 'none';
                         btn.style.transform = 'scale(1)';
+                        btn.classList.remove('mood-selected');
                     }
                 });
             }
@@ -9402,19 +9414,21 @@ Examples:
                 
                 document.body.appendChild(overlay);
                 
-                // Initialize selected mood if editing
+                // Initialize selected mood if editing - use setTimeout to ensure DOM is ready
                 if (entry.mood) {
-                    selectedMoodValue = entry.mood;
-                    selectMood(entry.mood);
+                    window.selectedMoodValue = entry.mood;
+                    setTimeout(() => {
+                        selectMood(entry.mood);
+                    }, 100);
                 } else {
-                    selectedMoodValue = null;
+                    window.selectedMoodValue = null;
                 }
                 
                 // Reset form button
                 document.getElementById('resetFormBtn').addEventListener('click', function() {
                     if (confirm('Are you sure you want to reset all fields? This cannot be undone.')) {
                         // Reset mood
-                        selectedMoodValue = null;
+                        window.selectedMoodValue = null;
                         document.querySelectorAll('.mood-btn').forEach(btn => {
                             btn.style.border = '2px solid #E0E0E0';
                             btn.style.background = 'white';
@@ -9462,9 +9476,11 @@ Examples:
                     
                     const tags = Array.from(document.querySelectorAll('.tag-checkbox:checked')).map(cb => cb.value);
                     
+                    console.log('Saving entry with mood:', window.selectedMoodValue); // Debug log
+                    
                     const newEntry = {
                         date: document.getElementById('entryDate').value,
-                        mood: selectedMoodValue ? parseInt(selectedMoodValue) : 3,
+                        mood: window.selectedMoodValue ? parseInt(window.selectedMoodValue) : 3,
                         energy: parseInt(document.getElementById('energySlider').value),
                         journal: journalText,
                         tags: tags
@@ -9493,16 +9509,6 @@ Examples:
                 });
             };
             
-            window.selectMood = function(mood) {
-                document.querySelectorAll('.mood-btn').forEach(btn => {
-                    btn.style.border = '2px solid #E0E0E0';
-                    btn.style.background = 'white';
-                });
-                const selected = document.querySelector(`.mood-btn[data-mood="${mood}"]`);
-                selected.style.border = '2px solid #E91E63';
-                selected.style.background = 'linear-gradient(135deg, #FCE4EC, #FFFFFF)';
-                selected.style.transform = 'scale(1.05)';
-            };
             
             window.editDiaryEntry = function(index) {
                 showDiaryForm(index);
