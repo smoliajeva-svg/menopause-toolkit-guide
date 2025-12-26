@@ -1261,8 +1261,44 @@
             }
 
             .mood-btn {
-                padding: 1rem 0.5rem !important;
-                font-size: 0.8rem !important;
+                aspect-ratio: 1;
+                border-radius: 12px;
+                border: 2px solid #E0E0E0;
+                background: white;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+                padding: 0.5rem;
+                transform: scale(1);
+            }
+            
+            @media (max-width: 768px) {
+                .mood-btn {
+                    padding: 0.8rem 0.3rem !important;
+                    font-size: 0.75rem !important;
+                }
+                
+                /* Stack mood and energy vertically on mobile */
+                .mood-energy-container {
+                    grid-template-columns: 1fr !important;
+                    gap: 1.5rem !important;
+                }
+                
+                /* Mood buttons grid - ensure 5 buttons fit properly */
+                .mood-buttons-grid {
+                    gap: 0.3rem !important;
+                }
+                
+                .mood-btn div:first-child {
+                    font-size: 1.5rem !important;
+                }
+                
+                .mood-btn div:last-child {
+                    font-size: 0.65rem !important;
+                }
             }
 
             .mood-btn div:first-child {
@@ -1270,10 +1306,12 @@
             }
             
             .mood-btn-selected {
-                border: 3px solid #E91E63 !important;
-                background: linear-gradient(135deg, #FFB3D9, #FFD4E8) !important;
-                transform: scale(1.1) !important;
-                box-shadow: 0 4px 12px rgba(233, 30, 99, 0.4) !important;
+                border: 5px solid #C2185B !important;
+                background: #FF1493 !important;
+                transform: scale(1.2) !important;
+                box-shadow: 0 8px 24px rgba(255, 20, 147, 0.7) !important;
+                font-weight: 700 !important;
+                position: relative !important;
             }
 
             #weekOverview {
@@ -4151,9 +4189,14 @@
                 <span style="font-size: 2rem;">📔</span>
                 <span>Diary</span>
             </h1>
-            <button id="backToHomeFromDiary" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid var(--primary-green); color: var(--primary-green); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='var(--primary-green)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--primary-green)';">
-                🏠 Back to Home
-            </button>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button id="clearAllDiaryData" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid #E74C3C; color: #E74C3C; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#E74C3C'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#E74C3C';">
+                    🗑️ Clear All Data
+                </button>
+                <button id="backToHomeFromDiary" style="padding: 0.8rem 1.5rem; background: white; border: 2px solid var(--primary-green); color: var(--primary-green); border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='var(--primary-green)'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='var(--primary-green)';">
+                    🏠 Back to Home
+                </button>
+            </div>
         </div>
 
         <div style="max-width: 1200px; margin: 0 auto;">
@@ -8733,14 +8776,46 @@
                     btn.style.background = 'white';
                     btn.style.transform = 'scale(1)';
                     btn.style.boxShadow = 'none';
+                    btn.style.fontWeight = 'normal';
+                    btn.style.position = 'relative';
+                    
+                    // Remove any existing checkmark
+                    const existingCheck = btn.querySelector('.selected-indicator');
+                    if (existingCheck) {
+                        existingCheck.remove();
+                    }
                 });
                 
-                // Add active state to selected button with strong visual feedback
+                // Add active state to selected button with VERY STRONG visual feedback
                 const selectedBtn = document.querySelector(`.sleep-quality-btn[data-quality="${quality}"]`);
-                selectedBtn.style.border = '4px solid #3498DB';
-                selectedBtn.style.background = 'linear-gradient(135deg, #AED6F1, #D6EAF8)';
-                selectedBtn.style.transform = 'scale(1.1)';
-                selectedBtn.style.boxShadow = '0 4px 12px rgba(52, 152, 219, 0.4)';
+                selectedBtn.style.border = '5px solid #3498DB';
+                selectedBtn.style.background = '#5DADE2';
+                selectedBtn.style.transform = 'scale(1.15)';
+                selectedBtn.style.boxShadow = '0 6px 20px rgba(52, 152, 219, 0.6)';
+                selectedBtn.style.fontWeight = '700';
+                
+                // Add a visual checkmark indicator
+                const checkmark = document.createElement('div');
+                checkmark.className = 'selected-indicator';
+                checkmark.innerHTML = '✓';
+                checkmark.style.cssText = `
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    background: #3498DB;
+                    color: white;
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                    font-weight: bold;
+                    border: 3px solid white;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                `;
+                selectedBtn.appendChild(checkmark);
                 
                 // Save to local storage
                 saveDailyPlanData();
@@ -9248,7 +9323,7 @@
                                 </div>
                                 <div style="display: flex; gap: 0.8rem;">
                                     <button onclick="editDiaryEntry(${index})" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #E91E63; color: #E91E63; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" onmouseover="this.style.background='#E91E63'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#E91E63'">✏️ Edit</button>
-                                    <button onclick="deleteDiaryEntry(${index})" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #E74C3C; color: #E74C3C; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" onmouseover="this.style.background='#E74C3C'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#E74C3C'">🗑️</button>
+                                    <button onclick="deleteDiaryEntry(${index})" style="padding: 0.6rem 1.2rem; background: white; border: 2px solid #E74C3C; color: #E74C3C; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 1.2rem; transition: all 0.3s; line-height: 1;" onmouseover="this.style.background='#E74C3C'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#E74C3C'">×</button>
                                 </div>
                             </div>
                             
@@ -9264,9 +9339,9 @@
                                 
                                 <div style="background: linear-gradient(135deg, #FCE4EC, #FFFFFF); padding: 1.2rem; border-radius: 12px; border: 2px solid #F8BBD0;">
                                     <div style="font-size: 0.75rem; color: #AD1457; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: 0.5px;">ENERGY</div>
-                                    <div style="font-size: 1.8rem; font-weight: 700; color: ${getEnergyColor(entry.energy)}; margin-bottom: 0.5rem;">${entry.energy}/5</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: ${getEnergyColor(entry.energy || 3)}; margin-bottom: 0.5rem;">${entry.energy || 'Not recorded'}/5</div>
                                     <div style="height: 10px; background: #F0F0F0; border-radius: 5px; overflow: hidden;">
-                                        <div style="height: 100%; background: ${getEnergyColor(entry.energy)}; width: ${entry.energy * 20}%; transition: width 0.3s;"></div>
+                                        <div style="height: 100%; background: ${getEnergyColor(entry.energy || 3)}; width: ${(entry.energy || 3) * 20}%; transition: width 0.3s;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -9283,9 +9358,19 @@
                             
                             <!-- Journal Entry -->
                             ${entry.journal ? `
-                            <div>
+                            <div style="margin-bottom: 1.5rem;">
                                 <div style="font-size: 0.75rem; color: #7D8A99; margin-bottom: 0.8rem; font-weight: 700; letter-spacing: 0.5px;">✍️ JOURNAL ENTRY</div>
                                 <div style="padding: 1.5rem; background: #FFFAF0; border-radius: 12px; border: 2px solid #F8BBD0; color: #2C3E50; font-size: 1rem; line-height: 1.8; white-space: pre-wrap;">${entry.journal}</div>
+                            </div>
+                            ` : ''}
+                            
+                            <!-- Symptoms -->
+                            ${entry.symptoms && entry.symptoms.length > 0 ? `
+                            <div style="margin-bottom: 1.5rem;">
+                                <div style="font-size: 0.75rem; color: #6C3483; margin-bottom: 0.8rem; font-weight: 700; letter-spacing: 0.5px;">🩺 SYMPTOMS</div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+                                    ${entry.symptoms.map(symptom => `<span style="background: #9B59B6; color: white; padding: 0.4rem 1rem; border-radius: 16px; font-size: 0.85rem; font-weight: 600;">${symptom}</span>`).join('')}
+                                </div>
                             </div>
                             ` : ''}
                         </div>
@@ -9341,12 +9426,12 @@
                                 </div>
                                 
                                 <!-- Mood & Energy Row -->
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;" class="mood-energy-container">
                                     <div>
                                         <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">😊 Mood</label>
-                                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
+                                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;" class="mood-buttons-grid">
                                             ${[1,2,3,4,5].map(m => `
-                                                <button type="button" class="mood-btn ${entry.mood === m ? 'mood-btn-selected' : ''}" data-mood="${m}" style="aspect-ratio: 1; border-radius: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s; padding: 0.5rem; border: 2px solid #E0E0E0; background: white;">
+                                                <button type="button" class="mood-btn ${entry.mood === m ? 'mood-btn-selected' : ''}" data-mood="${m}" style="${entry.mood === m ? '' : 'border: 2px solid #E0E0E0 !important; background: white !important;'}">
                                                     <div style="font-size: 1.8rem;">${window.getMoodEmoji(m)}</div>
                                                     <div style="font-size: 0.7rem; color: #5A6C7D; margin-top: 0.2rem;">${window.getMoodLabel(m)}</div>
                                                 </button>
@@ -9379,6 +9464,22 @@ Examples:
                                     <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #7D8A99;">💡 Tip: Write freely - this is your private space. Note symptoms, triggers, wins, struggles.</div>
                                 </div>
                                 
+                                <!-- Symptoms Experienced Today -->
+                                <div style="margin-bottom: 2rem;">
+                                    <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">🩺 Symptoms Experienced Today (Optional)</label>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+                                        ${['Hot Flushes', 'Night Sweats', 'Mood Swings', 'Anxiety', 'Brain Fog', 'Fatigue', 'Insomnia', 'Joint Pain', 'Headaches', 'Heart Palpitations', 'Digestive Issues', 'Skin Changes'].map(symptom => {
+                                            const isSelected = entry.symptoms?.includes(symptom);
+                                            return `
+                                                <label style="cursor: pointer;">
+                                                    <input type="checkbox" class="symptom-checkbox" value="${symptom}" ${isSelected ? 'checked' : ''} style="display: none;">
+                                                    <span class="symptom-label" onclick="this.previousElementSibling.checked = !this.previousElementSibling.checked; this.style.background = this.previousElementSibling.checked ? '#9B59B6' : '#E8DAEF'; this.style.color = this.previousElementSibling.checked ? 'white' : '#6C3483';" style="display: inline-block; padding: 0.5rem 1rem; background: ${isSelected ? '#9B59B6' : '#E8DAEF'}; color: ${isSelected ? 'white' : '#6C3483'}; border-radius: 20px; font-size: 0.85rem; font-weight: 600; transition: all 0.3s;">${symptom}</span>
+                                                </label>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                                
                                 <!-- Quick Tags (Optional) -->
                                 <div style="margin-bottom: 2rem;">
                                     <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #2C3E50; font-size: 1rem;">🏷️ Quick Tags (Optional)</label>
@@ -9396,9 +9497,12 @@ Examples:
                                 </div>
                                 
                                 <!-- Buttons -->
-                                <div style="display: flex; gap: 1rem; justify-content: flex-end; padding-top: 1rem; border-top: 2px solid #F0F0F0;">
-                                    <button type="button" onclick="document.getElementById('diaryFormOverlay').remove();" style="padding: 1rem 2rem; background: white; border: 2px solid #D0D0D0; color: #7D8A99; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='white'">Cancel</button>
-                                    <button type="submit" style="padding: 1rem 2rem; background: linear-gradient(135deg, #E91E63, #C2185B); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(233, 30, 99, 0.3)'">${isEdit ? '💾 Save Changes' : '📔 Save Entry'}</button>
+                                <div style="display: flex; gap: 1rem; justify-content: space-between; padding-top: 1rem; border-top: 2px solid #F0F0F0;">
+                                    <button type="button" id="resetFormButton" style="padding: 1rem 2rem; background: white; border: 2px solid #E74C3C; color: #E74C3C; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#E74C3C'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#E74C3C'">🔄 Reset All</button>
+                                    <div style="display: flex; gap: 1rem;">
+                                        <button type="button" onclick="document.getElementById('diaryFormOverlay').remove();" style="padding: 1rem 2rem; background: white; border: 2px solid #D0D0D0; color: #7D8A99; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#F8F9FA'" onmouseout="this.style.background='white'">Cancel</button>
+                                        <button type="submit" style="padding: 1rem 2rem; background: linear-gradient(135deg, #E91E63, #C2185B); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(233, 30, 99, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(233, 30, 99, 0.3)'">${isEdit ? '💾 Save Changes' : '📔 Save Entry'}</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -9436,6 +9540,49 @@ Examples:
                     });
                 });
                 
+                // Reset form button
+                document.getElementById('resetFormButton').addEventListener('click', () => {
+                    if (confirm('Clear all fields in this form?')) {
+                        // Clear journal text
+                        document.getElementById('journalEntry').value = '';
+                        
+                        // Reset energy slider to middle
+                        document.getElementById('energySlider').value = 3;
+                        document.getElementById('energyValue').textContent = 3;
+                        
+                        // Unselect all mood buttons
+                        document.querySelectorAll('.mood-btn').forEach(btn => {
+                            btn.classList.remove('mood-btn-selected');
+                            btn.style.setProperty('border', '2px solid #E0E0E0', 'important');
+                            btn.style.setProperty('background', 'white', 'important');
+                            btn.style.setProperty('transform', 'scale(1)', 'important');
+                            btn.style.setProperty('box-shadow', 'none', 'important');
+                            const checkmark = btn.querySelector('.selected-indicator');
+                            if (checkmark) checkmark.remove();
+                        });
+                        
+                        // Uncheck all symptoms
+                        document.querySelectorAll('.symptom-checkbox').forEach(cb => {
+                            cb.checked = false;
+                            const label = cb.nextElementSibling;
+                            if (label) {
+                                label.style.background = '#E8DAEF';
+                                label.style.color = '#6C3483';
+                            }
+                        });
+                        
+                        // Uncheck all tags
+                        document.querySelectorAll('.tag-checkbox').forEach(cb => {
+                            cb.checked = false;
+                            const label = cb.nextElementSibling;
+                            if (label) {
+                                label.style.background = '#F8BBD0';
+                                label.style.color = '#C2185B';
+                            }
+                        });
+                    }
+                });
+                
                 // Form submission
                 document.getElementById('diaryForm').addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -9453,13 +9600,15 @@ Examples:
                     }
                     
                     const tags = Array.from(document.querySelectorAll('.tag-checkbox:checked')).map(cb => cb.value);
+                    const symptoms = Array.from(document.querySelectorAll('.symptom-checkbox:checked')).map(cb => cb.value);
                     
                     const newEntry = {
                         date: document.getElementById('entryDate').value,
                         mood: parseInt(selectedMood),
                         energy: parseInt(document.getElementById('energySlider').value),
                         journal: journalText,
-                        tags: tags
+                        tags: tags,
+                        symptoms: symptoms
                     };
                     
                     const entries = JSON.parse(localStorage.getItem('diaryEntries') || '[]');
@@ -9486,16 +9635,61 @@ Examples:
             };
             
             window.selectMood = function(mood) {
-                // Reset all mood buttons - remove selected class
+                // Reset all mood buttons to grey/white
                 const allButtons = document.querySelectorAll('.mood-btn');
+                
                 allButtons.forEach(btn => {
                     btn.classList.remove('mood-btn-selected');
+                    // Explicitly set to grey/white (don't clear, set)
+                    btn.style.setProperty('border', '2px solid #E0E0E0', 'important');
+                    btn.style.setProperty('background', 'white', 'important');
+                    btn.style.setProperty('transform', 'scale(1)', 'important');
+                    btn.style.setProperty('box-shadow', 'none', 'important');
+                    btn.style.setProperty('font-weight', 'normal', 'important');
+                    
+                    // Remove any existing checkmark
+                    const existingCheck = btn.querySelector('.selected-indicator');
+                    if (existingCheck) {
+                        existingCheck.remove();
+                    }
                 });
                 
-                // Highlight selected mood button - add selected class
+                // Highlight ONLY the selected mood button
                 const selected = document.querySelector(`.mood-btn[data-mood="${mood}"]`);
                 if (selected) {
                     selected.classList.add('mood-btn-selected');
+                    
+                    // Override with pink styles
+                    selected.style.setProperty('border', '5px solid #C2185B', 'important');
+                    selected.style.setProperty('background', '#FF1493', 'important');
+                    selected.style.setProperty('transform', 'scale(1.2)', 'important');
+                    selected.style.setProperty('box-shadow', '0 8px 24px rgba(255, 20, 147, 0.7)', 'important');
+                    selected.style.setProperty('font-weight', '700', 'important');
+                    selected.style.setProperty('position', 'relative', 'important');
+                    
+                    // Add a visual checkmark indicator
+                    const checkmark = document.createElement('div');
+                    checkmark.className = 'selected-indicator';
+                    checkmark.innerHTML = '✓';
+                    checkmark.style.cssText = `
+                        position: absolute;
+                        top: -8px;
+                        right: -8px;
+                        background: #E91E63;
+                        color: white;
+                        width: 28px;
+                        height: 28px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 18px;
+                        font-weight: bold;
+                        border: 3px solid white;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                        z-index: 10;
+                    `;
+                    selected.appendChild(checkmark);
                 }
             };
             
@@ -9511,6 +9705,19 @@ Examples:
                     loadDiaryEntries();
                 }
             };
+            
+            // Clear all diary data button
+            if (document.getElementById('clearAllDiaryData')) {
+                document.getElementById('clearAllDiaryData').addEventListener('click', () => {
+                    if (confirm('⚠️ WARNING: This will permanently delete ALL diary entries!\n\nAre you absolutely sure?')) {
+                        if (confirm('This cannot be undone. Delete everything?')) {
+                            localStorage.removeItem('diaryEntries');
+                            loadDiaryEntries();
+                            alert('✓ All diary entries have been cleared.');
+                        }
+                    }
+                });
+            }
             
             // Add diary entry button
             if (document.getElementById('addDiaryEntry')) {
